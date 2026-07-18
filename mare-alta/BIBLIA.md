@@ -65,3 +65,9 @@ start ao end (o mesmo prédio, a mesma linha de árvores). Quando nada sobrevive
 converter para TRANSFORMAÇÃO DE ESTADO com câmera travada - o mundo muda dentro do
 mesmo enquadramento (aqui: o oceano SOBE atrás das árvores, menino no quadro o tempo
 todo - dramaticamente até melhor, a testemunha assiste junto).
+
+## PAUSADO (2026-07-18)
+
+Wow-shot v2 (maré-sobe, `d8941f5f`) também REPROVADO pelo usuário; pedido explícito de
+parar de gerar. 45 cr gastos. Estado: âncoras aprovados seguem válidos.
+Retomada exige conversa sobre o que falhou no movimento antes de qualquer geração nova.

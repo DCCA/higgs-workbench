@@ -29,8 +29,9 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
   senão vira "cortina" (registrada em `mare-alta/BIBLIA.md`).
 
 **Pending / next:**
-- [ ] MARÉ ALTA: veredito do usuário no `S2_wow_v2.mp4` → se ok, gerar S1/S3/S4
-      (S3 precisa do still ONDA derivado do OCEANO), montar, trilha, registro
+- [ ] MARÉ ALTA **PAUSADO pelo usuário (2026-07-18)**: wow-shot v1 (tilt) E v2
+      (maré-sobe) reprovados; usuário pediu para parar de gerar. Antes de retomar,
+      rever o conceito do wow-shot com ele - não gerar de novo sem direção nova.
 - [ ] Promover a lição do tilt para `PRATICAS.md` na fase de registro do MARÉ ALTA
 - [ ] MÁSCARAS pós: usuário escolhe a voz (3 mp3 em `Downloads\mascaras\vo\`) → mix,
       trilha, foley, passe de cor, cartela melhor, A/B de upscale (Video2X × Higgsfield)
