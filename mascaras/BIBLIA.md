@@ -244,3 +244,14 @@ Testado contra um frame do S1 como alvo. Corrigir médios junto (`rm`) esfria de
 
 Ato 1, 1ª passada: ~10 em imagem + 80,5 em vídeo. Filme completo (26 shots, fast 720p,
 com retry 2x): **~1.200**. Em std 1080p direto: ~2.780, não cabe no saldo.
+
+## VO - candidatas geradas (edge-tts, custo zero)
+
+3 vozes em `mascaras/vo/` (fora do git; regen abaixo). Janela na montagem: S22-S24 (17s).
+
+    uvx --from edge-tts edge-tts --voice pt-BR-AntonioNeural --rate=-12% \
+      --text "As máscaras que vestimos, às vezes, nos protegem. ... Mas não podemos ter medo de sermos quem somos." \
+      --write-media vo_antonio.mp3
+
+Trocar `--voice` por `pt-BR-FranciscaNeural` ou `pt-BR-ThalitaMultilingualNeural`
+para as outras. Fallback se nenhuma servir: `create_voice` do Higgsfield.
