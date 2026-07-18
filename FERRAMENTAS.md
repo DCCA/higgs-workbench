@@ -11,8 +11,10 @@ imagem/vídeo/upscale por créditos; tudo abaixo cobre o resto de graça.
 | **Piper** | local, open | Vozes brasileiras (cadu, edresson, faber, jeff), qualidade média, leve, offline total. |
 | **Kokoro-82M** | local, Apache 2.0 | 82M params, qualidade acima do tamanho; voz pt `pf_dora` é a melhor feminina offline. |
 
-Recomendação pro VO do MÁSCARAS: testar `edge-tts` primeiro (2 linhas de texto,
-voz calma masculina ou feminina), cair pro `create_voice` do Higgsfield só se nenhuma servir.
+**Regra do workbench: a voz é escolhida POR VÍDEO, nunca travada como padrão.**
+Fluxo: gerar 2-3 candidatas com o texto real do vídeo (`edge-tts` custa zero, então
+candidatas são grátis), ouvir contra o corte e escolher caso a caso. Fallback se
+nenhuma servir ao tom do projeto: `create_voice` do Higgsfield.
 
 ## 2. Trilha musical
 
