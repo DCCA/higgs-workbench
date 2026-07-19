@@ -120,3 +120,21 @@ VOO_final_ALT_piano.mp4, storyboards v1-v4.
 
 Custo final do projeto: ~146 cr (73,5 corte 1 + 16 fix S4 + 2 mundo povoado + 52,5 oner
 + 2 penhasco v2). Trilha: custo zero (Stable Audio local). Lições promovidas a PRATICAS.
+
+## Iteração: corpo duro no take → motion transfer (em curso)
+
+Usuário: "a pessoa está muito dura". Ferramenta certa: `motion_control` (Kling 3.0) -
+transfere movimento de vídeo REAL pro personagem. Aprendizados pagos com falhas GRATUITAS
+(job failed não cobra; saldo conferido intacto):
+
+1. Falha 1 (instantânea): still DE COSTAS `a581f866` - o tracker não detecta personagem
+   sem rosto/silhueta clara. Usar still com corpo legível (perfil `07e94853` passou da
+   detecção).
+2. Falha 2 (meio do processo): doador ruim - GoPro fisheye, flyer colado na câmera e
+   saindo do quadro (Pexels 7997309). Doador precisa: UMA pessoa, corpo inteiro SEMPRE
+   no quadro, câmera estável, sem fisheye.
+3. Acervo livre de voo solo esgotado sem resultado (Pexels/Pixabay/Videvo/Vecteezy/
+   Mixkit/Commons): só tandem, duplas acrobáticas ou fotos.
+
+Conclusão: o doador ideal é CLIPE CASEIRO ATUADO pelo usuário (deitado de bruços num
+banco, 15s, celular de lado, estável). Aguardando o clipe.
