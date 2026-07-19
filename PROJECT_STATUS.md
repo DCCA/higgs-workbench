@@ -3,6 +3,31 @@
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
 (`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`).
 
+## 2026-07-19 (continuação) - VOO v2 corpo vivo; storyboard vira fase padrão
+
+**Where we were:** VOO_final entregue, mas usuário reprovou a rigidez do corpo no take.
+
+**What we did:**
+- Investigado `motion_control` (Kling 3.0): 3 falhas GRATUITAS que mapearam a ferramenta -
+  não detecta personagem de costas, exige doador limpo, e não suporta pose de bruços
+  (`d1288e8`, `60fc281`). Acervo livre de voo solo esgotado sem doador viável.
+- Caminho vencedor: prompt como COREOGRAFIA DE EVENTOS FÍSICOS (não adjetivos) - teste
+  no deslize (17,5 cr) provou; take único v2 (52,5 cr) aprovado pelo usuário.
+- **VOO_final_v2.mp4 entregue** (15s, corpo vivo, trilha C) em Downloads\voo\ (`13c0d96`)
+- Lição promovida a PRATICAS.md: coreografia de eventos físicos > adjetivos de movimento
+- A pedido do usuário: **storyboard virou fase 4 obrigatória com gate no /novo-video**
+  + 5º princípio: "nenhum vídeo é gerado sem storyboard aprovado" (`3d71cd4`)
+
+**Decisions:** rigidez de corpo se resolve por coreografia nomeada com timing, não por
+motion transfer (limite de pose da ferramenta) nem adjetivos; storyboard é etapa padrão.
+
+**Pending / next:**
+- [ ] Usuário: rotacionar o token HF (ainda aberto)
+- [ ] MÁSCARAS pós: voz, trilha, cor, cartela, upscale A/B
+- [ ] MARÉ ALTA pausado (conversa de conceito antes de retomar)
+- [ ] Opcional: upscale VOO_final_v2 para 2K; remote do repo
+- Custo VOO total: ~216 cr. Créditos: ~1.418 restantes
+
 ## 2026-07-19 - VOO completo (1º vídeo do usuário voando) + Stable Audio local
 
 **Where we were:** MARÉ ALTA pausado; workbench com práticas/skill; usuário queria
