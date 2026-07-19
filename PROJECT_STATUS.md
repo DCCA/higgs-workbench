@@ -3,6 +3,35 @@
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
 (`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`).
 
+## 2026-07-19 - VOO completo (1º vídeo do usuário voando) + Stable Audio local
+
+**Where we were:** MARÉ ALTA pausado; workbench com práticas/skill; usuário queria
+vídeo de si mesmo voando.
+
+**What we did:**
+- VOO v1 (4 shots): produzido e REPROVADO por realismo - diagnóstico estrutural
+  (físicas independentes, ângulo impossível, cortes secos)
+- Pivô: storyboard local custo zero (4 iterações, PIL + frames pagos) → take único
+  15s câmera fixa, mundo povoado (farol/barcos/gaivotas) → APROVADO
+- Trilha: Stable Audio Open 1.0 local na RTX 3070 (setup em tools/stable-audio,
+  gerador reutilizável gerar_trilha.py) - 3 variações, custo zero
+- Fotos do usuário como identidade one-off (3 refs via media_upload)
+- Entregas: VOO_final.mp4 (trilha C) + 2 alternativas de trilha em Downloads\voo\
+- Lições novas promovidas a PRATICAS.md: tilt sem conteúdo compartilhado, orçamento
+  de pixels, plano-sequência estrutural, realismo por câmera real, evidência física
+  p/ anti-física, continuidade de figurino, storyboard-antes-do-take
+
+**Decisions:** realismo passa por câmera plausível + corpo solto + mentira mínima;
+storyboard local vira etapa padrão antes de takes >30 cr; trilha local no workbench
+(HF token do usuário deve ser ROTACIONADO - passou pela conversa).
+
+**Pending / next:**
+- [ ] Usuário: rotacionar o token HF (read-only, exposto no chat)
+- [ ] MÁSCARAS pós: voz (3 mp3), trilha, cor, cartela, upscale A/B
+- [ ] MARÉ ALTA pausado (rever conceito do wow-shot antes de retomar)
+- [ ] Opcional: upscale do VOO_final para 2K; remote do repo
+- Créditos: ~1.435 restantes
+
 ## 2026-07-18 - Fundação do workbench, MÁSCARAS completo, MARÉ ALTA iniciado
 
 **Where we were:** diretório vazio, Higgsfield MCP sem configurar, nenhum processo.
