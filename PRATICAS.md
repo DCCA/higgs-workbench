@@ -48,6 +48,24 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
   DECUPAGEM, não em adjetivos no prompt.** Exemplo: reflexo divergente em ângulo
   over-the-shoulder vira duplo físico dentro d'água; a solução foi o enquadramento de
   Narciso (câmera a pino), onde a geometria do reflexo é trivial.
+- **Tilt/pan interpolado exige conteúdo compartilhado entre start e end.** Quando os dois
+  frames não têm um único elemento em comum, o modelo desliza a cena final por cima da
+  inicial como cortina/wipe (dois horizontes simultâneos no meio). Antídoto: garantir que
+  uma fração do quadro sobreviva ao movimento, ou converter para transformação de estado
+  com câmera travada - o mundo muda dentro do mesmo enquadramento (MARÉ ALTA).
+- **Figura pequena demais não tem orçamento de pixels.** Humano com ~20px vira mancha que
+  o modelo não anima com coerência. Plano de despedida: sujeito legível (~1/4 do quadro)
+  recuando DENTRO do shot, nunca começando microscópico. E cortar de close para figura
+  micro é zoom-out violento na montagem (VOO).
+- **"Não parece um filme" tem resposta estrutural: o plano-sequência.** N gerações
+  independentes = N físicas coladas; um take único = um mundo, uma física, zero
+  transições ruins. Seedance vai a 15s - um oner de 15s custa o mesmo que 3 shots de 5s
+  e elimina a montagem inteira. Câmera onde uma câmera REAL estaria (chão, altura de
+  gente), primeiro plano fixo (grama, parapeito) como âncora de mundo único (VOO).
+- **Realismo de evento impossível = linguagem de câmera real + mentira mínima.** Direção
+  "dreamlike/serene" é anti-realismo; o que vende é câmera plausível, corpo SOLTO
+  (pernas pendendo, instabilidades), vento com força na roupa, e mundo povoado - barcos,
+  farol, pássaros são âncoras de escala que provam que o lugar existe (VOO).
 
 ## Armadilhas do modelo (e antídotos)
 
@@ -66,6 +84,27 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
 - **Interceptação por preset.** O servidor intercepta prompts de cena escura/fria e
   devolve recomendação de preset SEM submeter o job (parece sucesso, não é). Antídoto:
   reenviar com `declined_preset_id`. Em bloco de cenas escuras, incluir preventivamente.
+- **Estado impossível exige a EVIDÊNCIA FÍSICA, não o conceito.** "Ele levita" gera pés
+  no chão (o modelo regride pra referência). O que funciona é descrever a prova visual:
+  "visible GAP of empty air under the soles, horizon visible THROUGH the gap, soft
+  shadow on the grass below" (VOO). Vale para qualquer anti-física.
+- **Continuidade de figurino nos derivados.** Frames derivados trocam detalhes silenciosos
+  (tênis viraram pés descalços). Conferir roupa/adereços em TODO derivado; corrigir com
+  o item explícito no prompt + foto-ref.
+
+## Storyboard antes do take caro (custo zero)
+
+Antes de qualquer geração acima de ~30 cr ou conceito de movimento arriscado:
+**storyboard local** para o usuário validar arco, trajetória e física NO PAPEL.
+
+- v1 rápido: PIL/desenho (silhuetas + setas + timecodes) - 5 min, zero créditos
+- v2 fotográfico: reusar frames JÁ PAGOS como beats (eles são o storyboard real);
+  faltando um beat, silhueta/fantasma desenhado sobre o frame real
+- Setas importam: seta inclinada leu como "sobe pro universo" quando a trajetória era
+  nivelada - a anotação errada cria o mal-entendido que ela deveria evitar
+
+No VOO, 4 iterações de storyboard por 0 créditos pegaram 2 problemas antes de um take
+de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado por 2 cr).
 
 ## Revisão e montagem
 
