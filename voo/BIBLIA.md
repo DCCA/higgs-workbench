@@ -146,3 +146,12 @@ deitada/de bruços** (é ferramenta de movimento em pé - dança/performance). 3
 Caminhos restantes: (a) re-roll pago só do deslize no Seedance com direção de corpo
 agressiva (~17,5 cr), (b) testar motion_control com movimento EM PÉ (decolagem/hover
 vertical - dentro do domínio do tracker), (c) aceitar o take atual.
+
+## FINAL v2 (2026-07-19) - corpo vivo
+
+Deslize-teste `c51f5ed0` (17,5 cr) provou a técnica; take único v2 `c207352e` (52,5 cr)
+APROVADO: mesma decupagem do v1, prompt reescrito como COREOGRAFIA DE EVENTOS FÍSICOS
+(tronco boiando, joelhos destravados, braços em correção contínua, olhar água↔horizonte,
+peso trocando de pé antes de decolar) em vez de adjetivos ("loose", "natural").
+Entrega: VOO_final_v2.mp4 (15s, trilha C) em Downloads\voo\.
+Custo final do projeto: ~216 cr.
