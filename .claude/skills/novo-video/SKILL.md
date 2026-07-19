@@ -34,39 +34,50 @@ Travar identidade POR ESCRITO na bíblia e colar o bloco em todo prompt subseque
 Todo frame derivado nasce de um âncora via `medias` ("EXACT same scene... ONLY change:").
 **GATE: usuário aprova os âncoras antes de qualquer vídeo.**
 
-### 4. Protótipo do wow-shot PRIMEIRO
+### 4. Storyboard (custo ZERO, obrigatório antes de qualquer vídeo)
+Todo movimento e trajetória validados NO PAPEL antes do primeiro crédito de vídeo:
+- Painéis fotográficos reusando os âncoras JÁ PAGOS como beats; beat sem frame ganha
+  silhueta/fantasma desenhado (PIL) sobre o frame real
+- Cada painel: timecode + legenda com o EVENTO FÍSICO do beat (coreografia, não adjetivo)
+- Setas de trajetória NIVELADAS com o movimento real - anotação errada cria o
+  mal-entendido que deveria evitar
+- Copiar para Downloads e iterar de graça até o usuário visualizar o filme inteiro
+**GATE: usuário aprova o storyboard antes de qualquer geração de vídeo.**
+(Origem: no VOO, 4 iterações grátis pegaram 2 problemas antes de um take de 52,5 cr.)
+
+### 5. Protótipo do wow-shot PRIMEIRO
 O shot mais arriscado/impressionante é gerado antes dos demais, fora de ordem.
 Se falhar, a correção é na decupagem (ângulo, destino), não em adjetivos - ver
 PRATICAS.md "Movimento de câmera" e "Armadilhas". Só seguir com o resto depois
 que o wow-shot existir.
 
-### 5. Produção em lote
+### 6. Produção em lote
 `seedance_2_0` fast 720p, mudo (`generate_audio: false`). Aplicar as cláusulas de
 PRATICAS.md: end frame para movimento de câmera/transformação (outpaint fabrica
 destinos), start só para ação no quadro, anti-rotação em paisagem, objeto-rígido
 em máscara/adereço, `declined_preset_id` preventivo em cena escura.
 Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revisão).
 
-### 6. Montagem e revisão de verdade
+### 7. Montagem e revisão de verdade
 - Concat ffmpeg (`-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`)
 - **Folha de cortes**: último frame × primeiro frame de cada emenda, par a par.
   É onde moram os erros (repetição de quadro, jump cut, pop de luminância).
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
 - **GATE: usuário assiste o corte** (copiar para `~/Downloads/<slug>/`).
 
-### 7. Áudio (custo zero primeiro)
+### 8. Áudio (custo zero primeiro)
 - **VO: a voz é escolhida POR VÍDEO** - gerar 2-3 candidatas edge-tts com o texto real,
   usuário escolhe ouvindo contra o corte. Nunca reaproveitar a escolha de outro vídeo.
 - Trilha: Stable Audio Open (GPU) ou lib CC0; **nunca MusicGen para uso comercial**.
 - Foley: Freesound filtrado CC0.
 - Mix simples no ffmpeg (`amix`/`sidechaincompress`); casos complexos vão pro DaVinci.
 
-### 8. Finalização
+### 9. Finalização
 Passe de cor unificado se preciso (colorbalance nas altas, nunca nos médios em pele),
 cartela/tipografia, upscale A/B (Video2X local × `upscale_video`) num shot antes de
 rodar tudo, export final para a plataforma.
 
-### 9. Registro (obrigatório antes de encerrar)
+### 10. Registro (obrigatório antes de encerrar)
 - Bíblia atualizada: job IDs, custos reais × preflight, retakes com causa e antídoto
 - **Cada lição nova vira cláusula em PRATICAS.md** - retake é o custo de ainda não ter a regra
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
@@ -77,3 +88,4 @@ rodar tudo, export final para a plataforma.
 2. Preflight sempre; mostrar a conta antes de gastar
 3. Julgar shot por strip é produção; revisão é folha de cortes
 4. Wow-shot primeiro - se o vídeo não impressiona no protótipo, replaneja antes de produzir
+5. Nenhum vídeo é gerado sem storyboard aprovado - papel é grátis, take não é
