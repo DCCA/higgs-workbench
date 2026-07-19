@@ -138,3 +138,11 @@ transfere movimento de vídeo REAL pro personagem. Aprendizados pagos com falhas
 
 Conclusão: o doador ideal é CLIPE CASEIRO ATUADO pelo usuário (deitado de bruços num
 banco, 15s, celular de lado, estável). Aguardando o clipe.
+
+Falha 3 (doador aparado 6,5s, still de perfil): também morreu no processamento.
+**Diagnóstico consolidado: o tracker do motion_control provavelmente NÃO suporta pose
+deitada/de bruços** (é ferramenta de movimento em pé - dança/performance). 3 falhas,
+0 créditos cobrados. Clipe caseiro deitado correria o mesmo risco.
+Caminhos restantes: (a) re-roll pago só do deslize no Seedance com direção de corpo
+agressiva (~17,5 cr), (b) testar motion_control com movimento EM PÉ (decolagem/hover
+vertical - dentro do domínio do tracker), (c) aceitar o take atual.
