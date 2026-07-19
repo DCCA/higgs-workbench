@@ -62,6 +62,11 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
   transições ruins. Seedance vai a 15s - um oner de 15s custa o mesmo que 3 shots de 5s
   e elimina a montagem inteira. Câmera onde uma câmera REAL estaria (chão, altura de
   gente), primeiro plano fixo (grama, parapeito) como âncora de mundo único (VOO).
+- **Corpo natural se dirige por COREOGRAFIA DE EVENTOS FÍSICOS, não adjetivos.**
+  "Loose, natural, instabilities" não muda nada; o que anima é nomear o evento com
+  timing: "tronco boiando (sobe, mergulha, sobe), joelhos destravados, um pé cede e
+  recupera, cabeça olha a água e volta, peso troca de pé". É a lição da levitação
+  (evidência física > conceito) aplicada a movimento (VOO v2).
 - **Realismo de evento impossível = linguagem de câmera real + mentira mínima.** Direção
   "dreamlike/serene" é anti-realismo; o que vende é câmera plausível, corpo SOLTO
   (pernas pendendo, instabilidades), vento com força na roupa, e mundo povoado - barcos,
