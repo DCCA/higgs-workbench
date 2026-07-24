@@ -107,7 +107,23 @@ mesma coisa maior. Paredão maior atrás do cume ainda é montanha = ainda é a 
 expectativa. Erro de conceito: quantitativo (maior) ≠ qualitativo (novo).
 NENHUM crédito gasto até estratégia nova aprovada (disciplina MARÉ ALTA).
 
-## CONCEITO B APROVADO (2026-07-23): O SALTO - decupagem v3
+## Decupagem v4 (direção do usuário: "ver a montanha, mostrar no cume, e do cume voar")
+
+Arco em 3 atos: **VER** (a expectativa nasce - montanha revelada pela névoa, T1 reuso)
+→ **CUME** (a expectativa alcançada - ele no topo DAQUELA montanha, mundo lá embaixo;
+legenda 1 mora aqui agora) → **VOAR** (o além - salto do cume, oner).
+
+| # | t (filme) | Evento físico | Câmera | Frames | Custo |
+|---|---|---|---|---|---|
+| ATO 1 VER (T1 reuso, trim ~8s) | 0-8s | Névoa fechada → abre e REVELA a montanha diante dele; ele parado, olhando o objetivo | travada | C1→C2 (pagos) | 0 |
+| ATO 2 CUME (novo, 5s) | 8-13s | Ele no TOPO daquela montanha (agulhas nevadas do maciço F5), mundo/nuvens LÁ EMBAIXO - geografia invertida do Ato 1. Imóvel; só vento na jaqueta. Legenda 1 | travada | F7 novo (still do cume) | still 2-4 + take 17,5 |
+| ATO 3 VOAR (oner novo, 12s) | 13-25s | 0-3s: dois passos até a borda do cume, pontas dos pés no limite, braços abrem; 3-4s: carga e SALTO explosivo (legenda 2); 4-12s: queda vira planeio, corpo arqueia, jaqueta chicoteia, ele afasta-se em arco POR SOBRE o mundo lá embaixo até virar ponto vermelho em movimento; névoa fina cruza o quadro | TRAVADA no cume | F8 novo (start: ele ~1/3 no cume, borda visível à frente, vazio abaixo) | still 2-4 + take 42 |
+
+Delta: ~64-68 cr sem retake (teto c/ 1 retake do oner: ~110). Projeto total ~165-215
+(alvo 100-300 ✓). Legendas: cap1 = 9-13s (cume); cap2 = ~17-22s (salto).
+Sem equipamento (mentira mínima VOO). declined_preset_id preventivo nos 2 takes.
+
+## [SUPERADO pela v4] CONCEITO B APROVADO (2026-07-23): O SALTO - decupagem v3
 
 **A terra é a expectativa; o ar é o além.** Subir montanha tem expectativa conhecida
 (chegar, olhar, descer). O que ninguém espera: sair VOANDO do cume. O além é outra
