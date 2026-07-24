@@ -107,14 +107,44 @@ mesma coisa maior. Paredão maior atrás do cume ainda é montanha = ainda é a 
 expectativa. Erro de conceito: quantitativo (maior) ≠ qualitativo (novo).
 NENHUM crédito gasto até estratégia nova aprovada (disciplina MARÉ ALTA).
 
-## DECUPAGEM v5 ATIVA - OPÇÃO 4: O PALCO → O AMANHECER (escolha do usuário, 2026-07-23)
+## DECUPAGEM v6 ATIVA - ONER COSTURADO (Rota A, escolha do usuário 2026-07-24)
+
+Filme sem cortes visíveis: 2 takes follow-cam emendados DENTRO do clarão branco.
+Identidade v2 (USUÁRIO, F-B-EU como mãe). Câmera: contínua atrás dele (VOO racional:
+ele é o conteúdo compartilhado constante; quem viaja é o mundo). ~21s.
+
+| Take | t (filme) | Coreografia com timing | Frames | Custo |
+|---|---|---|---|---|
+| **ONER-1** (15s, follow-cam) | 0-15s | 0-2s coxia escura, câmera atrás dele, ele COMEÇA a andar; 2-5s entra no palco, o holofote o encontra, poeira no facho; 5-9s PAUSA no centro - quietude diante da plateia vazia (legenda 1: 5,5-9s); 9-12s retoma, atravessa para o bastidor, a porta de serviço entra no quadro com luz vazando; 12-14s empurra a barra, folhas abrem; 14-15s o CLARÃO engole o quadro (end frame quase branco com silhueta no vão) | G1 (start: atrás dele na coxia, EU) → G2 (end: portal estourado, silhueta no vão, EU) | 52,5 |
+| **ONER-2** (6s, follow-cam) | 15-21s | 0-1s o branco RESOLVE em praia de amanhecer, silhueta dele emergindo de costas; 1-6s câmera segue atrás dele caminhando à linha d'água - pegadas, ondas, gaivotas, bruma dourada (legenda 2: 16-20,5s); fade final BRANCO | G3 (start: branco dissolvendo em praia, silhueta EU) | 21,0 |
+
+**A EMENDA INVISÍVEL**: fim do ONER-1 ≈ branco puro; início do ONER-2 ≈ branco
+resolvendo - corte seco branco→branco + 2-3 frames de branco puro inseridos se
+preciso (grátis no ffmpeg). Nenhum corte perceptível no filme inteiro.
+Frames novos: G1, G2, G3 derivados da F-B-EU + fotos-ref (~6 cr + margem).
+Conta do delta: ~80-86 cr. declined_preset_id preventivo nos 2 takes.
+Corte v5 (4 takes, herói genérico) fica de backup no acervo.
+
+## [SUPERADA pela v6] DECUPAGEM v5 - OPÇÃO 4: O PALCO → O AMANHECER (escolha do usuário, 2026-07-23)
 
 Arco: **VER** (da coxia, o palco iluminado - o lugar sonhado) → **ALCANÇADO** (ele no
 centro do palco vazio, holofote, teatro imenso - chegou e nada nele se move; legenda 1)
 → **ALÉM** (a porta dos fundos abre para o AMANHECER real - luz elétrica → luz do sol;
 legenda 2; fecho: ponto vermelho na praia infinita).
 
-Mesmo herói (jaqueta signal-red, calça preta, sem mochila, sem logos, SEMPRE de costas).
+**IDENTIDADE v2 (2026-07-24, pedido do usuário): O PERSONAGEM É O USUÁRIO**, base VOO:
+> the man from the reference photos: thick dark hair, full dark beard, smartwatch
+> on left wrist - wearing a plain vivid RED KNIT SWEATER (crewneck, no logos),
+> black trousers, dark leather boots
+
+Fotos-ref (media_ids do VOO, SEMPRE passar): rosto `34d9ef97-766f-4870-a1cc-9c8dd33c3271`,
+corpo `ed613a78-fa40-4e8f-a8f6-2fde3b7df506`, perfil `f6044281-2a19-4d39-92c5-e4ce2fe60980`.
+Figurino trocado (jaqueta alpina destoava do teatro/praia): suéter de malha vermelho -
+funciona no palco (ensaio íntimo) e na praia fria de amanhecer; vermelho segue como
+farol no wide. Linguagem de costas (Rückenfigur) mantida, mas rosto deixou de ser
+proibido: se um perfil vazar, é ELE. Preview do figurino (herói genérico):
+`ecc7020c-f5fd-4b77-bba5-3c88264bc128` (2 cr, superado pelo pivô de identidade).
+[Identidade v1 - herói genérico de jaqueta signal-red - superada; takes v5 idem]
 Paleta: preto de teatro + holofote dourado (atos 1-2); dawn azul-rosa estourado (ato 3).
 
 **Direção "dreamy" (pedido 2026-07-23)** - dreamy por FÍSICA DE ATMOSFERA, nunca por
@@ -147,7 +177,9 @@ Frames: F-B primeiro (dinheiro, 2 cr) → gate → F-A, F-C1, F-C2, F-D derivado
 | F-A coxia | `495ccbde-4b4e-4571-9c7d-b20ccffa3bb7` | 2,00 | start T-A; rosto em sombra profunda (aceitável, grau silhueta) |
 | F-C1 porta fechada (luz vazando pelas frestas) | `6e01cf16-dd8a-453b-9576-a32187d33ffb` | 2,00 | start T-C |
 | F-C2 porta ABERTA, clarão, ele no vão mid-stride | `716c60b9-c8fd-49d5-93f1-2bc7946f3735` | 2,00 | end T-C (par gêmeo da C1 ✓) |
-| F-D praia dawn (herói ~1/8, pegadas, gaivotas, horizonte reto) | `7852d60a-c04a-4cda-813d-975ac10e34f7` | 2,00 | start T-D |
+| F-D praia dawn (herói ~1/8, pegadas, gaivotas, horizonte reto) | `7852d60a-c04a-4cda-813d-975ac10e34f7` | 2,00 | start T-D (identidade v1) |
+| Preview figurino suéter (herói genérico) | `ecc7020c-f5fd-4b77-bba5-3c88264bc128` | 2,00 | superado pelo pivô de identidade |
+| **F-B-EU v1 - candidata a MÃE (identidade v2: USUÁRIO)** | `78818165-b360-4647-9d8e-229abc2a26d8` | 2,00 | identidade VOO + suéter vermelho OK; teatro re-renderizou (irmão, não idêntico) - se aprovada, derivar TUDO dela; conferir pés/sombra no take |
 
 `STORYBOARD_v5.png`: 5 painéis, TODOS frames reais pagos. Ordem de produção após
 gate: **T-C primeiro (wow)**, depois T-A/T-B/T-D em lote. Vídeos: T-A 4s (14) +
