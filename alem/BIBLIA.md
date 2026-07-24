@@ -89,7 +89,44 @@ mountain range"); F3 derivado (novo ângulo, identidade + cordilheira herdadas v
 | F1 | derivado F2: mesma cena, névoa fechada esconde a cordilheira | - | - |
 | F3 | derivado: lateral 3/4, herói junto ao marco, cordilheira ao fundo | - | - |
 
-## Storyboard (fase 4 - custo zero)
+## VOLTA À FASE 4 (2026-07-23) - conceito reprovado no corte
+
+Feedback do usuário sobre os cortes A/B: "não está representando bem a expectativa
+vs o além". Diagnóstico proposto: o filme só mostra UM polo da frase - o ALCANÇADO
+nunca aparece em cena (o marco se perdeu no pivô da F5), então a revelação lê como
+paisagem, não como "o além da expectativa"; e falta o gesto físico do "não me
+movimenta" (quietude lê como contemplação). Evidência física > conceito, aplicado
+a significado.
+
+Storyboard v2 (marco + gesto de virar as costas): REJEITADO pelo usuário -
+"repense totalmente a estratégia".
+
+Diagnóstico CORRETO (palavras do usuário, 2026-07-23): (1) a história não tem ARCO;
+(2) "o além é algo NOVO, além da expectativa" - o além é de OUTRA CATEGORIA, não a
+mesma coisa maior. Paredão maior atrás do cume ainda é montanha = ainda é a mesma
+expectativa. Erro de conceito: quantitativo (maior) ≠ qualitativo (novo).
+NENHUM crédito gasto até estratégia nova aprovada (disciplina MARÉ ALTA).
+
+## CONCEITO B APROVADO (2026-07-23): O SALTO - decupagem v3
+
+**A terra é a expectativa; o ar é o além.** Subir montanha tem expectativa conhecida
+(chegar, olhar, descer). O que ninguém espera: sair VOANDO do cume. O além é outra
+CATEGORIA (terra → ar) e o arco é físico: começa pedra parada, termina pássaro.
+Equipamento: NENHUM - mentira mínima do VOO (jaqueta voa; realismo vem da linguagem
+de câmera real, vento e âncoras de mundo, não de wingsuit/paraquedas). Sem mochila ✓
+(a identidade F5 já é sem mochila - vira acerto).
+
+| # | t (filme) | Evento físico (coreografia com timing) | Câmera | Frames | Método |
+|---|---|---|---|---|---|
+| T1 (REUSO, trim ~9s) | 0-9s | Névoa fechada, ele imóvel (legenda 1) → névoa abre e revela o mundo da conquista; ele NÃO reage | travada | C1→C2 (pagos) | já renderizado |
+| T-ONER (NOVO, 15s, ~52,5 cr) | 9-24s | 0-4s: três passos pesados da posição inicial até a BORDA da crista, vento crescendo; 4-6s: pontas dos pés no limite, cabeça inclina para o vazio, braços abrem devagar; 6-7s: carga - joelhos flexionam, tronco à frente; 7-7,5s: O SALTO - impulso explosivo, corpo lançado no vazio (legenda 2); 7,5-15s: queda que vira planeio - corpo arqueia, jaqueta chicoteia, ele afasta-se em arco descendo diante do paredão até virar PONTO VERMELHO EM MOVIMENTO; névoa fina cruza entre câmera e ele | TRAVADA no cume o take inteiro (tripé onde câmera real estaria) | F6 novo (start): ele ~1/3 de costas, crista correndo à frente até borda visível, abismo + paredão + vale lá embaixo | start only (ação no quadro); declined_preset_id preventivo |
+
+Emenda única T1→oner: mesmo mundo, mesma paleta, ele de costas nos dois lados.
+Frames a gerar: F6 (t2i com F5 de ref, 2 cr + margem). Conta do delta: ~57 cr sem
+retake; teto com 1 retake do oner: ~110. Projeto total: 158-210 (alvo 100-300 ✓).
+Legendas: cap1 = 1,5-6,5s (quietude T1); cap2 = ~16-21s (no salto).
+
+## Storyboard v1 (fase 4 - custo zero) [SUPERADO]
 
 `STORYBOARD_v1.png` (5 painéis, frames reais já pagos, ffmpeg): C1 → C2 → F3v3 → C2 → F5.
 Nota de montagem embutida: T1-end e T3-start usam o MESMO quadro (C2) com o T2 de
