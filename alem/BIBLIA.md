@@ -107,6 +107,57 @@ mesma coisa maior. Paredão maior atrás do cume ainda é montanha = ainda é a 
 expectativa. Erro de conceito: quantitativo (maior) ≠ qualitativo (novo).
 NENHUM crédito gasto até estratégia nova aprovada (disciplina MARÉ ALTA).
 
+## DECUPAGEM v5 ATIVA - OPÇÃO 4: O PALCO → O AMANHECER (escolha do usuário, 2026-07-23)
+
+Arco: **VER** (da coxia, o palco iluminado - o lugar sonhado) → **ALCANÇADO** (ele no
+centro do palco vazio, holofote, teatro imenso - chegou e nada nele se move; legenda 1)
+→ **ALÉM** (a porta dos fundos abre para o AMANHECER real - luz elétrica → luz do sol;
+legenda 2; fecho: ponto vermelho na praia infinita).
+
+Mesmo herói (jaqueta signal-red, calça preta, sem mochila, sem logos, SEMPRE de costas).
+Paleta: preto de teatro + holofote dourado (atos 1-2); dawn azul-rosa estourado (ato 3).
+
+**Direção "dreamy" (pedido 2026-07-23)** - dreamy por FÍSICA DE ATMOSFERA, nunca por
+adjetivo de movimento (lição VOO: "dreamlike" em direção de corpo é anti-realismo):
+haze teatral no ar, feixes volumétricos visíveis, bloom suave nas altas, pretos
+levantados (charcoal, não preto puro), banho âmbar-dourado empoeirado, poeira
+cintilando nos fachos. Coreografia de corpo permanece física e pesada. Colar o bloco:
+
+> Fine theatrical HAZE in the air, soft VOLUMETRIC light beams, gentle BLOOM on
+> highlights, lifted blacks (deep charcoal, not pure black), a warm dusty amber-gold
+> cast like a memory, shimmering dust motes - photographic and realistic, not fantasy.
+Anti-rotação: interiores de arquitetura E praia exigem a cláusula agressiva (poltronas
+para BAIXO, balcões empilham para CIMA; na praia, horizonte HORIZONTAL).
+
+| # | t | Evento físico | Câmera | Frames | Método |
+|---|---|---|---|---|---|
+| T-A VER | 0-4s | Da coxia, no escuro: ele em silhueta olha o palco banhado de luz; poeira dança no facho; cortina respira uma vez; ele imóvel | travada | F-A (deriv.) | start only |
+| T-B ALCANÇADO | 4-10s | Centro do palco, holofote, de costas para a câmera... plateia colossal e VAZIA diante; poeira no facho; ele não se move. Legenda 1 (5-9s) | travada, atrás dele no palco | **F-B (imagem-dinheiro)** | start only |
+| T-C ALÉM (wow) | 10-17s | Bastidor escuro: ele diante da porta de serviço fechada (0-2s); empurra a barra (2-3s); a porta ABRE e a luz do amanhecer INUNDA - silhueta dele recortada no clarão (3-5s); ele atravessa e o quadro fica no portal QUEIMADO de luz (5-7s). Legenda 2 no clarão | travada no bastidor | F-C1 (fechada) → F-C2 (aberta, estourada) | start+end (transformação de estado) |
+| T-D FECHO | 17-23s | Praia ao nascer do sol: ele CAMINHANDO (vivo, em movimento) rumo à linha d'água, ponto vermelho na vastidão; ondas entram, gaivotas longe (âncoras de mundo, lição VOO) | travada, wide | F-D | start only |
+
+Emenda T-C→T-D atravessa o BRANCO estourado da porta = corte invisível de graça
+(transição por superexposição). Emendas T-A→T-B→T-C: mesmo mundo escuro/dourado.
+Frames: F-B primeiro (dinheiro, 2 cr) → gate → F-A, F-C1, F-C2, F-D derivados.
+
+| Frame | Job ID | Custo | Status |
+|---|---|---|---|
+| F-B v1 (logo TNF, contraste duro) | `de0ff690-e405-4190-b1a0-3443a75aa8f3` | 2,00 | superada |
+| **F-B v2 dreamy - MÃE (APROVADA)** | `ccf0ee31-ccf5-48bd-a1b8-4bf5084ceb02` | 2,00 | start T-B; resíduo mínimo de logo no colarinho (invisível em 720p) |
+| F-A coxia | `495ccbde-4b4e-4571-9c7d-b20ccffa3bb7` | 2,00 | start T-A; rosto em sombra profunda (aceitável, grau silhueta) |
+| F-C1 porta fechada (luz vazando pelas frestas) | `6e01cf16-dd8a-453b-9576-a32187d33ffb` | 2,00 | start T-C |
+| F-C2 porta ABERTA, clarão, ele no vão mid-stride | `716c60b9-c8fd-49d5-93f1-2bc7946f3735` | 2,00 | end T-C (par gêmeo da C1 ✓) |
+| F-D praia dawn (herói ~1/8, pegadas, gaivotas, horizonte reto) | `7852d60a-c04a-4cda-813d-975ac10e34f7` | 2,00 | start T-D |
+
+`STORYBOARD_v5.png`: 5 painéis, TODOS frames reais pagos. Ordem de produção após
+gate: **T-C primeiro (wow)**, depois T-A/T-B/T-D em lote. Vídeos: T-A 4s (14) +
+T-B 6s (21) + T-C 7s (24,5) + T-D 6s (21) = 80,5 cr; margem retake wow 24,5.
+Conta do delta: stills ~10-14 + takes 4-5s×2 (35) + 7s (24,5) + 6s (21) ≈ **~92 cr**
+sem retake (um pouco acima da estimativa de 75-85 da proposta; teto c/ retake do wow
+~116). Projeto total ~193-217 (alvo 100-300 ✓). declined_preset_id preventivo em
+TODOS os takes escuros (teatro inteiro + bastidor).
+
+## [SUPERADO - mundo montanha arquivado; assets e lições permanecem válidos]
 ## Decupagem v4 (direção do usuário: "ver a montanha, mostrar no cume, e do cume voar")
 
 Arco em 3 atos: **VER** (a expectativa nasce - montanha revelada pela névoa, T1 reuso)
