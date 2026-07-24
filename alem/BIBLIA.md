@@ -98,6 +98,49 @@ T2 ficar curto - antídoto: trim/dissolve na montagem.
 Script gerador: scratchpad/storyboard.sh (sessão 2026-07-23).
 **GATE: aguardando aprovação do usuário antes de qualquer geração de vídeo.**
 
+## Produção (fase 5+)
+
+C2 subida como media reutilizável: `dac93c62-82dc-4733-bd49-7b4eb33ea76c`.
+Interceptação do preset "IN THE DARK" confirmada neste projeto (id
+`24bae836-2c4a-48e0-89b6-49fcc0b21612`) - incluir `declined_preset_id` preventivo
+em TODO take deste filme (cena escura, céu de tempestade).
+
+C1 subida como media: `83adedde-c701-4e00-9239-5f778efcf563`.
+
+| Take | Job ID | Custo | Status |
+|---|---|---|---|
+| T3 wow v1 (8s, C2→F5, pull-back) | `2fcecb73-2ef5-45b5-823f-16dcd8888687` | 28,00 | APROVADO pelo usuário (2026-07-23); abriu mais fechado que C2 e recuou ~8x - desvio a favor; remove o risco de quase-jump T1→T3 |
+| T1 (10s, C1→C2, revelação da névoa) | `754489ec-8f88-4c38-99bc-a3807ce5b138` | 35,00 | strip OK: revelação gradual, herói imóvel, câmera pregada |
+| T2 (5s, F3v3 start-only, primeiro passo) | `6d60722b-9b00-41bd-9fd0-f4fbff8239f3` | 17,50 | strip OK: passos com peso, de costas; fundo mais claro que T1/T3 (vira questão na folha) |
+
+## Folha de cortes (2026-07-23) - medido com signalstats YAVG
+
+| Emenda | YAVG | Veredito |
+|---|---|---|
+| fim T1 × início T2 | 50 → 71 (Δ21) | pop de luminância + fundo muda (paredão → picos nevados) |
+| fim T2 × início T3 | 72 → 45 (Δ27) | pior emenda: pop forte + salto de escala REVERSO (encolhendo → gigante) |
+| fim T1 × início T3 (medida exploratória) | 50 → 45 (Δ5) | quase invisível, mesmo paredão - viabiliza corte sem T2 |
+
+Fixes de edição aplicados (custo zero), dois candidatos:
+- **Corte A** `ALEM_corteA_dissolve.mp4` (22,5s): 3 takes, xfade 0,3s nas duas emendas
+- **Corte B** `ALEM_corteB_semT2.mp4` (18,1s): sem T2 (emenda seca T1→T3, Δ5); o "passo"
+  narrativo sobrevive dentro do T3 (ele caminha durante o pull-back)
+Ambos com as legendas em dois tempos (checadas visualmente: acentos, posição, fades).
+T2 fica no acervo (pago, job ID acima) - reutilizável se o corte A vencer.
+
+## Texto em tela (decisão do usuário 2026-07-23: opção "dois tempos", condensação OK)
+
+Sem VO; Reels roda no mudo - o texto é o canal verbal. Duas legendas, custo zero (montagem):
+
+| Beat | Momento no corte | Texto |
+|---|---|---|
+| 1 | T1, durante a quietude (~1,5s-6,5s) | "A expectativa é algo já alcançado. Ela não me movimenta." |
+| 2 | T3, início do mergulho (~16s-21s) | "O que me movimenta é o além." |
+
+Estilo: branco, pequeno (~4% da altura), centralizado, terço inferior MAS acima da
+zona de UI do Reels (y ≈ 62-68% da altura); fade in/out 0,4s. Tipografia do corte de
+aprovação: DejaVu Sans (ffmpeg); refinamento tipográfico final no DaVinci se preciso.
+
 ## Trilha (fase 8)
 
 Brief: silêncio tenso e estático → abertura (a revelação, ~8s) → primeiro pulso de
