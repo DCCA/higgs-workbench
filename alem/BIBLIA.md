@@ -152,6 +152,36 @@ Frames: F-B primeiro (dinheiro, 2 cr) → gate → F-A, F-C1, F-C2, F-D derivado
 `STORYBOARD_v5.png`: 5 painéis, TODOS frames reais pagos. Ordem de produção após
 gate: **T-C primeiro (wow)**, depois T-A/T-B/T-D em lote. Vídeos: T-A 4s (14) +
 T-B 6s (21) + T-C 7s (24,5) + T-D 6s (21) = 80,5 cr; margem retake wow 24,5.
+
+| Take | Job ID | Custo | Status |
+|---|---|---|---|
+| **T-C wow v1** (7s, C1→C2, porta/clarão) | `d3795453-669b-4bdc-822a-62b149754e02` | 24,50 | APROVADO pelo usuário; strip OK de primeira |
+| T-A (4s, coxia) | `13884a20-796d-40ef-9d17-0346eb0ffca2` | 14,00 | strip OK: ele imóvel na sombra, poeira no facho |
+| T-B (6s, palco/quietude) | `dafc431d-f35f-44f7-9c0d-296e5fab9a33` | 21,00 | strip OK: imóvel, haze respira, feixes vivos |
+| T-D (6s, praia/caminhada) | `5109fd7b-645c-497c-8cfb-3daf8e7fe42f` | 21,00 | strip OK: passos com peso, pegadas crescem, gaivotas |
+
+## Folha de cortes v5 (medida, 2026-07-24)
+
+| Emenda | YAVG | Veredito |
+|---|---|---|
+| fim T-A × início T-B | 89,2 → 89,2 (Δ0,02) | PERFEITA - mesmo mundo âmbar |
+| fim T-B × início T-C | 91,3 → 63,7 (Δ28 escurecendo) | aceitável - mergulho narrativo no escuro antes da luz; opção de dissolve 0,25s se incomodar |
+| fim T-C × início T-D | 134,5 → 166,3 (ambos ALTOS) | corte pelo BRANCO funciona - o olho atravessa a luz |
+
+## Corte 1 v5: `ALEM_corte1_v5.mp4` (23,2s)
+
+T-A + T-B + T-C + T-D concat (crf 16, 24fps), fade-in preto 0,4s, fade-out BRANCO
+0,8s (tema da luz). Legendas: cap1 5,0-9,5s (palco); cap2 14,0-19,0s (clarão →
+praia). Tipografia: borda 2px preta@0,55 + sombra (v1 com borda 1px falhou
+legibilidade sobre o clarão - checado frame a frame).
+
+## Lições novas (candidatas a PRATICAS.md no registro)
+
+- Shell interativo é zsh: `$FONT:textfile` dispara o modificador `:t` (basename) e
+  quebra o filtro do ffmpeg silenciosamente. Sempre `${FONT}` com chaves, ou rodar
+  via script bash. (Explica as falhas de drawtext da sessão.)
+- Legenda branca sobre take estourado de luz: borda 1px não segura; usar borda 2px
+  + sombra, e CHECAR frame a frame nos momentos mais claros.
 Conta do delta: stills ~10-14 + takes 4-5s×2 (35) + 7s (24,5) + 6s (21) ≈ **~92 cr**
 sem retake (um pouco acima da estimativa de 75-85 da proposta; teto c/ retake do wow
 ~116). Projeto total ~193-217 (alvo 100-300 ✓). declined_preset_id preventivo em
