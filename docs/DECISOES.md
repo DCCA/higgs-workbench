@@ -11,6 +11,17 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-07-25 - Adoção vox fechada: 7 itens entram (com selos de validação), 1 REPROVADO pelo próprio framework
+**Contexto:** plano pré-registrado (PLANO-adocao-vox.md) executado: TTS validado
+local (Δ6,1s), catálogo verificado na conta (gemini_omni 30cr/10s, sem start/end),
+moderação herdada marcada, fake-oner com trava de A/B, lente de retenção, scorecard.
+**Porquê do destaque:** o item #5 (brief musical quantificado) caiu EXATAMENTE como
+o framework desenha - empate no A/B cego + promessa estrutural quebrada na medição
+RMS (clímax a 24% em vez de 75%). Pré-registro impediu adotar por fé.
+**Alternativa rejeitada:** adotar #5 "porque não custa nada" - custaria a ilusão de
+controle; o método real de clímax segue sendo janela por curva RMS. Predictor
+baseline segurado (tool sem get_cost; rodar só com custo medido e autorizado).
+
 ## 2026-07-25 - Sem LLM-juiz por cima do validador; lint determinístico + calibração + escapes
 **Contexto:** "quem valida o validador?" **Porquê:** sem ground truth, outro LLM é só
 mais uma opinião falível (regressão infinita); formato/cobertura são verificáveis por

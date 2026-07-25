@@ -65,8 +65,11 @@ shot antes de decidir o filme inteiro - o local custando zero, o teste é barato
   clipes; áudio nativo (`generate_audio: true`) sobrevive sob voiceover na montagem.
 - **`virality_predictor`**: sem `get_cost` no schema - custo DESCONHECIDO; medir por
   diff de saldo na primeira utilização antes de tornar rotina.
-- **Brief musical quantificado** p/ `gerar_trilha.py`: BPM, estrutura de swells,
-  "clímax a X% do runtime, decay rápido" (validação A/B cego em curso).
+- **Brief musical quantificado: TESTADO E REPROVADO (2026-07-25).** A/B cego deu
+  empate estético E a estrutura prometida falhou na medição (clímax pedido a 75%
+  saiu a ~24%; abertura "quieta" saiu alta) - o Stable Audio Open 1.0 ignora
+  instruções temporais. Manter brief QUALITATIVO; controle de clímax é por escolha
+  de janela via curva RMS (método validado no ALÉM), gerando mais longo se preciso.
 
 ## 6. Ferramentas de review e finalização (aprendidas no ALÉM)
 
