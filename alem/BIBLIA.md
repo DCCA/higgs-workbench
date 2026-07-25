@@ -272,6 +272,15 @@ LIÇÃO (candidata): review de soundtrack mede COBERTURA (volumedetect por trech
 áudio deve viver até o último frame), loudness broadcast (ebur128: I≈-14 social,
 TP≤-1) e sincronia de eventos musicais × beats da imagem (mapa RMS × timeline).
 
+**Cartela v2 (2026-07-25)**: usuário reprovou tipografia básica + branco clínico.
+Prova de 5 fontes (`TYPE_PROOF.png`) → escolhida **Cormorant Light Itálico 80px**
+(OFL, fontsource CDN, `alem/fonts/`). Fundo calibrado para MARFIM #F7F2E8 (papel
+quente, harmoniza com o dawn); fade final do filme termina no MESMO tom (sem degrau);
+clarão do meio permanece branco puro (é luz, não papel). Cartela renderizada NATIVA
+1080 via PIL (texto cravado, sem passar pelo upscale). `ALEM_FINAL_MASTER_v3.mp4`.
+LIÇÃO (candidata): cartela nunca em fonte de sistema nem branco 255 - tipografia
+com intenção (prova de fontes) + off-white quente + render nativo na resolução final.
+
 **Review de LINGUAGEM DE CÂMERA (2026-07-25)** - correlação de fase frame a frame
 + rastreio do sujeito por cor (numpy da venv stable-audio) + grade de terços:
 - Suavidade: ZERO picos de jerk, zero wobble lateral nos 2 takes (nível gimbal)
