@@ -1,0 +1,111 @@
+# Estrutura do workbench
+
+Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mudar
+(decisões novas entram em `DECISOES.md`; lições de geração em `PRATICAS.md`).
+
+## As peças
+
+| Peça | Papel |
+|---|---|
+| `CLAUDE.md` | guia do repo + fluxo de git obrigatório (branch→PR→review→merge) |
+| `PRATICAS.md` | a RÉGUA: toda lição paga vira cláusula; o validador lê antes de validar |
+| `FERRAMENTAS.md` | stack gratuito (VO/trilha/foley/upscale) + tooling de review |
+| `.claude/skills/novo-video/` | o workflow v2 (fases, gates, princípios 1-8) |
+| `.claude/agents/validador-gate.md` | olhos frios: valida TODO material antes de chegar ao usuário |
+| `tools/qc/` | medições determinísticas: `qc_video.sh`, `camera_review.py`, `lint_veredito.sh`, `CALIBRACAO.md` |
+| `tools/stable-audio/` | trilha local (RTX 3070) + a venv que serve numpy/PIL ao QC (fora do git) |
+| `<slug>/BIBLIA.md` | fonte de verdade de cada filme: identidade, decupagem, job IDs, custos, lições |
+| `PROJECT_STATUS.md` | logbook por sessão (mais recente primeiro) |
+| `docs/` | esta pasta: arquitetura viva + log de decisões |
+
+## Árvore padrão por filme
+
+```
+<slug>/
+  BIBLIA.md          fonte de verdade
+  storyboard/        tiras (papel do filme)
+  01_refs/           o que veio de fora: fotos-ref, fontes OFL, áudio-fonte
+  02_ancoras/        stills APROVADOS em uso    (_descartados/ = reprovados, com lição)
+  03_takes/          vídeos APROVADOS em uso    (_descartados/)
+  04_qc/             strips, folhas, checks, grids
+  05_cortes/         montagens intermediárias e masters superados
+  06_master/         SÓ a entrega vigente: <SLUG>_MASTER.mp4 (sem versão no nome)
+```
+Status é PASTA. Mídia fica fora do git (regenerável pelos job IDs da bíblia);
+só docs e fontes são versionados. `Downloads\<slug>\` espelha o gate atual + entrega.
+
+## Fluxograma do workflow v2
+
+```
+                            /novo-video
+                                 │
+                     ┌───────────▼───────────┐
+                     │ 1. BRIEF              │  formato, duração, áudio,
+                     │    (1 rodada)         │  CASTING, momento-wow
+                     └───────────┬───────────┘
+                brief abstrato/reflexivo?
+                     sim │              │ não
+              ┌──────────▼─────────┐    │
+              │ 1.5 CONCEITO       │    │   ◄─ o além é OUTRA categoria;
+              │ 3-5 mundos + arco  │    │      arco termina ≠ começa
+              │ ══ GATE usuário ══ │    │
+              └──────────┬─────────┘    │
+                         └──────┬───────┘
+                     ┌──────────▼───────────┐
+                     │ 2. SETUP             │  árvore padrão + bíblia +
+                     │    preflight get_cost│  conta ANTES do 1º crédito
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 3. ÂNCORAS (stills)  │  checklist por still (bordas!)
+                     │ ══ GATE: casting     │  ◄─ pivô depois = re-shoot
+                     │    TRAVA aqui ══     │
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 4. STORYBOARD (0 cr) │  beats com frames pagos;
+                     │ ══ GATE: linguagem   │  ◄─ cortes × oner decidido
+                     │    de montagem ══    │     aqui, com custos
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 5. WOW-SHOT primeiro │  o take mais arriscado,
+                     │ ══ GATE: impressiona?│  fora de ordem; falhou →
+                     └──────────┬───────────┘  replaneja DECUPAGEM
+                     ┌──────────▼───────────┐
+                     │ 6. PRODUÇÃO em lote  │  strip por take = produção
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 7. MONTAGEM          │  folha de cortes MEDIDA;
+                     │ 7b. REVIEW anti-slop │  fixes de edição antes
+                     │     + câmera (MEDIDO)│  de qualquer regen
+                     │ ══ GATE: corte ══    │
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 8. ÁUDIO (0 cr 1º)   │  música: janela por RMS
+                     │ 8b. REVIEW soundtrack│  cobertura/LUFS/sincronia
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 9. FINALIZAÇÃO       │  cartela (fonte+marfim,
+                     │    master 1080+grão  │  nativa), 7b+8b re-rodados
+                     │ ══ GATE: entrega ══  │
+                     └──────────┬───────────┘
+                     ┌──────────▼───────────┐
+                     │ 10. REGISTRO         │  lições→PRATICAS, faxina,
+                     │     bíblia, PR       │  escapes→CALIBRACAO
+                     └──────────────────────┘
+
+  ╔═══════════ TODO "══ GATE ══" passa antes por este loop ═══════════╗
+  ║                                                                    ║
+  ║  produzir ──► validador-gate ──► lint_veredito.sh ──FALHOU──┐      ║
+  ║     ▲         (olhos frios,      (rodada válida?)           │      ║
+  ║     │          checklist do              │ OK               │      ║
+  ║     │          gate, evidência)          ▼                  │      ║
+  ║     │              │            spot-check 1 evidência      │      ║
+  ║     └──BLOQUEIA────┘                     │                  │      ║
+  ║        (corrigir e                       ▼                  │      ║
+  ║         revalidar)          GATE DO USUÁRIO: só decisão     │      ║
+  ║                             criativa (AJUSTES anotados,     │      ║
+  ║                             OBSERVAÇÕES = gosto dele)  re-rodar    ║
+  ╚═══════════════════════════════════════════════════════════════════╝
+
+  Quem garante o quê: material ← validador-gate ← lint (rodada) ←
+  CALIBRACAO.md (competência, casos dourados) ← escapes do usuário (realidade)
+```
