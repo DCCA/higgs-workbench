@@ -250,6 +250,17 @@ review), câmera fantasma AINDA PRESENTE - decisão de regen pendente.
 LIÇÃO: objeto estranho aceito num frame-âncora CONTAMINA o take inteiro com
 parallax; rejeitar no still (2 cr) o que custaria regen de take (52,5).
 
+**Review de LINGUAGEM DE CÂMERA (2026-07-25)** - correlação de fase frame a frame
++ rastreio do sujeito por cor (numpy da venv stable-audio) + grade de terços:
+- Suavidade: ZERO picos de jerk, zero wobble lateral nos 2 takes (nível gimbal)
+- Assentamento: câmera imóvel durante a pausa 5-9s (gramática correta)
+- ONER-2: enquadramento IMPECÁVEL (cx 0,509±0,008; distância de follow constante)
+- ONER-1: deriva lenta do sujeito p/ esquerda (cx 0,46→0,28 entre 3-12s) - contra
+  teatro simétrico, rigor pediria linha central; só regen corrige
+- Headroom consistente (cabeça na linha do terço superior), horizonte da praia no terço
+- Estética: movimento perfeito DEMAIS (zero micro-vida de operador) - aceitável como
+  gimbal intencional em filme dreamy; micro-sway orgânico em pós é opção custo zero
+
 ## Lições novas (candidatas a PRATICAS.md no registro)
 
 - Shell interativo é zsh: `$FONT:textfile` dispara o modificador `:t` (basename) e
