@@ -262,6 +262,16 @@ branca longa + ONER-2 + música (janela 95,8s) + cartela La Grazia. Review final
 (fase 7b) rodado no produto: folhas limpas, zero cortes duros, áudio -1,1 dB.
 **Custo total do projeto: 333 cr.** Saldo: ~1.084.
 
+**Review de SOUNDTRACK (2026-07-25, feedback do usuário: música acabava antes)**:
+medido - cauda do filme em -45,9 dB (3,2s de silêncio na cartela; a janela de música
+cobria só os 21,4s pré-cartela). Fix em `ALEM_FINAL_MASTER_v2.mp4`: janela estendida
+95,8→120,5s da faixa (rescaldo pós-clímax sob a frase), fade-out 22,0-24,5s
+dissolvendo JUNTO com a cartela; troca só de trilha (vídeo sem re-encode).
+Verificado: cauda agora -19,2 dB médio (presença), Integrated -14,5 LUFS, TP -1,3.
+LIÇÃO (candidata): review de soundtrack mede COBERTURA (volumedetect por trecho -
+áudio deve viver até o último frame), loudness broadcast (ebur128: I≈-14 social,
+TP≤-1) e sincronia de eventos musicais × beats da imagem (mapa RMS × timeline).
+
 **Review de LINGUAGEM DE CÂMERA (2026-07-25)** - correlação de fase frame a frame
 + rastreio do sujeito por cor (numpy da venv stable-audio) + grade de terços:
 - Suavidade: ZERO picos de jerk, zero wobble lateral nos 2 takes (nível gimbal)
