@@ -143,6 +143,14 @@ fade-out BRANCO 0,8s. SEM legendas (decisão do usuário). Junção medida: YAVG
 222 → branco → 189, verificada frame a frame (`JUNCAO_check.png`) - invisível,
 lê como atravessar a luz. A maior geração do projeto (15s, 52,5 cr) passou de
 primeira; ZERO retakes de vídeo em todo o v6. Total do projeto: **278,5 cr**.
+
+**v2 da junção (feedback do usuário: "dá para ver que corta")**: fadewhite 0,4s
+era rápido demais - em movimento lia como flash de corte (detector de cena: zero
+cortes reais; o problema era percepção de ritmo). Fix custo zero em
+`ALEM_oner_v2.mp4` (21,4s): saída lenta p/ branco 0,5s + 0,3s de BRANCO PURO +
+entrada lenta 0,6s = ~1,4s dentro da luz, sem sobreposição de mundos.
+LIÇÃO (candidata a PRATICAS): travessia por branco precisa DURAR (~1s+) para ler
+como lugar/passagem; branco curto lê como corte, mesmo sem corte existir.
 Conta do delta: ~80-86 cr. declined_preset_id preventivo nos 2 takes.
 Corte v5 (4 takes, herói genérico) fica de backup no acervo.
 
