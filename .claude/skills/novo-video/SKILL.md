@@ -36,8 +36,17 @@ literal, o conceito tem gate ANTES de qualquer âncora:
 ~100 cr num mundo conceitualmente errado antes desta fase existir.)
 
 ### 2. Setup do projeto
-- `mkdir <slug>/` na raiz; criar `<slug>/BIBLIA.md` com as seções: identidade travada,
-  linguagem visual, frames-âncora (tabela de job IDs), decupagem, custos medidos, lições.
+- Criar a ÁRVORE PADRÃO completa na raiz:
+  `<slug>/{storyboard,01_refs,02_ancoras/_descartados,03_takes/_descartados,04_qc,05_cortes,06_master}`
+  + `<slug>/BIBLIA.md` com as seções: identidade travada, linguagem visual,
+  frames-âncora (tabela de job IDs **com coluna de arquivo**), decupagem, custos, lições.
+- **Regras de organização (não negociáveis):** status é PASTA - aprovado mora na pasta
+  principal, supersedido DESCE para `_descartados/`/`05_cortes/` no instante em que
+  perde o posto; `06_master/` contém SÓ a entrega vigente como `<SLUG>_MASTER.mp4`
+  (sem versão no nome; a anterior desce versionada); nomes carregam papel+versão
+  (`ancora_F2_lago_v2.png`, `take_ONER1_v2.mp4`); QC (strips/folhas/checks) vive em
+  `04_qc/`; refs externas (fotos, fontes, áudio-fonte) em `01_refs/`.
+  `Downloads\<slug>\` espelha SÓ o gate atual + a entrega, e é limpo no encerramento.
 - Preflight de custos com `get_cost: true` - nunca estimar. Mostrar a conta ao usuário
   antes do primeiro crédito gasto.
 
@@ -128,6 +137,9 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 ### 10. Registro (obrigatório antes de encerrar)
 - Bíblia atualizada: job IDs, custos reais × preflight, retakes com causa e antídoto
 - **Cada lição nova vira cláusula em PRATICAS.md** - retake é o custo de ainda não ter a regra
+- **Faxina de arquivos**: supersedidos em `_descartados/`/`05_cortes/`, `06_master/`
+  só com entregas vigentes, bíblia apontando caminhos certos, `Downloads\<slug>\`
+  reduzido à entrega
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
 
 ## Princípios que não se negociam

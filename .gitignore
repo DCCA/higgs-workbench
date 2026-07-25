@@ -4,5 +4,5 @@
 *.jpg
 *.png
 *.mp3
-tools/
+tools/stable-audio/
 *.wav
