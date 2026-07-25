@@ -336,7 +336,19 @@ Estilo: branco, pequeno (~4% da altura), centralizado, terço inferior MAS acima
 zona de UI do Reels (y ≈ 62-68% da altura); fade in/out 0,4s. Tipografia do corte de
 aprovação: DejaVu Sans (ffmpeg); refinamento tipográfico final no DaVinci se preciso.
 
-## Trilha (fase 8)
+## Trilha - DEFINIDA PELO USUÁRIO (2026-07-25)
+
+Faixa: **Jóhann Jóhannsson - "A Sparrow Alighted Upon Our Shoulder"** (Orphée, 2:27),
+fonte YouTube `TYjME2xuMck` via yt-dlp (binário atualizado no scratchpad; o do sistema,
+2024.04, está quebrado p/ o YT atual). **LICENÇA: COMERCIAL (Deutsche Grammophon)** -
+preview privado ok; para publicar: faixa pela biblioteca do app OU export limpo.
+Alinhamento MEDIDO (RMS/s): janela da faixa **95,8s-117,2s** → clímax da peça (111s,
+RMS -13,2) cai na travessia do branco (15,2s do filme); o recuo quieto (102-105s)
+cobre a pausa imóvel; o silêncio pós-clímax (114s) cobre a revelação da praia.
+Mix: fade-in 0,8s, fade-out 1,8s @19,6s, loudnorm -14 LUFS. Arquivo:
+`ALEM_oner_v2_MUSICA.mp4` (preview). Áudio local: `trilha_sparrow.wav` (fora do git).
+
+## Trilha (fase 8) [plano antigo - Stable Audio local, superado pela escolha do usuário]
 
 Brief: silêncio tenso e estático → abertura (a revelação, ~8s) → primeiro pulso de
 movimento no passo (~16s). ~22s, Stable Audio Open local (custo zero).
