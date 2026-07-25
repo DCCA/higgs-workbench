@@ -131,6 +131,17 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   de 2s (um piscar) geram em 4 e aparam na montagem, com fade se o estado final importa.
 - **Medir, não olhar, quando dá:** `signalstats YAVG` para confirmar preto de vídeo,
   `ffprobe` para durações.
+- **Review anti-slop obrigatório antes de entregar corte** (ALÉM): folhas de contato
+  2fps do filme inteiro + zoom nas bordas. Objeto fantasma em âncora tem PARALLAX -
+  cresce até ~35% da borda no take e fica irreparável por crop; rejeitar no still
+  (2 cr) o que custaria regen (52,5). QC junto: YAVG/frame (flicker), freezedetect,
+  astats (clipping).
+- **Linguagem de câmera se MEDE**: correlação de fase frame a frame (jerk/wobble -
+  zero picos é o padrão pro), rastreio do sujeito por cor (desvio de cx ≲0,02 =
+  enquadramento disciplinado), grade de terços (headroom/horizonte). A câmera deve
+  ASSENTAR quando o sujeito para - movimento só motivado (ALÉM).
+- **Travessia por branco precisa DURAR (~1s+)**: saída lenta + branco puro + entrada
+  lenta. Branco de 0,4s lê como flash de corte mesmo sem corte existir (ALÉM).
 
 ## Processo
 

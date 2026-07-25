@@ -65,6 +65,20 @@ Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revis
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
 - **GATE: usuário assiste o corte** (copiar para `/mnt/c/Users/dcca1/Downloads/<slug>/`).
 
+### 7b. Review anti-slop + linguagem de câmera (OBRIGATÓRIO antes de entregar corte)
+
+Nenhum corte vai ao usuário sem este passe, todo medido (custo zero, ffmpeg + numpy):
+- **Anti-slop visual**: folhas de contato 2fps do filme INTEIRO + zoom nas bordas
+  (objetos fantasmas têm parallax - crescem; câmera/equipamento em quadro é o pior tell)
+- **QC técnico**: YAVG por frame (flicker), `freezedetect` (frames congelados),
+  `astats` (clipping de áudio)
+- **Câmera se MEDE, não se olha**: correlação de fase frame a frame (wobble/jerk -
+  zero picos é o padrão), rastreio do sujeito por cor (disciplina de enquadramento -
+  desvio de cx ≲0,02 é nível pro), grade de terços em keyframes (headroom, horizonte)
+- **Gramática**: a câmera assenta quando o sujeito para; movimento só motivado
+- Achados viram fix de montagem primeiro; regen só se irreparável (e a causa raiz
+  vira lição na bíblia)
+
 ### 8. Áudio (custo zero primeiro)
 - **VO: a voz é escolhida POR VÍDEO** - gerar 2-3 candidatas edge-tts com o texto real,
   usuário escolhe ouvindo contra o corte. Nunca reaproveitar a escolha de outro vídeo.
@@ -89,3 +103,4 @@ rodar tudo, export final para a plataforma.
 3. Julgar shot por strip é produção; revisão é folha de cortes
 4. Wow-shot primeiro - se o vídeo não impressiona no protótipo, replaneja antes de produzir
 5. Nenhum vídeo é gerado sem storyboard aprovado - papel é grátis, take não é
+6. Nenhum corte é entregue sem o review anti-slop + câmera medido (fase 7b)
