@@ -3,6 +3,36 @@
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
 (`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`).
 
+## 2026-07-25 (continuação) - Processo endurecido pós-entrega: organização, validador, calibração, docs
+
+**Where we were:** ALÉM entregue e workflow v2 na main (PR #2); pastas de projeto
+caóticas; nenhuma validação automática antes dos gates.
+
+**What we did:**
+- **Árvore padrão de arquivos** por filme (status é pasta; master sem versão no nome),
+  piloto executado na `alem/` (~60 arquivos), `tools/qc/` versionado (#3)
+- **`validador-gate`**: subagente de olhos frios OBRIGATÓRIO antes de todo gate do
+  usuário; smoke test no master achou 3 ajustes que o produtor normalizou (fantasma de
+  texto no end-freeze, hold 1,25s, áudio 96kHz) - corrigidos; master final 25,75s (#4)
+- **Calibração do validador**: 6 casos dourados do acervo + 2 rodadas PASS às cegas
+  (caso 2 mediu a câmera-fantasma e achou 2 defeitos inéditos no take morto) (#5)
+- **`lint_veredito.sh`**: juiz determinístico da RODADA do validador + gatilhos de
+  re-rodada; decisão registrada: sem LLM-juiz (regressão infinita sem gabarito) (#6)
+- Observações do validador **adjudicadas pelo usuário: aceitas** (pegadas, píer);
+  `ALEM_MASTER.mp4` FINAL sem itens criativos abertos (#7)
+- **`docs/`**: `ESTRUTURA.md` (peças + fluxograma ASCII do v2 com loop de validação)
+  e `DECISOES.md` (12 decisões com porquês; regra: decisão nova sempre entra) (#8)
+
+**Decisions:** cadeia de garantia por camadas, cada uma com o juiz certo (validador ←
+lint ← calibração ← escapes do usuário); sem juiz-LLM; docs/ é a arquitetura viva.
+
+**Pending / next:**
+- [ ] Usuário: rotacionar o token HF (aberto desde 19/07)
+- [ ] ALÉM publicação: export limpo p/ biblioteca do app (trilha comercial) + upscale A/B opcional
+- [ ] MÁSCARAS pós e MARÉ ALTA (via fase 1.5) - agora com validador/organização de série
+- [ ] Sessão em ~76% de contexto ao encerrar; cold start barato: CLAUDE.md → docs/ESTRUTURA.md → este arquivo
+- Créditos: ~1.084 (nada gasto nesta continuação - todo o processo custou 0 cr)
+
 ## 2026-07-23→25 - ALÉM completo (filme sem cortes com o usuário) + workflow v2 + backtest
 
 **Where we were:** workbench com práticas v1; usuário queria vídeo de reflexão pessoal.
