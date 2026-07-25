@@ -96,6 +96,19 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
 - **Continuidade de figurino nos derivados.** Frames derivados trocam detalhes silenciosos
   (tênis viraram pés descalços). Conferir roupa/adereços em TODO derivado; corrigir com
   o item explícito no prompt + foto-ref.
+- **i2i ANCORA a composição da referência.** Serve para paleta, figurino, remover
+  logo/objeto; NÃO obedece mudança de escala ou enquadramento ("herói 1/12" numa cena
+  1/6 devolve 1/6). Enquadramento novo = t2i ou crop do frame mais aberto (ALÉM).
+- **t2i resiste a figura sub-1/10** (compõe "como fotógrafo"); pedir 1/50 entrega ~1/8.
+  Imensidão extra vem de movimento (pull-back) ou crop-mãe, não de adjetivo (ALÉM).
+- **Outpaint com o MESMO aspect ratio é no-op** (clampa ao tamanho da fonte). Só expande
+  mudando o ratio; "mesmo quadro mais afastado" em ratio igual = wide como mãe + crops.
+- **`get_cost` precifica o tier ERRADO se o nome do parâmetro estiver errado** (`quality:
+  "fast"` ignorado → preço std). Conferir nomes via `models_explore(action:'get')` antes
+  do preflight (ALÉM: 22,5 vs 17,5).
+- **Objeto estranho aceito num âncora CONTAMINA o take com parallax** (câmera fantasma
+  cresceu a ~35% da borda - irreparável por crop; regen de 52,5). Zoom de bordas em TODO
+  âncora ANTES do gate; rejeitar no still de 2 cr.
 
 ## Storyboard antes do take caro (custo zero)
 
@@ -142,6 +155,19 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   ASSENTAR quando o sujeito para - movimento só motivado (ALÉM).
 - **Travessia por branco precisa DURAR (~1s+)**: saída lenta + branco puro + entrada
   lenta. Branco de 0,4s lê como flash de corte mesmo sem corte existir (ALÉM).
+- **Detector de cena é a régua de corte**: `select='gt(scene,0.25)'` = corte duro;
+  whip-pan legítimo dispara só no threshold sensível (0,12) - é gramática de oner,
+  não defeito (ALÉM).
+- **Review de SOUNDTRACK é obrigatório**: cobertura (`volumedetect` por trecho - áudio
+  vive até o último frame; cartela muda a duração e come a cauda), loudness broadcast
+  (`ebur128`: I≈-14 LUFS social, TP≤-1), e sincronia música×imagem MAPEADA (RMS/s da
+  faixa × timeline: clímax no beat certo, recuo na quietude) - alinhar por medição,
+  não por ouvido (ALÉM: clímax da faixa cravado na travessia do branco).
+- **Cartela final nunca em fonte de sistema nem branco 255**: prova de fontes com
+  intenção (OFL via fontsource), off-white quente (#F7F2E8 papel), texto renderizado
+  NATIVO na resolução final (PIL), fade do filme terminando no MESMO tom do fundo (ALÉM).
+- **Trilha comercial**: extrair para preview é ok; publicar exige faixa via biblioteca
+  do app OU export limpo. Janela da música escolhida por curva RMS, nunca do início.
 
 ## Processo
 

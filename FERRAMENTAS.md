@@ -55,6 +55,23 @@ Trade-off honesto: o `upscale_video` do Higgsfield tende a tratar melhor os arte
 típicos de vídeo gerado por IA; o local é grátis mas genérico. Vale o teste A/B num
 shot antes de decidir o filme inteiro - o local custando zero, o teste é barato.
 
+## 6. Ferramentas de review e finalização (aprendidas no ALÉM)
+
+- **Shell interativo é zsh**: `$VAR:t` em comando inline dispara o modificador `:t`
+  (basename) e quebra filtros do ffmpeg silenciosamente. Filtros complexos SEMPRE via
+  script bash em arquivo (`bash script.sh`), variáveis com `${chaves}`.
+- **A venv do stable-audio é a caixa de ferramentas python** (`tools/stable-audio/.venv`):
+  numpy (análise de câmera por correlação de fase, rastreio por cor) e PIL 12
+  (cartelas nativas em 1080, storyboards, provas de tipografia).
+- **yt-dlp**: o do sistema apodrece rápido contra o YouTube; baixar o binário atual do
+  GitHub para o scratchpad e usar direto (custo zero, sem sudo).
+- **Fontes OFL por CDN**: `cdn.jsdelivr.net/fontsource/fonts/<família>@latest/latin-
+  <peso>-<estilo>.ttf` - Cormorant, EB Garamond, Playfair, Inter etc., livres inclusive
+  para uso comercial; guardar no projeto (`<slug>/fonts/`).
+- **Kit de QC ffmpeg**: folhas de contato `fps=2 + tile`, `signalstats` YAVG/frame
+  (flicker), `freezedetect`, `astats`/`volumedetect`/`ebur128` (áudio), detector de
+  cena `select='gt(scene,N)'`, `drawgrid` (terços/enquadramento).
+
 ## Pipeline completo proposto (custo marginal zero após Higgsfield)
 
     Higgsfield (imagem+vídeo fast) → ffmpeg (montagem/revisão)

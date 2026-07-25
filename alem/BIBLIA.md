@@ -1,5 +1,10 @@
 # ALÉM - bíblia de produção
 
+**STATUS: ENCERRADO 2026-07-25.** Entrega: `ALEM_FINAL_MASTER_v3.mp4` (24,6s,
+1080×1920, oner costurado, trilha Jóhannsson, cartela La Grazia). Custo: 333 cr.
+Lições promovidas a PRATICAS.md/FERRAMENTAS.md; workflow v2 derivado deste projeto.
+Publicação pendente: export limpo para biblioteca do app (trilha é comercial).
+
 Reflexão do usuário (texto-fonte; não vira VO nem cartela - vira forma):
 > "Eu sinto que a expectativa é algo já alcançado, então não sinto que tem o mais...
 > e isso não me movimenta. O que me movimenta é o além da expectativa."
