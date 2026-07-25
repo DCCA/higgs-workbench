@@ -18,9 +18,22 @@ Antes de começar, leia `PRATICAS.md` (regras de geração) e tenha `FERRAMENTAS
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)
-Formato/plataforma, duração alvo, tem áudio/VO?, e **qual é o momento impressionante** -
-o shot que justifica o vídeo existir. Se o usuário trouxe roteiro, extrair isso dele.
-Escrever decupagem curta: shot × movimento × duração × frames necessários.
+Formato/plataforma, duração alvo, tem áudio/VO?, **casting** (o usuário? personagem
+genérico? sem personagem? - refs de identidade existem no acervo dos projetos), e
+**qual é o momento impressionante**. Se o usuário trouxe roteiro, extrair isso dele.
+AVISO explícito no brief: casting e linguagem de montagem TRAVAM nos gates - pivô
+depois da produção = re-shoot integral (ALÉM: 2 pivôs tardios ≈ 133 cr refeitos).
+
+### 1.5 Conceito (OBRIGATÓRIO para brief abstrato/reflexivo; gate próprio)
+Quando o vídeo traduz uma ideia (reflexão, sentimento, frase) em vez de uma cena
+literal, o conceito tem gate ANTES de qualquer âncora:
+- Apresentar **3-5 mundos/arcos DIFERENTES** (uma linha cada), nunca 1 aposta
+- Teste de categoria: o "além/clímax" é de OUTRA NATUREZA que o setup (terra→ar,
+  palco→amanhecer)? "Maior do mesmo" não é clímax (montanha maior ainda é montanha)
+- Teste de arco: o personagem/estado TERMINA diferente de como começou (pedra→pássaro)?
+- Os dois polos da ideia aparecem EM CENA (evidência física > conceito, vale p/ significado)
+**GATE: usuário escolhe o mundo antes do primeiro still.** (Origem: ALÉM queimou
+~100 cr num mundo conceitualmente errado antes desta fase existir.)
 
 ### 2. Setup do projeto
 - `mkdir <slug>/` na raiz; criar `<slug>/BIBLIA.md` com as seções: identidade travada,
@@ -32,7 +45,11 @@ Escrever decupagem curta: shot × movimento × duração × frames necessários.
 Gerar com `nano_banana_pro` 2k: identidade do personagem (se houver) + locação-mãe.
 Travar identidade POR ESCRITO na bíblia e colar o bloco em todo prompt subsequente.
 Todo frame derivado nasce de um âncora via `medias` ("EXACT same scene... ONLY change:").
-**GATE: usuário aprova os âncoras antes de qualquer vídeo.**
+**Checklist de aceitação POR STILL (antes de mostrar ao usuário):**
+- Zoom nas BORDAS: objeto estranho = REJEITAR no still (contamina o take com parallax)
+- Logos de marca (a jaqueta TNF volta sozinha), figurino idêntico ao bloco de identidade
+- Escala do sujeito legível; cláusula anti-rotação aplicada se paisagem/arquitetura
+**GATE: usuário aprova os âncoras antes de qualquer vídeo - e o CASTING trava aqui.**
 
 ### 4. Storyboard (custo ZERO, obrigatório antes de qualquer vídeo)
 Todo movimento e trajetória validados NO PAPEL antes do primeiro crédito de vídeo:
@@ -42,8 +59,12 @@ Todo movimento e trajetória validados NO PAPEL antes do primeiro crédito de v�
 - Setas de trajetória NIVELADAS com o movimento real - anotação errada cria o
   mal-entendido que deveria evitar
 - Copiar para Downloads e iterar de graça até o usuário visualizar o filme inteiro
-**GATE: usuário aprova o storyboard antes de qualquer geração de vídeo.**
-(Origem: no VOO, 4 iterações grátis pegaram 2 problemas antes de um take de 52,5 cr.)
+- **A LINGUAGEM DE MONTAGEM é decisão explícita deste gate**: cortes tradicionais ×
+  oner costurado (emendas escondidas em branco/preto/whip) × oner literal (≤15s).
+  Mostrar custo e risco de cada; travar aqui - trocar depois da produção = refazer takes
+**GATE: usuário aprova storyboard + linguagem de montagem antes de qualquer vídeo.**
+(Origem: no VOO, 4 iterações grátis pegaram 2 problemas antes de um take de 52,5 cr;
+no ALÉM, o pivô cortes→oner depois da produção refez 73,5 cr de takes.)
 
 ### 5. Protótipo do wow-shot PRIMEIRO
 O shot mais arriscado/impressionante é gerado antes dos demais, fora de ordem.
@@ -65,17 +86,44 @@ Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revis
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
 - **GATE: usuário assiste o corte** (copiar para `/mnt/c/Users/dcca1/Downloads/<slug>/`).
 
+### 7b. Review anti-slop + linguagem de câmera (OBRIGATÓRIO antes de entregar corte)
+
+Nenhum corte vai ao usuário sem este passe, todo medido (custo zero, ffmpeg + numpy):
+- **Anti-slop visual**: folhas de contato 2fps do filme INTEIRO + zoom nas bordas
+  (objetos fantasmas têm parallax - crescem; câmera/equipamento em quadro é o pior tell)
+- **QC técnico**: YAVG por frame (flicker), `freezedetect` (frames congelados),
+  `astats` (clipping de áudio)
+- **Câmera se MEDE, não se olha**: correlação de fase frame a frame (wobble/jerk -
+  zero picos é o padrão), rastreio do sujeito por cor (disciplina de enquadramento -
+  desvio de cx ≲0,02 é nível pro), grade de terços em keyframes (headroom, horizonte)
+- **Gramática**: a câmera assenta quando o sujeito para; movimento só motivado
+- Achados viram fix de montagem primeiro; regen só se irreparável (e a causa raiz
+  vira lição na bíblia)
+
 ### 8. Áudio (custo zero primeiro)
 - **VO: a voz é escolhida POR VÍDEO** - gerar 2-3 candidatas edge-tts com o texto real,
   usuário escolhe ouvindo contra o corte. Nunca reaproveitar a escolha de outro vídeo.
 - Trilha: Stable Audio Open (GPU) ou lib CC0; **nunca MusicGen para uso comercial**.
 - Foley: Freesound filtrado CC0.
 - Mix simples no ffmpeg (`amix`/`sidechaincompress`); casos complexos vão pro DaVinci.
+- Música pronta (inclusive do usuário): janela escolhida por CURVA RMS × timeline
+  (clímax no beat certo), nunca "do início". Comercial = preview privado; publicar
+  pela biblioteca do app ou export limpo.
+
+### 8b. Review de soundtrack (OBRIGATÓRIO antes de entregar corte sonorizado)
+- **Cobertura**: `volumedetect` por trecho - áudio vive até o ÚLTIMO frame (cartela
+  adicionada depois come a cauda em silêncio)
+- **Broadcast**: `ebur128` - Integrated ≈ -14 LUFS (social), true peak ≤ -1 dB
+- **Sincronia**: conferir o mapa música×imagem no corte FINAL (os beats mudam de
+  timestamp quando a montagem muda)
 
 ### 9. Finalização
 Passe de cor unificado se preciso (colorbalance nas altas, nunca nos médios em pele),
-cartela/tipografia, upscale A/B (Video2X local × `upscale_video`) num shot antes de
-rodar tudo, export final para a plataforma.
+upscale A/B (Video2X local × `upscale_video`) num shot antes de rodar tudo, export
+final para a plataforma. Padrões de master: 1080×1920 + grão fino unificador.
+**Cartela**: nunca fonte de sistema nem branco 255 - prova de fontes (OFL/fontsource),
+off-white quente, texto renderizado NATIVO na resolução final (PIL), fade do filme
+terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 
 ### 10. Registro (obrigatório antes de encerrar)
 - Bíblia atualizada: job IDs, custos reais × preflight, retakes com causa e antídoto
@@ -89,3 +137,8 @@ rodar tudo, export final para a plataforma.
 3. Julgar shot por strip é produção; revisão é folha de cortes
 4. Wow-shot primeiro - se o vídeo não impressiona no protótipo, replaneja antes de produzir
 5. Nenhum vídeo é gerado sem storyboard aprovado - papel é grátis, take não é
+6. Nenhum corte é entregue sem os reviews medidos (7b anti-slop/câmera, 8b soundtrack)
+7. Brief abstrato tem gate de CONCEITO com 3-5 opções antes do primeiro still -
+   o além é outra categoria, o arco termina diferente de onde começou
+8. Casting trava no gate de âncoras; linguagem de montagem trava no storyboard -
+   pivô tardio = re-shoot, e o usuário decide sabendo o preço

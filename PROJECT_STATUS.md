@@ -1,7 +1,39 @@
 # Status do workbench
 
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
-(`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`).
+(`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`).
+
+## 2026-07-23→25 - ALÉM completo (filme sem cortes com o usuário) + workflow v2 + backtest
+
+**Where we were:** workbench com práticas v1; usuário queria vídeo de reflexão pessoal.
+
+**What we did:**
+- **ALÉM entregue**: `ALEM_FINAL_MASTER_v3.mp4` (24,6s, 1080×1920) - oner costurado
+  (teatro→porta→clarão→praia), usuário como personagem (refs do VOO), trilha Jóhannsson
+  alinhada por RMS, cartela Cormorant/marfim com a pergunta de La Grazia. **333 cr.**
+- Caminho: transbordo (0 cr, papel) → montanha (~100 cr, conceito reprovado) →
+  5 conceitos → PALCO→AMANHECER → cortes v5 → pivô oner + pivô casting → reviews.
+- **Repo ganhou remote + fluxo obrigatório branch/PR** (CLAUDE.md novo, PR #1).
+- **Workflow v2** (reforma estrutural pós-4-projetos): fase 1.5 Conceito (3-5 opções,
+  gate para brief abstrato), casting trava nos âncoras, linguagem de montagem trava no
+  storyboard, checklist de bordas por still, fase 7b (anti-slop + câmera MEDIDA),
+  fase 8b (soundtrack: cobertura/ebur128/sincronia), padrões de cartela e master.
+  +11 cláusulas novas em PRATICAS.md; seção de tooling de review em FERRAMENTAS.md.
+- **Backtest de papel (0 cr)** do v2 contra os 4 projetos: das ~20 falhas pagas,
+  v2 captura ~16 em gates de papel/still; economia estimada ~390-450 cr de 1.289
+  gastos históricos (~30-35%); ALÉM teria custado ~150-180 em vez de 333.
+  Risco residual honesto: gosto em MOVIMENTO, variância do modelo em semântica nova.
+
+**Decisions:** review medido (7b/8b) é inegociável antes de entrega; conceito abstrato
+nunca começa com 1 aposta; pivô tardio tem preço explícito nos gates.
+
+**Pending / next:**
+- [ ] Usuário: rotacionar o token HF (aberto desde 19/07)
+- [ ] ALÉM publicação: export limpo p/ biblioteca do app (a versão com música é preview
+      privado - Jóhannsson/DG é comercial) + upscale A/B opcional
+- [ ] MÁSCARAS pós (voz/trilha/cor/cartela/upscale) - agora com os padrões novos
+- [ ] MARÉ ALTA pausado - recandidatar via fase 1.5 (5 conceitos)
+- Créditos: ~1.084 restantes
 
 ## 2026-07-19 (continuação) - VOO v2 corpo vivo; storyboard vira fase padrão
 
