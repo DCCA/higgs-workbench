@@ -57,6 +57,11 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
   o modelo não anima com coerência. Plano de despedida: sujeito legível (~1/4 do quadro)
   recuando DENTRO do shot, nunca começando microscópico. E cortar de close para figura
   micro é zoom-out violento na montagem (VOO).
+- **Fake-oner (2ª técnica de plano-sequência) [herdada da skill vox - A/B cego
+  obrigatório (~35 cr) antes do 1º uso em filme]:** todo clipe começa E termina em
+  motion blur pleno (mergulho/whip/queda) - cortes duros entre blocos leem como um
+  take contínuo, SEM par start/end e SEM travessia por branco; permite gerar blocos
+  em paralelo. Critério do A/B: scene-detect ≤0,25 na emenda + preferência cega.
 - **"Não parece um filme" tem resposta estrutural: o plano-sequência.** N gerações
   independentes = N físicas coladas; um take único = um mundo, uma física, zero
   transições ruins. Seedance vai a 15s - um oner de 15s custa o mesmo que 3 shots de 5s
@@ -89,6 +94,14 @@ Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em 
 - **Interceptação por preset.** O servidor intercepta prompts de cena escura/fria e
   devolve recomendação de preset SEM submeter o job (parece sucesso, não é). Antídoto:
   reenviar com `declined_preset_id`. Em bloco de cenas escuras, incluir preventivamente.
+  A interceptação tem VÁRIOS padrões (IN THE DARK, 3D RENDER, FREE FALL...); o id
+  declinado suprime só aquele preset exato - prompt novo pode disparar outro
+  [herdado da skill vox, parcialmente verificado por nós].
+- **Mapa de moderação [herdado da skill vox - NÃO verificado por nós; confirmar ou
+  remover no 1º encontro real]:** político NOMEADO no prompt de vídeo → job submete
+  ok e MORRE na renderização (seedance); rosto reconhecível em close falha no
+  seedance mas renderiza no gemini_omni (rotear o bloco); "mushroom cloud" → flag
+  nsfw (trocar a imagem, manter a ideia). Nomes são ok no texto de VO.
 - **Estado impossível exige a EVIDÊNCIA FÍSICA, não o conceito.** "Ele levita" gera pés
   no chão (o modelo regride pra referência). O que funciona é descrever a prova visual:
   "visible GAP of empty air under the soles, horizon visible THROUGH the gap, soft
@@ -168,6 +181,17 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   NATIVO na resolução final (PIL), fade do filme terminando no MESMO tom do fundo (ALÉM).
 - **Trilha comercial**: extrair para preview é ok; publicar exige faixa via biblioteca
   do app OU export limpo. Janela da música escolhida por curva RMS, nunca do início.
+- **TTS: pontuação é tempo [VALIDADO local: mesmas palavras, fluida 9,55s vs picada
+  15,67s = Δ6,1s; ~1,0s por ponto final no edge-tts pt-BR]:** medir a duração REAL
+  de todo take (ffprobe) contra a janela do bloco; preferir UMA frase fluida com
+  vírgulas; números por extenso; esperar 1-2 rodadas de re-voz; leve estouro é
+  melhor que começo atrasado.
+- **Style key (recomendação):** além das refs de identidade/cena, anexar um still de
+  ESTILO consistente a toda geração do filme. Métrica de acompanhamento no QC: drift
+  de matiz/saturação médias entre takes (próximo filme ≤ baseline ALÉM).
+- **Objeto recorrente = prop 1:1:** gerar o objeto isolado em fundo neutro (com o
+  style key) e anexar como ref extra em toda cena ("the X from the reference image") -
+  sistematiza a lição do design-por-referência do MÁSCARAS.
 
 ## Processo
 
