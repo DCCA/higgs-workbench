@@ -348,6 +348,14 @@ cobre a pausa imóvel; o silêncio pós-clímax (114s) cobre a revelação da pr
 Mix: fade-in 0,8s, fade-out 1,8s @19,6s, loudnorm -14 LUFS. Arquivo:
 `ALEM_oner_v2_MUSICA.mp4` (preview). Áudio local: `trilha_sparrow.wav` (fora do git).
 
+## Cartela final (2026-07-25): "Di chi sono i nostri giorni?"
+
+Citação verificada (web): a pergunta recorrente de **La Grazia** (Sorrentino, 2025).
+Colocada DENTRO do branco final: +3,2s de cartela branca contínua ao fade-out do
+filme, DejaVu Serif 40px cinza 0x2A2A2A, fade-in 0,7s / respiro / fade-out 0,6s.
+Citação curta de obra = uso de citação, sem o problema de licença da trilha.
+Arquivo: `ALEM_oner_v3_GRAZIA.mp4` (24,6s) - candidato a corte final.
+
 ## Trilha (fase 8) [plano antigo - Stable Audio local, superado pela escolha do usuário]
 
 Brief: silêncio tenso e estático → abertura (a revelação, ~8s) → primeiro pulso de
