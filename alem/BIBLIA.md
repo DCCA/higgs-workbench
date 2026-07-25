@@ -236,6 +236,20 @@ T-A + T-B + T-C + T-D concat (crf 16, 24fps), fade-in preto 0,4s, fade-out BRANC
 praia). Tipografia: borda 2px preta@0,55 + sombra (v1 com borda 1px falhou
 legibilidade sobre o clarão - checado frame a frame).
 
+## REVIEW ANTI-SLOP (2026-07-25) - pedido do usuário
+
+QC medido: zero flicker (YAVG/frame), zero frames congelados (fora da cartela),
+áudio pico -1,1 dB sem clipping. Varredura visual (3 folhas de contato 2fps +
+zooms de borda): marcha OK, mundo OK, praia OK, cartela OK.
+**ACHADO CRÍTICO: câmera de cinema com tripé em quadro** (borda esquerda,
+10,2-15,1s do ONER-1) - contaminação vinda do frame G2 ("tralha de bastidor" aceita
+errado). É objeto de PRIMEIRO PLANO com parallax (cresce até ~35% da borda) -
+irreparável por crop (2 tentativas medidas: z=1,14 e z=1,26 falharam); só regen.
+`ALEM_v4_MASTER.mp4` = 1080×1920 lanczos + grão fino unificador (ganhos reais do
+review), câmera fantasma AINDA PRESENTE - decisão de regen pendente.
+LIÇÃO: objeto estranho aceito num frame-âncora CONTAMINA o take inteiro com
+parallax; rejeitar no still (2 cr) o que custaria regen de take (52,5).
+
 ## Lições novas (candidatas a PRATICAS.md no registro)
 
 - Shell interativo é zsh: `$FONT:textfile` dispara o modificador `:t` (basename) e
