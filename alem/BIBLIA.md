@@ -5,6 +5,15 @@
 Lições promovidas a PRATICAS.md/FERRAMENTAS.md; workflow v2 derivado deste projeto.
 Publicação pendente: export limpo para biblioteca do app (trilha é comercial).
 
+**Smoke test do `validador-gate` (2026-07-25, estreia do subagente de olhos frios):**
+rodado no master fechado, achou 3 AJUSTES que o produtor normalizou - fade da cartela
+incompleto no último frame (fantasma no end-freeze), hold de leitura de 1,25s para
+6 palavras, áudio a 96 kHz. Corrigidos e verificados (cartela 4,3s: hold 2,4s, último
+frame limpo YMIN 218, áudio 48 kHz/-14,1 LUFS). Master atualizada no lugar (25,75s).
+2 OBSERVAÇÕES de gosto pendentes do diretor/usuário: (a) 2º rastro de pegadas sem
+dono na praia, com pegadas descalças (b) estrutura tênue de píer no horizonte à
+esquerda - ambas diegéticas plausíveis, decisão de aceitar ou regen do usuário.
+
 **Mapa de arquivos (árvore padrão, reorganizada 2026-07-25 - piloto do processo):**
 `06_master/ALEM_MASTER.mp4` = entrega (ex ALEM_FINAL_MASTER_v3) · takes em uso:
 `03_takes/ONER1v2.mp4` (`b3fb7640`), `03_takes/ONER2.mp4` (`c8220cb2`) · âncoras em
