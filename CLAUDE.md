@@ -14,6 +14,10 @@ Workbench permanente de produção de vídeo com IA (Higgsfield MCP + ferramenta
 
 `PROJECT_STATUS.md` é o logbook por sessão (mais recente primeiro): onde as coisas pararam, decisões e pendências. Consultar no início da sessão, atualizar ao encerrar.
 
+`docs/` é a arquitetura viva: `ESTRUTURA.md` (as peças do sistema + fluxograma do
+workflow v2 com o loop de validação) e `DECISOES.md` (log append-only de decisões de
+arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
+
 ## Estrutura
 
 - Cada vídeo = uma pasta na raiz (`mascaras/`, `mare-alta/`, `voo/`, `alem/`) com sua
