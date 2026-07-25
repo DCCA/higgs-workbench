@@ -15,6 +15,16 @@ Antes de começar, leia `PRATICAS.md` (regras de geração) e tenha `FERRAMENTAS
 - Orçamento alvo: **100-300 créditos** (protótipo + produção + margem de 2x retake no wow-shot)
 - 9:16 fast 720p sempre; upscale só no corte aprovado
 
+## Validação de gate (transversal, OBRIGATÓRIA)
+
+**Nada chega a um gate do usuário sem passar antes pelo subagente `validador-gate`**
+(definido em `.claude/agents/validador-gate.md` - olhos frios, read-only, checklists
+por tipo de gate). Fluxo: produzir → validar → corrigir até APROVADO (achados
+BLOQUEIA nunca chegam ao usuário) → apresentar ao usuário COM o resumo da validação
+(checks rodados + observações de gosto que sobraram para ele decidir). O briefing do
+validador leva: caminhos dos arquivos, tipo de gate, e o trecho relevante da bíblia.
+O gate do usuário passa a ser só decisão criativa - a régua objetiva já foi aplicada.
+
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)
@@ -149,7 +159,8 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 3. Julgar shot por strip é produção; revisão é folha de cortes
 4. Wow-shot primeiro - se o vídeo não impressiona no protótipo, replaneja antes de produzir
 5. Nenhum vídeo é gerado sem storyboard aprovado - papel é grátis, take não é
-6. Nenhum corte é entregue sem os reviews medidos (7b anti-slop/câmera, 8b soundtrack)
+6. Nenhum material chega a gate do usuário sem o `validador-gate` (olhos frios) -
+   e nenhum corte sem os reviews medidos (7b anti-slop/câmera, 8b soundtrack)
 7. Brief abstrato tem gate de CONCEITO com 3-5 opções antes do primeiro still -
    o além é outra categoria, o arco termina diferente de onde começou
 8. Casting trava no gate de âncoras; linguagem de montagem trava no storyboard -
