@@ -25,6 +25,17 @@ BLOQUEIA nunca chegam ao usuário) → apresentar ao usuário COM o resumo da va
 validador leva: caminhos dos arquivos, tipo de gate, e o trecho relevante da bíblia.
 O gate do usuário passa a ser só decisão criativa - a régua objetiva já foi aplicada.
 
+**Aceitação do veredito (quem valida a rodada do validador):** o diretor NÃO julga o
+mérito de novo - roda `bash tools/qc/lint_veredito.sh <veredito.txt>` (formato,
+cobertura do eco, evidência em todo achado, ferramentas citadas) + 1 spot-check de
+uma evidência aleatória (abrir o arquivo/medida citada e conferir que existe).
+**Gatilhos de re-rodada obrigatória:** lint falhou; APROVADO com zero achados em
+gate de mídia (limpo demais é smell - todo material real rende observações);
+spot-check não confere; ou escape descoberto depois (aí também re-calibra via
+`tools/qc/CALIBRACAO.md`). O mérito do validador é garantido pelos juízes com
+gabarito: calibração (casos dourados) e loop de escapes - NÃO por outro LLM juiz
+(regressão infinita sem ground truth).
+
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)
