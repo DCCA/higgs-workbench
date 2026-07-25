@@ -121,7 +121,28 @@ ele é o conteúdo compartilhado constante; quem viaja é o mundo). ~21s.
 **A EMENDA INVISÍVEL**: fim do ONER-1 ≈ branco puro; início do ONER-2 ≈ branco
 resolvendo - corte seco branco→branco + 2-3 frames de branco puro inseridos se
 preciso (grátis no ffmpeg). Nenhum corte perceptível no filme inteiro.
+**LEGENDAS: REMOVIDAS do corte a pedido do usuário (2026-07-24, "por agora")** -
+a espec dos dois tempos segue documentada acima, desativada; reativável na montagem.
 Frames novos: G1, G2, G3 derivados da F-B-EU + fotos-ref (~6 cr + margem).
+
+| Frame | Job ID | Custo | Status |
+|---|---|---|---|
+| G1 coxia (EU, mid-step, start ONER-1) | `f014f11d-4781-4167-999b-175034988654` | 2,00 | OK - identidade + smartwatch + rim light |
+| G2 portal (EU no vão, end ONER-1) | `cfe268c0-a076-44b5-afc2-80af3134b2f1` | 2,00 | OK - suéter sem capuz na silhueta; equipamento de palco à esq. (aceito como tralha de bastidor) |
+| G3 praia (EU, véu branco resolvendo, start ONER-2) | `7b3dd677-5a3c-4e3e-8e92-1d6a77731331` | 2,00 | OK - pegadas, figurino idêntico |
+
+| Take | Job ID | Custo | Status |
+|---|---|---|---|
+| ONER-1 (15s, G1→G2, coxia→holofote→pausa→porta→clarão) | `cdfc850c-b3a9-4901-9cf4-fb8a054ec7ab` | 52,50 | strip 6 beats OK DE PRIMEIRA - pausa no tempo, follow-cam contínua; nota: porta muda de 1→2 folhas entre beats 4-5 (invisível em movimento) |
+| ONER-2 (6s, G3 start-only, branco→praia→água) | `c8220cb2-4438-4724-834d-cec6acd36a82` | 21,00 | strip OK - véu resolve, passos com peso, pegadas, gaivotas |
+
+## FILME SEM CORTES: `ALEM_oner_v1.mp4` (20,7s, 2026-07-24)
+
+ONER-1 + xfade `fadewhite` 0,4s (offset 14,642) + ONER-2; fade-in preto 0,4s;
+fade-out BRANCO 0,8s. SEM legendas (decisão do usuário). Junção medida: YAVG
+222 → branco → 189, verificada frame a frame (`JUNCAO_check.png`) - invisível,
+lê como atravessar a luz. A maior geração do projeto (15s, 52,5 cr) passou de
+primeira; ZERO retakes de vídeo em todo o v6. Total do projeto: **278,5 cr**.
 Conta do delta: ~80-86 cr. declined_preset_id preventivo nos 2 takes.
 Corte v5 (4 takes, herói genérico) fica de backup no acervo.
 
