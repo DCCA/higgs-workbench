@@ -16,7 +16,10 @@ Workbench permanente de produção de vídeo com IA (Higgsfield MCP + ferramenta
 
 ## Estrutura
 
-- Cada vídeo = uma pasta na raiz (`mascaras/`, `mare-alta/`, `voo/`) com sua `BIBLIA.md`
+- Cada vídeo = uma pasta na raiz (`mascaras/`, `mare-alta/`, `voo/`, `alem/`) com sua
+  `BIBLIA.md` e a árvore padrão `storyboard/ 01_refs/ 02_ancoras/ 03_takes/ 04_qc/
+  05_cortes/ 06_master/` (status é pasta: aprovado na principal, supersedido em
+  `_descartados/`; `06_master/` só com a entrega vigente - detalhes na fase 2 da skill)
 - `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
 - `tools/` (gitignorado) - ferramentas locais; `tools/stable-audio/gerar_trilha.py` gera trilha com Stable Audio Open na GPU local
 - Entregas para o usuário assistir: copiar para `~/Downloads/<slug>/`
