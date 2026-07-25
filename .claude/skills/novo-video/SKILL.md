@@ -53,6 +53,9 @@ literal, o conceito tem gate ANTES de qualquer âncora:
   palco→amanhecer)? "Maior do mesmo" não é clímax (montanha maior ainda é montanha)
 - Teste de arco: o personagem/estado TERMINA diferente de como começou (pedra→pássaro)?
 - Os dois polos da ideia aparecem EM CENA (evidência física > conceito, vale p/ significado)
+- **Lente de retenção** (opcional por gênero, da análise vox): existe um OBJETO-FIO
+  que atravessa os beats e escala até o payoff? Uma pergunta-gancho respondida só no
+  fim? UM reveal pelo qual o vídeo será lembrado?
 **GATE: usuário escolhe o mundo antes do primeiro still.** (Origem: ALÉM queimou
 ~100 cr num mundo conceitualmente errado antes desta fase existir.)
 
@@ -164,6 +167,10 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 - **Escapes do validador**: defeito que o USUÁRIO achou depois de gate APROVADO =
   escape; cada escape vira item de checklist no `validador-gate` + caso dourado em
   `tools/qc/CALIBRACAO.md` (e re-rodar a calibração)
+- **Scorecard da produção** (seção obrigatória na bíblia): cr por segundo entregue ·
+  retakes por causa · achados BLOQUEIA/AJUSTE por gate · % de gates aprovados de 1ª ·
+  escapes · score de retenção (quando medido). Comparar com a produção anterior no
+  review point (manter/ajustar/reverter mudanças de processo em DECISOES.md)
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
 
 ## Princípios que não se negociam

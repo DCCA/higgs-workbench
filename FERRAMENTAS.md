@@ -55,6 +55,19 @@ Trade-off honesto: o `upscale_video` do Higgsfield tende a tratar melhor os arte
 típicos de vídeo gerado por IA; o local é grátis mas genérico. Vale o teste A/B num
 shot antes de decidir o filme inteiro - o local custando zero, o teste é barato.
 
+## 5b. Catálogo Higgsfield além do padrão (verificado 2026-07-25)
+
+- **`gemini_omni`**: 30 cr/10s (3,0 cr/s vs 3,5 do seedance fast), só 720p, 9:16 ok,
+  áudio nativo. **SEM start/end frame** (só `image_references`) - não serve para
+  nossa interpolação; é engine de estilo-por-referência (flat/colagem) e renderiza
+  likeness onde o seedance recusa [claim herdado, não verificado].
+- **`seedance_2_0` extras**: param `genre` (noir etc.) para grade consistente entre
+  clipes; áudio nativo (`generate_audio: true`) sobrevive sob voiceover na montagem.
+- **`virality_predictor`**: sem `get_cost` no schema - custo DESCONHECIDO; medir por
+  diff de saldo na primeira utilização antes de tornar rotina.
+- **Brief musical quantificado** p/ `gerar_trilha.py`: BPM, estrutura de swells,
+  "clímax a X% do runtime, decay rápido" (validação A/B cego em curso).
+
 ## 6. Ferramentas de review e finalização (aprendidas no ALÉM)
 
 - **Shell interativo é zsh**: `$VAR:t` em comando inline dispara o modificador `:t`
