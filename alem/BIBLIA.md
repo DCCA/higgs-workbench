@@ -1,9 +1,17 @@
 # ALÉM - bíblia de produção
 
-**STATUS: ENCERRADO 2026-07-25.** Entrega: `ALEM_FINAL_MASTER_v3.mp4` (24,6s,
+**STATUS: ENCERRADO 2026-07-25.** Entrega: **`06_master/ALEM_MASTER.mp4`** (24,6s,
 1080×1920, oner costurado, trilha Jóhannsson, cartela La Grazia). Custo: 333 cr.
 Lições promovidas a PRATICAS.md/FERRAMENTAS.md; workflow v2 derivado deste projeto.
 Publicação pendente: export limpo para biblioteca do app (trilha é comercial).
+
+**Mapa de arquivos (árvore padrão, reorganizada 2026-07-25 - piloto do processo):**
+`06_master/ALEM_MASTER.mp4` = entrega (ex ALEM_FINAL_MASTER_v3) · takes em uso:
+`03_takes/ONER1v2.mp4` (`b3fb7640`), `03_takes/ONER2.mp4` (`c8220cb2`) · âncoras em
+uso: `02_ancoras/{G1_coxia_EU,G2v2_portal_limpo,G3_praia_EU,FB_EU_v1}.png` · fontes
+e áudio-fonte em `01_refs/` · TODO o histórico reprovado/superado em
+`02_ancoras/_descartados/`, `03_takes/_descartados/` e `05_cortes/` (job IDs nas
+tabelas acima regeneram qualquer um) · QC completo em `04_qc/`.
 
 Reflexão do usuário (texto-fonte; não vira VO nem cartela - vira forma):
 > "Eu sinto que a expectativa é algo já alcançado, então não sinto que tem o mais...
