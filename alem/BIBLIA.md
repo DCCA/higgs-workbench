@@ -10,9 +10,10 @@ rodado no master fechado, achou 3 AJUSTES que o produtor normalizou - fade da ca
 incompleto no último frame (fantasma no end-freeze), hold de leitura de 1,25s para
 6 palavras, áudio a 96 kHz. Corrigidos e verificados (cartela 4,3s: hold 2,4s, último
 frame limpo YMIN 218, áudio 48 kHz/-14,1 LUFS). Master atualizada no lugar (25,75s).
-2 OBSERVAÇÕES de gosto pendentes do diretor/usuário: (a) 2º rastro de pegadas sem
-dono na praia, com pegadas descalças (b) estrutura tênue de píer no horizonte à
-esquerda - ambas diegéticas plausíveis, decisão de aceitar ou regen do usuário.
+2 OBSERVAÇÕES adjudicadas pelo usuário (2026-07-25): **ambas ACEITAS como estão**
+(0 cr) - (a) o 2º rastro de pegadas descalças sem dono e (b) o píer tênue no
+horizonte ficam no filme como presenças diegéticas. `ALEM_MASTER.mp4` é FINAL,
+sem itens criativos abertos.
 
 **Mapa de arquivos (árvore padrão, reorganizada 2026-07-25 - piloto do processo):**
 `06_master/ALEM_MASTER.mp4` = entrega (ex ALEM_FINAL_MASTER_v3) · takes em uso:
