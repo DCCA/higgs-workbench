@@ -67,7 +67,24 @@ usa cortes, não interpolação).
 
 | ID | Descrição | Job ID | Arquivo | Custo |
 |---|---|---|---|---|
-| KEY | style key (swatch colagem, chave dourada) - APROVADO validador (1 AJUSTE: pseudo-glifos na textura de circuito leem como textura a ~30%; manter chave ≲30-40% do quadro OU regen textura em macro extremo) | `83476c9a-9c2d-4935-bd8b-4ee2dd9c5f27` | `02_ancoras/KEY_stylekey.png` | 2,00 |
+| KEY | style key (swatch colagem, chave dourada) - APROVADO validador | `83476c9a-9c2d-4935-bd8b-4ee2dd9c5f27` | `02_ancoras/KEY_stylekey.png` | 2,00 |
+| B1 | still bloco 1: jaula, chave nascendo dos cacos sobre folha de prova | `00e84109-1879-409f-a29a-894c91ae70d1` | `02_ancoras/B1_jaula.png` | 2,00 |
+| B2 | still bloco 2: jaula aberta, chave girando, rota no mapa, chave se multiplica ate o cofre | `27a6ea9b-6a89-4c0e-8f40-792dc02defe5` | `02_ancoras/B2_fuga.png` | 2,00 |
+| B3 v1 (DESCARTADO - vazou "answer key"+numeros no cartao) | | `7a9d0072-727e-446a-95f2-7595b8a65c6e` | `_descartados/B3_roubo_v1_textovazado.png` | 2,00 |
+| B3 v2 | still bloco 3: cofre aberto, cartao dourado BLANK, selo abstrato, chaves espalhando | `b3a57ecf-75fe-4fb3-b634-529f7b96dcc8` | `02_ancoras/B3_roubo_v2.png` | 2,00 |
+
+**Gate de âncoras (validador-gate, lint+spotcheck OK):** 3 stills APROVADOS, 2 AJUSTEs
+a carregar para a produção: (1) a pilha de papel "cofre" do B2 tem contra-formas que
+leem como letra (D/P/B) em zoom - SEMENTE de alucinação de texto quando virar
+image_reference do gemini_omni; vigiar no QC do take B2 ou regen do still. (2) nenhum
+push-in macro na chave (pseudo-glifos de circuito). Observações de gosto: drift leve de
+tom do papel entre os 3; B1 tem fotos b/w ausentes nos outros; ouro se espalha no B3.
+
+**LIÇÃO (candidata a PRATICAS):** `nano_banana_pro` INSERE texto sozinho quando o
+conceito sugere rótulo ("gabarito"/"answer key") - o NEGATIVE não basta; corrigir por
+i2i explícito "card is BLANK, no text". Vale para todo still de colagem com "documento".
+**LIÇÃO:** job de imagem pode TRAVAR em in_progress (~5min+); re-submeter (2 cr) em vez
+de esperar indefinidamente (1º caso: B3 v2 `181fe3b9` travado → re-sub `b3a57ecf`).
 
 ## Custos (preflight get_cost, 2026-07-25)
 
