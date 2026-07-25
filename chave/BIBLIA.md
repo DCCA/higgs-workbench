@@ -67,8 +67,7 @@ usa cortes, não interpolação).
 
 | ID | Descrição | Job ID | Arquivo | Custo |
 |---|---|---|---|---|
-| KEY | style key (swatch do estilo colagem, 9:16) | - | - | - |
-| F-B1 | still-conceito bloco 1 (opcional, p/ storyboard) | - | - | - |
+| KEY | style key (swatch colagem, chave dourada) - APROVADO validador (1 AJUSTE: pseudo-glifos na textura de circuito leem como textura a ~30%; manter chave ≲30-40% do quadro OU regen textura em macro extremo) | `83476c9a-9c2d-4935-bd8b-4ee2dd9c5f27` | `02_ancoras/KEY_stylekey.png` | 2,00 |
 
 ## Custos (preflight get_cost, 2026-07-25)
 
