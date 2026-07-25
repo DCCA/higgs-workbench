@@ -250,6 +250,18 @@ review), câmera fantasma AINDA PRESENTE - decisão de regen pendente.
 LIÇÃO: objeto estranho aceito num frame-âncora CONTAMINA o take inteiro com
 parallax; rejeitar no still (2 cr) o que custaria regen de take (52,5).
 
+## REGEN v2 + FILME FINAL (2026-07-25)
+
+| Item | Job ID | Custo | Status |
+|---|---|---|---|
+| G2 v2 (portal limpo - sem equipamento) | `9f95e530-8497-4594-883e-ede6eeb4be58` | 2,00 | inspeção de bordas OK (regra 7b aplicada no still) |
+| ONER-1 v2 (set limpo + disciplina de centro) | `b3fb7640-2cf6-4ba2-92fd-fd585b4476d5` | 52,50 | strip + bordas 11/12,5/14s LIMPAS; centrado no palco; WHIP-PAN na virada 9,5s (abaixo do threshold de corte 0,25 - gramática de oner, não defeito) |
+
+**`ALEM_FINAL_MASTER.mp4`** (24,6s, 1080×1920, grão fino): ONER-1 v2 + travessia
+branca longa + ONER-2 + música (janela 95,8s) + cartela La Grazia. Review final
+(fase 7b) rodado no produto: folhas limpas, zero cortes duros, áudio -1,1 dB.
+**Custo total do projeto: 333 cr.** Saldo: ~1.084.
+
 **Review de LINGUAGEM DE CÂMERA (2026-07-25)** - correlação de fase frame a frame
 + rastreio do sujeito por cor (numpy da venv stable-audio) + grade de terços:
 - Suavidade: ZERO picos de jerk, zero wobble lateral nos 2 takes (nível gimbal)
