@@ -150,6 +150,9 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 - **Faxina de arquivos**: supersedidos em `_descartados/`/`05_cortes/`, `06_master/`
   só com entregas vigentes, bíblia apontando caminhos certos, `Downloads\<slug>\`
   reduzido à entrega
+- **Escapes do validador**: defeito que o USUÁRIO achou depois de gate APROVADO =
+  escape; cada escape vira item de checklist no `validador-gate` + caso dourado em
+  `tools/qc/CALIBRACAO.md` (e re-rodar a calibração)
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
 
 ## Princípios que não se negociam
