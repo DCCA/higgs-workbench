@@ -99,6 +99,20 @@ de esperar indefinidamente (1º caso: B3 v2 `181fe3b9` travado → re-sub `b3a57
 Conta do filme: style key (2) + 1 bloco protótipo/wow (30) + 2 blocos lote (60)
 + margem 1 retake (30) = **teto ~122 cr**. VO edge-tts e montagem = 0. Alvo ✓.
 
+## Produção (gemini_omni - 1º uso na conta)
+
+Interceptação de preset confirmada tb no gemini_omni: **"3D RENDER"** id
+`5a77643c-b6cc-4efd-bdc6-ab8ff48dfa82` (colagem dispara). declined_preset_id
+preventivo em TODOS os blocos deste filme.
+
+| Bloco | Job ID | Custo | Status |
+|---|---|---|---|
+| B1 protótipo/wow (chave nasce) | `a39d883d-02ed-41c9-a641-1363158658bf` | 30,00 | 1º TESTE DO ENGINE = PASSOU: gemini_omni manteve colagem flat, 0 flicker/freeze/morph/corte, câmera disciplinada, áudio SFX sem voz. Validador: 1 AJUSTE (macro da chave 6,3-7,3s revela pseudo-glifos "IL"/"III" no palhetão - baked no âncora, propaga). Aguardando decisão do diretor |
+
+**Veredito do engine (1º uso gemini_omni):** VIÁVEL para o estilo colagem. Não derivou
+para 3D/foto; animação coerente. Achado a resolver ANTES do lote: a textura de circuito
+da chave vira quase-texto em macro (regra dura nº1). Decisão pendente do usuário.
+
 ## Scorecard (preencher na fase 10)
 
 cr/segundo · retakes por causa · achados por gate · % gates 1ª · escapes · retenção.
