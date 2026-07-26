@@ -54,6 +54,10 @@ emendas), travessias por branco/preto com duração ≥1s, sem frame repetido en
 
 **SOM (fase 8):** cobertura até o último frame (cauda ≥ -30 dB significa buraco),
 ebur128 I≈-14 LUFS / TP≤-1, mapa de sincronia música×imagem confere no corte FINAL.
+**Risco de pronúncia (proxy textual, escape da A CHAVE):** se a VO é edge-tts e o
+TEXTO da fala contém termos em INGLÊS/estrangeiros, FLAGAR como risco de pronúncia
+para revisão auditiva do usuário (edge-tts atropela inglês). Acentuação dos supers
+em PT: conferir à/ã/ç/é/ê... nos overlays (erro comum = input ASCII).
 
 **MASTER (fase 9):** 7b+8b re-rodados no produto; cartela: fonte com intenção (nunca
 de sistema), off-white quente (nunca branco 255), texto nativo na resolução final;

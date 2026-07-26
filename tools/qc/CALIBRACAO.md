@@ -27,6 +27,8 @@ skill ou `PRATICAS.md` mudarem de forma relevante. Custa só tokens (0 créditos
 
 *o corte1_v5 tem as legendas de borda fina sobre clarão - achado bônus válido.
 
+| 7 | `chave/06_master/CHAVE_MASTER.mp4` | MASTER | acentos PT nos supers (à/ã); risco de pronúncia se VO tivesse inglês (escape resolvido: VO ficou PT puro); cauda de áudio |
+
 Resultado de cada rodada: registrar data, caso(s), recall/precisão e escapes na
 seção abaixo. **Escape em produção** (defeito que o USUÁRIO achou depois do
 validador aprovar) é o KPI número 1: cada escape vira item novo de checklist -

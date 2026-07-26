@@ -16,6 +16,15 @@ Fluxo: gerar 2-3 candidatas com o texto real do vídeo (`edge-tts` custa zero, e
 candidatas são grátis), ouvir contra o corte e escolher caso a caso. Fallback se
 nenhuma servir ao tom do projeto: `create_voice` do Higgsfield.
 
+**edge-tts NÃO pronuncia inglês em texto PT** (nem a voz multilíngue Thalita, nem
+respelling fonético "Râguin Feis" - testados e reprovados na A CHAVE). Solução que
+funciona: Portuguese-izar/evitar os nomes próprios na FALA e entregá-los como TEXTO
+na tela (aproveita o overlay). A VO fica 100% em português, pronúncia limpa. Vozes
+pt-BR: `pt-BR-AntonioNeural` (masc), `pt-BR-FranciscaNeural` (fem),
+`pt-BR-ThalitaMultilingualNeural`. Rodar via `uvx --from edge-tts edge-tts` (o binário
+do sistema pode faltar). Fontes com acento: TESTAR cobertura de glifos (à/ã/ç/é...)
+antes de renderizar overlay - mas o erro comum é input ASCII, não a fonte.
+
 ## 2. Trilha musical
 
 **Atenção a licença - é campo minado:**
