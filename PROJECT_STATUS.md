@@ -3,6 +3,36 @@
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
 (`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`).
 
+## 2026-07-26 - A CHAVE (vídeo-notícia motion-graphics) + adoção da skill vox validada
+
+**Where we were:** processo endurecido (validador/calibração/lint/docs) na main; usuário
+trouxe uma skill externa (vox-motion-graphics) e pediu um vídeo do incidente OpenAI×HF.
+
+**What we did:**
+- **Análise + adoção da skill vox** (PRs #10-#13): análise registrada; plano com validação
+  pré-registrada por item; rodada executada (0 cr) - 7 de 8 itens adotados com selos,
+  **#5 brief musical quantificado REPROVADO** pelo A/B cego + medição RMS (framework
+  funcionando: pré-registro impediu adoção por fé). TTS validado (Δ6,1s), catálogo
+  gemini_omni verificado, mapa de moderação herdado, fake-oner com trava de A/B.
+- **A CHAVE entregue** (PR #14): 1º vídeo-notícia/motion-graphics do workbench, 35,6s
+  1080×1920, incidente OpenAI×HF em estilo GoT-nanquim - flyover contínuo sobre mapa
+  mecânico de tinta que se constrói, reveal, VO pt-BR. `chave/06_master/CHAVE_MASTER.mp4`.
+  ~180 cr. Estreou o workflow v2 inteiro (conceito, validador em cada gate, lint,
+  calibração, árvore de arquivos). Master reprovado pelo validador (2 acentos + áudio)
+  → corrigido. ~8 lições novas em PRATICAS/FERRAMENTAS.
+
+**Decisions:** motion-graphics/notícia = arte IA sem texto + overlay PIL nítido; edge-tts
+não fala inglês (nomes só na tela, VO PT puro); seedance esboço→cheio = "se construindo";
+reveal amplo precisa de end-frame; pré-registro mata adoção-por-fé. A CHAVE foi caro em
+iteração (muitos pivôs de direção) - o valor foi o motor + as lições.
+
+**Pending / next:**
+- [ ] Usuário: rotacionar o token HF (aberto desde 19/07)
+- [ ] A CHAVE: publicar (export plataforma) se quiser; motion-graphics agora pavimentado
+- [ ] ALÉM: export limpo p/ biblioteca do app (trilha comercial)
+- [ ] MÁSCARAS pós e MARÉ ALTA (via fase 1.5)
+- Créditos: ~905 restantes
+
 ## 2026-07-25 (continuação) - Processo endurecido pós-entrega: organização, validador, calibração, docs
 
 **Where we were:** ALÉM entregue e workflow v2 na main (PR #2); pastas de projeto
