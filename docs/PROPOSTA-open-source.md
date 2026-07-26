@@ -11,7 +11,7 @@ Baseada em auditoria do repo (git ls-files, grep de caminhos/segredos/refs pesso
 - ⚠️ **Privacidade**: as bíblias de filme com o usuário como personagem descrevem-no
   fisicamente e listam media_ids de fotos pessoais; job IDs são da conta Higgsfield do
   autor (inúteis para terceiros). **Resolvido:** filmes removidos do repo (ficam locais).
-- ⚠️ Caminhos pessoais (`/home/dcca`, `/mnt/c/Users/dcca1/Downloads`) em 3 arquivos:
+- ⚠️ Caminhos pessoais (`/home/<user>/...`, caminho de Downloads absoluto) em 3 arquivos:
   `CLAUDE.md`, `.claude/skills/novo-video/SKILL.md`, `.claude/agents/validador-gate.md`.
 - ⚠️ Repo é **privado** e chama-se `higgs` (nome interno, pouco descritivo).
 - ℹ️ O "produto" é uma METODOLOGIA + skill + prompts + ferramentas de QC, não um app.
@@ -34,7 +34,7 @@ A decisão central da proposta é **como separar as duas**.
 | 1 | **LICENSE** | Sem licença explícita, ninguém pode legalmente usar. Recomendo **MIT** (reuso máximo, simples) para código/scripts; opcional **CC-BY-4.0** para os docs/metodologia (é majoritariamente prosa). Ou MIT para tudo, mais simples. |
 | 2 | **README.md** | A porta de entrada. O que é, o que resolve, o que precisa (Claude Code + Higgsfield MCP pago + ffmpeg + Python + GPU opcional), quickstart, como o workflow funciona (link `docs/ESTRUTURA.md`). |
 | 3 | **Privacidade** | Decidir o destino das bíblias pessoais. `voo/` é o caso crítico (descrição física + media_ids das suas fotos). Opções em DECISÕES abaixo. |
-| 4 | **Generalizar caminhos** | Trocar `/home/dcca` e `/mnt/c/Users/dcca1/Downloads` por convenção documentada (ex.: variável `$HIGGS_DELIVERY_DIR` ou placeholder `<seu-Downloads>`). 3 arquivos só. |
+| 4 | **Generalizar caminhos** | Trocar os caminhos absolutos pessoais por convenção documentada (ex.: variável convenção relativa/documentada). 3 arquivos só. |
 
 ## SHOULD-DO (qualidade para reuso de verdade)
 
