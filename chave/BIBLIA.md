@@ -180,9 +180,30 @@ português (Antonio). Overlays reforçam OpenAI/Hugging Face na tela.
 LIÇÃO (candidata PRATICAS): edge-tts não fala inglês em texto PT - Portuguese-izar
 os nomes na fala e entregá-los como texto na tela (aproveita o hybrid de overlay).
 
-**PENDENTE - polish/validador (fase 7b/8b):** limpar letrinhas decorativas que a IA
-gravou no fundo de tinta (bússolas/place-names residuais); leve tom azulado num
-trecho da abertura (voltar ao creme); níveis de VO + leito de som; talvez apertar.
+**POLISH FINAL FEITO (2026-07-26):** cor (aquecer/-azul via colorbalance) + grão +
+vinheta + mix VO + leito sonoro (Stable Audio local, 36s, custo 0). Validador MASTER:
+achou 2 BLOQUEIA (acentos "à internet"/"invasão" caídos por input ASCII meu; áudio
+96kHz→48k estéreo + cauda muda 1,7s) - CORRIGIDOS e verificados (fontes renderizam
+acentos; leito cobre a cauda). Achado bom do validador: ZERO texto de fundo legível
+na tinta (só pseudo-glifos de circuito ilegíveis). MASTER FINAL: `06_master/CHAVE_MASTER.mp4`.
+
+## STATUS: ENTREGUE 2026-07-26. Custo ~180 cr. Saldo ~905.
+
+## Scorecard da produção
+
+| Métrica | Valor |
+|---|---|
+| cr / segundo entregue | ~180 / 35,6 = 5,1 cr/s |
+| retakes de vídeo por causa | P3 (mapa-múndi alucinado), P1 (push→flyover, pedido do usuário) |
+| pivôs de conceito/direção | 4 (transbordo→montanha→palco→chave; depois colagem→MG desenhado→GoT-tinta→flyover) |
+| achados do validador | âncoras: 2 AJUSTE; take B1: descartado (era outra abordagem); master: 2 BLOQUEIA corrigidos |
+| gates aprovados de 1ª | baixo - projeto de forte iteração criativa do usuário |
+| escapes (usuário achou pós-aprovação) | pronúncia de inglês na VO (não coberto por nenhum gate - vira lição) |
+
+**Nota honesta:** projeto caro em iteração (muitos pivôs de direção do usuário), mas o
+motor final (seedance sketch→full = build; flyover start-only; reveal com end-frame
+controlado) e as lições ficam para o próximo. O 1º filme de motion-graphics/notícia
+do workbench.
 
 ## Scorecard (preencher na fase 10)
 
