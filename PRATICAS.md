@@ -171,6 +171,21 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
 - **Detector de cena é a régua de corte**: `select='gt(scene,0.25)'` = corte duro;
   whip-pan legítimo dispara só no threshold sensível (0,12) - é gramática de oner,
   não defeito (ALÉM).
+- **Ilustração que "se constrói" (efeito GoT-title)**: seedance start(esboço/blueprint
+  fraco)→end(arte cheia) faz a gravura se desenhar sozinha na tela. Sensação de "voar
+  por cima": câmera aérea forte no prompt (fly-over/crane), NÃO push-in - push lê como
+  estático. Filme-viagem = flyover contínuo, assenta só no reveal final (A CHAVE).
+- **Reveal/pull-back amplo alucina conteúdo nas bordas novas**: seedance inventou um
+  mapa-múndi com place-names ao abrir. Controlar com END FRAME desenhado (wide limpo)
+  + negativo anti-mapa/continente/place-name. Reveal precisa de destino, não de
+  "câmera abre e a IA preenche" (A CHAVE).
+- **Motion-graphics/notícia = arte IA + texto OVERLAY**: geração por IA embola texto;
+  gerar a arte SEM texto e cravar todo super/timeline/cartela como overlay PIL nítido.
+  Vale para explainer, colagem editorial, mapa gravado.
+- **`nano_banana` insere texto sozinho** quando o conceito sugere rótulo ("gabarito",
+  "answer key", mapa) - o NEGATIVE não basta; limpar por i2i explícito "BLANK/textless".
+- **Interceptação de preset no gemini_omni tb** ("3D RENDER" em colagem); mesmo
+  antídoto `declined_preset_id`. Job de imagem pode TRAVAR ~5min - re-submeter.
 - **Review de SOUNDTRACK é obrigatório**: cobertura (`volumedetect` por trecho - áudio
   vive até o último frame; cartela muda a duração e come a cauda), loudness broadcast
   (`ebur128`: I≈-14 LUFS social, TP≤-1), e sincronia música×imagem MAPEADA (RMS/s da

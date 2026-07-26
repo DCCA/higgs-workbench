@@ -11,6 +11,17 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-07-26 - A CHAVE (vídeo-notícia OpenAI×HF): motion-graphics + o custo da iteração de direção
+**Contexto:** 1º vídeo de notícia/motion-graphics do workbench. **Porquê das viradas:**
+o usuário reprovou tom (colagem fofa), metáfora (chave abstrata) e movimento (imagem
+estática) em sequência - convergiu em GoT-nanquim com flyover contínuo. **Lições que
+ficam:** seedance esboço→cheio = ilustração se construindo; flyover > push p/ sensação
+de voo; reveal amplo precisa de end-frame (senão alucina mapa-múndi); edge-tts não fala
+inglês (nomes só na tela, VO em PT puro); arte IA sem texto + overlay PIL nítido.
+**Alternativa rejeitada:** gemini_omni/colagem (testado, arquivado) e PIL-crop de PNG
+estático (não vira GoT). **Honesto:** projeto caro em iteração; o valor foi o motor e
+as ~8 lições novas em PRATICAS/FERRAMENTAS para o próximo motion-graphics.
+
 ## 2026-07-25 - Adoção vox fechada: 7 itens entram (com selos de validação), 1 REPROVADO pelo próprio framework
 **Contexto:** plano pré-registrado (PLANO-adocao-vox.md) executado: TTS validado
 local (Δ6,1s), catálogo verificado na conta (gemini_omni 30cr/10s, sem start/end),
