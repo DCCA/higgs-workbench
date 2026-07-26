@@ -8,10 +8,9 @@ Baseada em auditoria do repo (git ls-files, grep de caminhos/segredos/refs pesso
 - ✅ **Zero segredos** no repo (nenhum token/API key vazado; mídia gitignorada).
 - ✅ Fontes commitadas são OFL (Inter, Space Mono) - redistribuição livre.
 - ❌ **Sem README, sem LICENSE** (bloqueios #1 e #2).
-- ⚠️ **Privacidade**: `voo/BIBLIA.md` te descreve fisicamente ("thick dark hair, full
-  dark beard") e lista media_ids das SUAS fotos; `alem/` e `chave/` reusam essas fotos
-  (você como personagem). Job IDs de todas as bíblias são da SUA conta Higgsfield
-  (inúteis para terceiros).
+- ⚠️ **Privacidade**: as bíblias de filme com o usuário como personagem descrevem-no
+  fisicamente e listam media_ids de fotos pessoais; job IDs são da conta Higgsfield do
+  autor (inúteis para terceiros). **Resolvido:** filmes removidos do repo (ficam locais).
 - ⚠️ Caminhos pessoais (`/home/dcca`, `/mnt/c/Users/dcca1/Downloads`) em 3 arquivos:
   `CLAUDE.md`, `.claude/skills/novo-video/SKILL.md`, `.claude/agents/validador-gate.md`.
 - ⚠️ Repo é **privado** e chama-se `higgs` (nome interno, pouco descritivo).

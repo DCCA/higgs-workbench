@@ -117,7 +117,7 @@ Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revis
 - **Folha de cortes**: último frame × primeiro frame de cada emenda, par a par.
   É onde moram os erros (repetição de quadro, jump cut, pop de luminância).
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
-- **GATE: usuário assiste o corte** (copiar para `/mnt/c/Users/dcca1/Downloads/<slug>/`).
+- **GATE: usuário assiste o corte** (copiar para a pasta de entrega; ex.: `~/Downloads/<slug>/` - ver SETUP.md).
 
 ### 7b. Review anti-slop + linguagem de câmera (OBRIGATÓRIO antes de entregar corte)
 
