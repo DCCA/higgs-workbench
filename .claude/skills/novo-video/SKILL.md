@@ -5,9 +5,10 @@ description: Workflow completo para criar um vídeo curto de IA neste workbench 
 
 # Novo vídeo - workflow do workbench
 
-Pipeline provado no curta MÁSCARAS (2:24, 26 shots, ~695 créditos, 10 retakes).
-Antes de começar, leia `PRATICAS.md` (regras de geração) e tenha `FERRAMENTAS.md` à mão
-(áudio/pós grátis). Referência de execução real: `mascaras/BIBLIA.md`.
+Pipeline provado em vários curtas (o primeiro, MÁSCARAS: 2:24, 26 shots, ~695 créditos,
+10 retakes). Antes de começar, leia `PRATICAS.md` (regras de geração) e tenha
+`FERRAMENTAS.md` à mão (áudio/pós grátis). Cada projeto cria sua própria `BIBLIA.md`
+no padrão da fase 2 (bíblias de exemplo ficam no portfólio local, fora do repo).
 
 ## Escala padrão: vídeo pequeno e impressionante
 
@@ -117,7 +118,7 @@ Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revis
 - **Folha de cortes**: último frame × primeiro frame de cada emenda, par a par.
   É onde moram os erros (repetição de quadro, jump cut, pop de luminância).
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
-- **GATE: usuário assiste o corte** (copiar para `~/Downloads/<slug>/`).
+- **GATE: usuário assiste o corte** (copiar para a pasta de entrega; ex.: `~/Downloads/<slug>/` - ver SETUP.md).
 
 ### 7b. Review anti-slop + linguagem de câmera (OBRIGATÓRIO antes de entregar corte)
 

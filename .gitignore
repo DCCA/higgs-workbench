@@ -1,8 +1,21 @@
-# midia gerada - regeneravel pelos job IDs em mascaras/BIBLIA.md
+# midia gerada - regeneravel pelos job IDs nas biblias de cada projeto
 *.mp4
 *.webp
 *.jpg
 *.png
 *.mp3
-tools/stable-audio/
 *.wav
+tools/stable-audio/
+
+# fontes commitadas de proposito ficam versionadas (assets/fonts sao OFL)
+!assets/fonts/*
+
+# portfolio pessoal (filmes) - fica LOCAL, fora do repo publico
+/mascaras/
+/mare-alta/
+/voo/
+/alem/
+/chave/
+
+# config local do Claude Code (permissoes da maquina)
+.claude/settings.local.json

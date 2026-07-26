@@ -20,13 +20,14 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 
 ## Estrutura
 
-- Cada vídeo = uma pasta na raiz (`mascaras/`, `mare-alta/`, `voo/`, `alem/`) com sua
-  `BIBLIA.md` e a árvore padrão `storyboard/ 01_refs/ 02_ancoras/ 03_takes/ 04_qc/
-  05_cortes/ 06_master/` (status é pasta: aprovado na principal, supersedido em
+- Cada vídeo = uma pasta na raiz (`<slug>/`, **gitignorada** - o portfólio fica local)
+  com sua `BIBLIA.md` e a árvore padrão `storyboard/ 01_refs/ 02_ancoras/ 03_takes/
+  04_qc/ 05_cortes/ 06_master/` (status é pasta: aprovado na principal, supersedido em
   `_descartados/`; `06_master/` só com a entrega vigente - detalhes na fase 2 da skill)
+- `assets/fonts/` - fontes OFL compartilhadas (Inter, Space Mono, Cormorant, EB Garamond, Playfair) para cartelas/overlays
 - `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
-- `tools/` (gitignorado) - ferramentas locais; `tools/stable-audio/gerar_trilha.py` gera trilha com Stable Audio Open na GPU local
-- Entregas para o usuário assistir: copiar para `~/Downloads/<slug>/`
+- `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
+- Entregas para o usuário assistir: copiar para a sua pasta de entrega (ex.: `~/Downloads/<slug>/` ou onde preferir; ver SETUP.md)
 
 ## Workflow
 

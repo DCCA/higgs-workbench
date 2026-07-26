@@ -1,7 +1,7 @@
 # Boas práticas - produção de vídeo com IA (Higgsfield MCP)
 
 Destilado do curta MÁSCARAS (26 shots, 2:24, ~695 créditos, 10 retakes no total).
-Genérico e reutilizável; o específico do filme (job IDs, decupagem) está em `mascaras/BIBLIA.md`.
+Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive na `BIBLIA.md` do projeto.
 
 ## Custo e orçamento
 
