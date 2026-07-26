@@ -171,6 +171,19 @@ preventivo em TODOS os blocos deste filme.
 para 3D/foto; animação coerente. Achado a resolver ANTES do lote: a textura de circuito
 da chave vira quase-texto em macro (regra dura nº1). Decisão pendente do usuário.
 
+## Corte v4 = MASTER (2026-07-26): `06_master/CHAVE_MASTER.mp4` (35,6s)
+
+Flyover contínuo (P1b abertura voando+build → P2 voo até HF → P3 reveal) + overlays
+nítidos + VO. **VO: PT puro** - edge-tts (nem multilíngue Thalita nem respelling
+fonético) não pronuncia inglês; solução: nomes próprios SÓ na tela, voz 100% em
+português (Antonio). Overlays reforçam OpenAI/Hugging Face na tela.
+LIÇÃO (candidata PRATICAS): edge-tts não fala inglês em texto PT - Portuguese-izar
+os nomes na fala e entregá-los como texto na tela (aproveita o hybrid de overlay).
+
+**PENDENTE - polish/validador (fase 7b/8b):** limpar letrinhas decorativas que a IA
+gravou no fundo de tinta (bússolas/place-names residuais); leve tom azulado num
+trecho da abertura (voltar ao creme); níveis de VO + leito de som; talvez apertar.
+
 ## Scorecard (preencher na fase 10)
 
 cr/segundo · retakes por causa · achados por gate · % gates 1ª · escapes · retenção.
