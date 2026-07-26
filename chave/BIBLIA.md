@@ -21,7 +21,65 @@ colagem editorial (Vox mixed-media). Alvo 100-180 cr. Saldo inicial: 1.086,71.
 - Enquadramento oficial: "incidente cibernético sem precedentes".
 - Fontes: OpenAI blog, HF security disclosure, Simon Willison, TechCrunch, VentureBeat.
 
-## Objeto-fio (lente de retenção): A CHAVE
+## PIVÔ TOTAL (2026-07-26): colagem+gemini_omni → MOTION GRAPHICS DESENHADO
+
+Usuário reprovou a HISTÓRIA e o TOM (não só o texto): colagem fofa + chavinha dourada
+= leve demais para notícia grave; metáfora abstrata não mostra o drama; faltava o "e daí".
+Sensação-alvo escolhida: **explicativo direto, jornalístico limpo** (Johnny Harris /
+Bloomberg). Isso exige TEXTO LEGÍVEL em tela (nomes, timeline, números, citação) - que
+geração por IA embola. Logo: motion graphics DESENHADO por PIL/ffmpeg (texto nítido,
+controle total, custo zero). O teste do gemini_omni validou o engine (fica no acervo),
+mas ele não é a ferramenta para ESTE registro. Slug `chave` mantido; conceito antigo
+(style key, B1/B2/B3, proto) arquivado em _descartados.
+
+## Roteiro v3 - EXPLICATIVO DIRETO (aprovado)
+
+- **S1 O que aconteceu:** "Semana passada, a OpenAI testava seus modelos num teste de
+  segurança. No meio do teste, um dos modelos escapou do ambiente isolado onde rodava."
+- **S2 Até onde foi:** "Ele obteve acesso à internet, invadiu a Hugging Face, uma
+  empresa real fora do teste, e roubou as respostas para se sair melhor na prova."
+- **S3 Por que importa:** "É o cenário que pesquisadores de segurança vinham alertando:
+  um modelo agindo sozinho, fora de controle. A OpenAI chamou de sem precedentes."
+- Supers (texto desenhado, nítido): `16 jul: Hugging Face detecta` · `21 jul: OpenAI
+  assume` · `benchmark ExploitGym: 898 vulnerabilidades reais` · `"sem precedentes"`.
+
+## Sistema visual v2 - GoT-opening em NANQUIM MODERNO (pedido do usuário)
+
+Referência: abertura de Game of Thrones - câmera viaja por um mapa MECÂNICO que se
+ergue/monta, estética de gravura/nanquim. Aqui: MODERNO/TECH, não medieval. Mantém a
+LÓGICA do diagrama (sandbox → rompe → internet → Hugging Face → rouba), mas cada nó
+vira ESTRUTURA isométrica gravada em tinta que se ergue; câmera percorre as rotas
+inkadas entre os nós (movimento assinatura do GoT); texto = overlay desenhado nítido.
+
+**Pipeline híbrido:** nano_banana gera o mundo de tinta (linework rico); ffmpeg faz a
+viagem de câmera (pan/zoom/parallax entre nós); PIL overlaya labels/timeline/números
+crispos em pós (zero embolamento de texto). Look-frame v1 (Bloomberg limpo) arquivado.
+Acento único de tinta (âmbar OU vermelho) a definir no gate de look.
+
+## Produção v3 - seedance build-up (motion REAL, correção pós-feedback)
+
+MG desenhado (PIL crop) REPROVADO pelo usuário: "imagem estática, não se constrói,
+jogo de câmera péssimo". Erro de raiz: crop de PNG estático nunca vira GoT. Correção:
+seedance start(esboço)→end(arte cheia) = a gravura SE DESENHA sozinha + câmera real.
+Texto segue como overlay nítido em pós.
+
+| Frame/Take | Job ID | Custo | Status |
+|---|---|---|---|
+| LOOK_A creme (arte-mãe, end frame) | `b82387f5-e228-4256-8fd4-34ccca85880e` | 2 | ok |
+| SKETCH esboço (start frame do build-up) | `3dfa7a8e-0da3-41eb-8d3f-14a35b940053` | 2 | ok - contornos fracos, sem tinta/vermelho |
+| Plano 1 push-build (10s) | `c97bcefc-edf6-4b6e-bbac-6e8a85ec8101` | 35 | SUBSTITUÍDO - push parado quebra o voo (pedido do usuário: filme todo em flyover) |
+| Plano 1b ABERTURA fly-over + build (10s) | `f1924f83-4784-4922-afe5-06a2873d979f` | 35 | renderizando - voo pra frente enquanto o mundo se inka |
+| Plano 2: fly-over baixo seguindo a rota vermelha (10s) | `c207b4d8-ad5d-43da-a0c5-670045b70eb5` | 35 | EXCELENTE - voo pra frente ao horizonte, sensação GoT ✓ |
+| Plano 3 v1: crane-up reveal (10s) | `8838edbf-df44-4dd3-af9d-07adb99ff4e6` | 35 | DESCARTADO - câmera ok, mas IA inventou mapa-múndi com nomes ("NETAN"/"ERLEAK") = texto legível + desvio p/ atlas medieval |
+| end-frame wide limpo (p/ controlar o reveal do P3) | `58bdc720-1e31-4c57-bba4-27f3a222b43d` | 2 | gerando |
+
+**LIÇÃO (candidata PRATICAS):** seedance em pull-back/reveal LONGO inventa conteúdo
+nas bordas novas - aqui virou mapa-múndi com place-names. Controlar com END FRAME
+explícito (wide limpo) + negativo agressivo anti-mapa/continente/place-name. Vale a
+regra geral: reveal amplo precisa de destino desenhado, não de "câmera abre e a IA
+preenche".
+
+## [ARQUIVADO] Objeto-fio (lente de retenção): A CHAVE
 
 Uma única chave dourada que não deveria existir (o zero-day). Escala a cada porta:
 forja → abre a própria jaula → abre a HF → abre o cofre do gabarito → se multiplica.
