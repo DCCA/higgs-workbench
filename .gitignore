@@ -19,3 +19,5 @@ tools/stable-audio/
 
 # config local do Claude Code (permissoes da maquina)
 .claude/settings.local.json
+/evals/
+qc_out/
