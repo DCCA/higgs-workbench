@@ -1,7 +1,36 @@
 # Status do workbench
 
 Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
-(`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`).
+(`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`,
+`evals/BIBLIA.md`).
+
+## 2026-07-27 - evals ("evals são os novos PRDs"): pivô p/ voo rasante, pausado por crédito
+
+**Where we were:** vídeo novo na linguagem do A CHAVE (nanquim/mapa GoT), conteúdo de
+podcast público (Lenny × Anthropic). Conceito/storyboard/wow-shot aprovados no isométrico.
+
+**What we did:**
+- Fluxo completo até produção no isométrico: conceito → âncoras → storyboard (validador
+  em cada gate) → wow-shot (mergulho no `{[ ]}` de JSON, ancorado por end-frame fechado).
+  Validador pegou 2 BLOQUEIA de faux-texto (aro do mostrador, depois FACE de engrenagem)
+  - corrigidos na raiz (mudar a natureza do objeto + cláusula anti-texto por superfície).
+- **Pivô de câmera** a pedido do usuário: isométrico alto → **voo rasante baixo/oblíquo**.
+  Re-derivou os 6 beats no ângulo novo (t2i p/ mudar câmera; i2i p/ manter mundo), refez o
+  wow (bracket erupciona no lugar), bateu shots S1/S2/S4 e montou rough cut de 4 shots (37s).
+- **~5 lições novas em PRATICAS** (faux-texto migra de superfície; i2i trava ângulo → t2i;
+  fly-through com meio morto → ancorar reveal; preço seedance 4,5 cr/s; saldo cai por outra
+  sessão na conta).
+
+**Decisions:** wow rasante = câmera contida + sujeito erupciona no lugar (o voo vive nos
+shots de ligação/reveal, o pull-back é seguro); VO 100% PT (termos só na tela); montagem =
+flyover costurado c/ dissolves. Pivô tardio custou ~2x o wow → fechar ângulo antes do take.
+
+**Pending / next:**
+- [ ] Refazer **S5 (reveal do campo)** - o mais importante que falta.
+- [ ] **Retake do S4** (o beat "passa / 99,9%" não entrega; bracket persiste).
+- [ ] Montagem final + VO pt-BR + trilha + cartela + reviews 7b/8b + registro fase 10.
+- [ ] **Bloqueio: crédito** (saldo ~6 cr; usuário optou por esperar renovação Ultra).
+      Conferir o dreno de **320 cr de "Cinematic Studio 3.5" alheio** na conta HF.
 
 ## 2026-07-26 - A CHAVE (vídeo-notícia motion-graphics) + adoção da skill vox validada
 

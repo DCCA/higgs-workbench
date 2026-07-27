@@ -6,7 +6,16 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 ## Custo e orçamento
 
 - **Preflight sempre, estimativa nunca.** `get_cost: true` responde sem gastar. A estimativa
-  de imagem estava errada 40x (chute ~8 cr, real 0,12-2 cr).
+  de imagem estava errada 40x (chute ~8 cr, real 0,12-2 cr). Os PREÇOS MUDAM: seedance
+  fast 720p era 35/10s no A CHAVE, virou **4,5 cr/s (45/10s)** em jul/2026 - repreflightar
+  por projeto, não confiar no número da bíblia antiga.
+- **Saldo pode cair por OUTRA sessão na mesma conta HF.** Se os créditos somem mais rápido
+  que o seu gasto, cheque `transactions` (não só `balance`): pode haver jobs de outro
+  projeto/agente na mesma conta. (evals: 4x "Cinematic Studio 3.5" a 80 cr = 320 cr
+  alheios drenaram o orçamento no meio da sessão.)
+- **Pivô de direção tardio é caro.** Trocar o ângulo/linguagem depois do wow-shot custou
+  ~2x o wow (re-derivar âncoras + refazer takes). Fechar câmera/ângulo no gate de
+  conceito/storyboard, não depois de já ter take aprovado.
 - **Imagem é ~100x mais barata que vídeo.** Errar num still custa 2 cr; errar num vídeo, 17-45.
   Todo problema que puder ser resolvido no still (composição, identidade, continuidade)
   deve ser resolvido ANTES de gerar vídeo.
@@ -53,6 +62,14 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
   inicial como cortina/wipe (dois horizontes simultâneos no meio). Antídoto: garantir que
   uma fração do quadro sobreviva ao movimento, ou converter para transformação de estado
   com câmera travada - o mundo muda dentro do mesmo enquadramento (MARÉ ALTA).
+- **Start/end em pontos de vista MUITO distantes = "viagem" com meio morto.** Um voo
+  rasante com start(sujeito perto) → end(outro sujeito, o 1º ao longe) faz a câmera
+  ULTRAPASSAR o sujeito e cruzar segundos de terreno vazio antes do destino aparecer -
+  chato, e o payoff só no fim. Antídoto para o beat de REVELAÇÃO: ancorar o end na MESMA
+  posição do start e deixar o SUJEITO transformar/erupir no lugar (câmera contida) - o
+  payoff fica no quadro o tempo todo. O movimento de câmera de verdade fica nos shots de
+  LIGAÇÃO e no PULL-BACK do reveal (que é seguro: recuar revela mais, não deixa buraco).
+  (evals: wow rasante v1 ultrapassou → v2 ancorado erupcionou no lugar.)
 - **Figura pequena demais não tem orçamento de pixels.** Humano com ~20px vira mancha que
   o modelo não anima com coerência. Plano de despedida: sujeito legível (~1/4 do quadro)
   recuando DENTRO do shot, nunca começando microscópico. E cortar de close para figura
@@ -122,6 +139,21 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 - **Objeto estranho aceito num âncora CONTAMINA o take com parallax** (câmera fantasma
   cresceu a ~35% da borda - irreparável por crop; regen de 52,5). Zoom de bordas em TODO
   âncora ANTES do gate; rejeitar no still de 2 cr.
+- **Faux-texto gravado ("mania de assinar") migra de superfície.** IA grava letras/
+  cursivas/nameplates em qualquer superfície que "peça" texto - aro de mostrador, FACE de
+  engrenagem, placa, caixa, cano - e some de um lugar pra reaparecer em outro no próximo
+  gate. Dois antídotos combinados: (1) mude a NATUREZA do objeto text-prone (relógio
+  antigo → medidor técnico de aro liso; engrenagem → roda dentada de hub liso em branco);
+  (2) cláusula anti-texto ABRANGENTE que LISTA as superfícies, não só o objeto ("no
+  letters/numbers/nameplates/cursive on any dial face, bezel, gear, hub, plate, panel,
+  pipe or metal surface"). Corrigir por i2i do próprio still preserva a composição (crítico
+  quando o still é âncora de um take já aprovado). Zoom por superfície no gate; letra
+  legível = BLOQUEIA. (evals: nameplate no aro → na face da engrenagem → 3 regens.)
+- **i2i trava o ÂNGULO/altitude de câmera, não só a escala.** Tentar mudar a câmera
+  (isométrico alto → voo rasante) referenciando o still-mãe devolve o mesmo ângulo quase
+  idêntico. Para mudar a CÂMERA: gerar por t2i (sem `medias`), descrevendo só o estilo +
+  o novo ângulo - o modelo re-encena. Para mudar CONTEÚDO mantendo o mundo: o oposto,
+  referenciar a mãe. (evals: 4 tentativas i2i falharam antes do t2i acertar.)
 
 ## Storyboard antes do take caro (custo zero)
 
