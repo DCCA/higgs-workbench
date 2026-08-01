@@ -1,8 +1,8 @@
 # Status do workbench
 
-Logbook por sessão, mais recente primeiro. Detalhe por projeto nas bíblias
-(`mascaras/BIBLIA.md`, `mare-alta/BIBLIA.md`, `voo/BIBLIA.md`, `alem/BIBLIA.md`,
-`evals/BIBLIA.md`).
+Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` da
+pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
+foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
 ## 2026-07-27 - evals ("evals são os novos PRDs"): pivô p/ voo rasante, pausado por crédito
 
