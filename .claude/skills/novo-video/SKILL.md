@@ -65,6 +65,8 @@ literal, o conceito tem gate ANTES de qualquer âncora:
   `<slug>/{storyboard,01_refs,02_ancoras/_descartados,03_takes/_descartados,04_qc,05_cortes,06_master}`
   + `<slug>/BIBLIA.md` com as seções: identidade travada, linguagem visual,
   frames-âncora (tabela de job IDs **com coluna de arquivo**), decupagem, custos, lições.
+- Adicionar `/<slug>/` ao `.gitignore` na criação (o repo é público e ignora projetos
+  por entrada explícita - sem isso a bíblia e o storyboard entram no próximo commit).
 - **Regras de organização (não negociáveis):** status é PASTA - aprovado mora na pasta
   principal, supersedido DESCE para `_descartados/`/`05_cortes/` no instante em que
   perde o posto; `06_master/` contém SÓ a entrega vigente como `<SLUG>_MASTER.mp4`
