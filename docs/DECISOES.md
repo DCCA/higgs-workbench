@@ -11,6 +11,18 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-08-01 - Visualizador de workflow: board por shot via estado.json do diretor + viewer xyflow sem build
+**Contexto:** o usuário quer feedback visual ao vivo da rodada do `/novo-video`
+(fase atual, shots, erros, custo) sem reler o terminal. **Porquê:** estado semântico
+(fase, gate, BLOQUEIA, retake) só o diretor conhece - logo a fonte é um
+`<slug>/estado.json` escrito a cada transição e conferido pelo validador-gate no
+gate (mesmo músculo de disciplina+conferência da bíblia); viewer é HTML único em
+`tools/viz/` com React+xyflow via CDN e `python3 -m http.server`, porque o repo não
+tem (e não quer) toolchain node/build. Spec: `docs/PROPOSTA-visualizador-workflow.md`.
+**Alternativa rejeitada:** hooks + derivação do disco (captura jobs mas não fases/
+vereditos, e hooks são config de máquina não versionada); app vite (toolchain
+permanente por uma página); Artifact (não é tempo-real nem enxerga o disco).
+
 ## 2026-07-26 - A CHAVE (vídeo-notícia OpenAI×HF): motion-graphics + o custo da iteração de direção
 **Contexto:** 1º vídeo de notícia/motion-graphics do workbench. **Porquê das viradas:**
 o usuário reprovou tom (colagem fofa), metáfora (chave abstrata) e movimento (imagem
