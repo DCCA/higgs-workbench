@@ -12,12 +12,13 @@ tools/stable-audio/
 
 # portfolio pessoal (filmes) - fica LOCAL, fora do repo publico
 /mascaras/
-/mare-alta/
 /voo/
 /alem/
 /chave/
+/evals/
 
 # config local do Claude Code (permissoes da maquina)
 .claude/settings.local.json
-/evals/
+
+# saida temporaria de QC na raiz
 qc_out/
