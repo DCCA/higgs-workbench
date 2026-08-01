@@ -20,12 +20,15 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 
 ## Estrutura
 
-- Cada vídeo = uma pasta na raiz (`<slug>/`, **gitignorada** - o portfólio fica local)
+- Cada vídeo = uma pasta na raiz (`<slug>/`, **gitignorada por entrada explícita**:
+  adicionar `/<slug>/` ao `.gitignore` na criação do projeto, não há padrão que pegue
+  pasta nova - o portfólio fica local)
   com sua `BIBLIA.md` e a árvore padrão `storyboard/ 01_refs/ 02_ancoras/ 03_takes/
   04_qc/ 05_cortes/ 06_master/` (status é pasta: aprovado na principal, supersedido em
   `_descartados/`; `06_master/` só com a entrega vigente - detalhes na fase 2 da skill)
 - `assets/fonts/` - fontes OFL compartilhadas (Inter, Space Mono, Cormorant, EB Garamond, Playfair) para cartelas/overlays
 - `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
+- `.claude/agents/validador-gate.md` - subagente validador de olhos frios, exigido em todo gate (princípio 6 do workflow)
 - `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
 - Entregas para o usuário assistir: copiar para a sua pasta de entrega (ex.: `~/Downloads/<slug>/` ou onde preferir; ver SETUP.md)
 
@@ -33,16 +36,18 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 
 Vídeo novo = invocar a skill `/novo-video` (escala padrão: 15-60s, 3-8 shots, 100-300 créditos, 9:16 fast 720p). Princípios inegociáveis, detalhados na skill:
 
-1. Todo problema resolvível no still (~2 cr) não chega ao vídeo (17-45 cr)
+1. Todo problema resolvível no still (~2 cr) não chega ao vídeo (17-52 cr)
 2. Preflight com `get_cost: true` sempre; nunca estimar; mostrar a conta antes de gastar
 3. Strip de 4 frames é controle de produção; revisão de verdade é a folha de cortes (última × primeira imagem de cada emenda)
 4. Wow-shot prototipado primeiro, fora de ordem - se não impressiona, replaneja antes de produzir
 5. Nenhum vídeo é gerado sem storyboard aprovado (custo zero: PIL + frames já pagos como beats)
+6. Nenhum material de gate chega ao usuário sem passar pelo subagente `validador-gate` (`.claude/agents/validador-gate.md` - olhos frios, read-only); aceite do veredito via `bash tools/qc/lint_veredito.sh` + 1 spot-check de evidência
 
 ## Comandos
 
-- ffmpeg é o motor de montagem/revisão: concat com `-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`; `ffprobe` para durações; `signalstats` (YAVG) para confirmar preto real. Medir, não olhar, quando dá.
-- VO: `edge-tts` (pip) - gerar 2-3 candidatas com o texto real do vídeo; a voz é escolhida POR VÍDEO, nunca fixada como padrão do workbench
+- ffmpeg é o motor de montagem: concat com `-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`; `ffprobe` para durações. Medir, não olhar, quando dá.
+- QC medido (não re-inventar em ffmpeg cru): `bash tools/qc/qc_video.sh <video> <pasta_qc>` cobre folhas de contato 2fps, flicker (YAVG), freeze, cortes duros e loudness; câmera (wobble/jerk): `tools/qc/camera_review.py` (uso no cabeçalho do script); lint do veredito do validador: `bash tools/qc/lint_veredito.sh <veredito.txt>`; calibração dos checklists em `tools/qc/CALIBRACAO.md`
+- VO: `edge-tts` via `uvx --from edge-tts edge-tts ...` - gerar 2-3 candidatas com o texto real do vídeo; a voz é escolhida POR VÍDEO, nunca fixada como padrão do workbench
 - Trilha: `tools/stable-audio/.venv/bin/python tools/stable-audio/gerar_trilha.py "prompt" <segundos> <saida.wav> [seed]`
 
 ## Fluxo de git (obrigatório para qualquer agente)

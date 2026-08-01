@@ -16,7 +16,7 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 - **Pivô de direção tardio é caro.** Trocar o ângulo/linguagem depois do wow-shot custou
   ~2x o wow (re-derivar âncoras + refazer takes). Fechar câmera/ângulo no gate de
   conceito/storyboard, não depois de já ter take aprovado.
-- **Imagem é ~100x mais barata que vídeo.** Errar num still custa 2 cr; errar num vídeo, 17-45.
+- **Imagem é ~100x mais barata que vídeo.** Errar num still custa 2 cr; errar num vídeo, 17-52.
   Todo problema que puder ser resolvido no still (composição, identidade, continuidade)
   deve ser resolvido ANTES de gerar vídeo.
 - **Pipeline fast → upscale.** Prototipar tudo em fast/720p (17,5 cr/5s), aprovar o corte,
