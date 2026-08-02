@@ -63,6 +63,11 @@ em PT: conferir à/ã/ç/é/ê... nos overlays (erro comum = input ASCII).
 de sistema), off-white quente (nunca branco 255), texto nativo na resolução final;
 resolução de entrega 1080×1920; grão presente.
 
+**TRANSVERSAL (todo gate):** `<slug>/estado.json` está fresco (`atualizado_em`
+condizente com o material deste gate) e coerente com o disco? Spot-check: 1 shot
+`aprovado` do JSON existe na pasta principal correspondente (`02_ancoras/` ou
+`03_takes/`); a fase deste gate está `validando` no JSON.
+
 ## Formato de resposta (sempre)
 
 ```

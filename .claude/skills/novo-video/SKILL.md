@@ -37,6 +37,14 @@ spot-check não confere; ou escape descoberto depois (aí também re-calibra via
 gabarito: calibração (casos dourados) e loop de escapes - NÃO por outro LLM juiz
 (regressão infinita sem ground truth).
 
+## Board ao vivo (transversal)
+
+O diretor mantém `<slug>/estado.json` (viewer em `tools/viz/`): TODA transição é
+registrada NA HORA - fase iniciada/concluída, gate aberto/passado, job lançado (com
+o custo do preflight), veredito do validador, retake (causa no evento),
+aprovado/descartado. Nunca atualizar em lote no fim da fase: board congelado é bug
+de processo, e o validador confere frescor/coerência em todo gate.
+
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)
@@ -67,6 +75,9 @@ literal, o conceito tem gate ANTES de qualquer âncora:
   frames-âncora (tabela de job IDs **com coluna de arquivo**), decupagem, custos, lições.
 - Adicionar `/<slug>/` ao `.gitignore` na criação (o repo é público e ignora projetos
   por entrada explícita - sem isso a bíblia e o storyboard entram no próximo commit).
+- Criar `<slug>/estado.json` inicial (contrato em `docs/PROPOSTA-visualizador-workflow.md`)
+  e subir o board em background: `bash tools/viz/serve.sh <slug>` - mostrar a URL ao
+  usuário para ele deixar aberta ao lado do terminal.
 - **Regras de organização (não negociáveis):** status é PASTA - aprovado mora na pasta
   principal, supersedido DESCE para `_descartados/`/`05_cortes/` no instante em que
   perde o posto; `06_master/` contém SÓ a entrega vigente como `<SLUG>_MASTER.mp4`
