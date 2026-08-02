@@ -65,8 +65,10 @@ pasta do filme, e permanece após a rodada como histórico (artefato da fase 10)
   `info | alerta | erro` (erro pinta o nó referido de vermelho). Áudio (candidatas
   de VO, trilha) NÃO vira shot - entra só como evento.
 - **custos**: gasto acumulado × teto do preflight (barra no header).
-- Escrita: sobrescrever o arquivo inteiro (é pequeno). Não é atômico: o viewer
-  tolera parse error mantendo o último estado bom e tenta no próximo poll.
+- Escrita: sobrescrever o arquivo INTEIRO via `estado.json.tmp` + `mv` (atômico;
+  contrato detalhado na seção "Board ao vivo" da SKILL). O viewer ainda tolera
+  parse error como defesa extra (mantém o último estado bom e tenta no próximo
+  poll) - para emissores que descumpram o contrato, não como modo normal.
 
 ## Viewer (`tools/viz/index.html`)
 
