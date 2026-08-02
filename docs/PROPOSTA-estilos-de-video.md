@@ -112,6 +112,22 @@ e em PRATICAS quando é genérica>
    (changelog) além de PRATICAS; custos medidos do filme atualizam "Custos
    típicos".
 
+## Criando estilos novos
+
+Estilos não nascem só de destilação de filmes passados. Dois caminhos:
+
+1. **Rascunho antes do filme**: o brief declara "estilo novo: <slug>"; o estilo é
+   criado com `Status: rascunho` já na fase 1.5/2, com o mundo escolhido no gate de
+   conceito. As seções que ainda não têm lição paga ficam marcadas como hipótese.
+   O estilo **gradua para `ativo` na fase 10 do primeiro filme concluído** nele -
+   com custos medidos de verdade e armadilhas reais no lugar das hipóteses.
+2. **Promoção pós-filme**: um vídeo autoral que revelou uma linguagem que vale
+   reusar pode ser destilado em estilo novo na fase 10 (foi exatamente o caso do
+   A CHAVE → piloto desta proposta, só que retroativo).
+
+Regra comum: estilo `rascunho` nunca é fonte de "custos típicos" para preflight -
+custo sem origem medida não entra (princípio 2 do workflow).
+
 ## Escopo do incremento 1 (esta proposta vira PR de implementação)
 
 - Criar `estilos/` com `estilos/README.md` curto (índice dos estilos + ponteiro
