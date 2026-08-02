@@ -118,10 +118,19 @@ function buildGraph(estado) {
 const FRESCOR_MS = 3 * 60 * 1000;   // board sem escrita há 3 min = congelado
 const CONEXAO_MS = 5 * 1000;        // sem fetch ok há 5 s = server fora
 
+function idadeTexto(ms) {
+  if (!Number.isFinite(ms)) return "há ? (timestamp inválido)";
+  const s = Math.round(ms / 1000);
+  if (s < 120) return "há " + s + "s";
+  if (s < 7200) return "há " + Math.round(s / 60) + "min";
+  return "há " + Math.round(s / 3600) + "h";
+}
+
 function Header({ estado, ultimoOk }) {
   const { gasto_cr = 0, teto_cr = 0 } = estado.custos || {};
   const pct = teto_cr ? Math.min(100, 100 * gasto_cr / teto_cr) : 0;
-  const idadeEstado = Date.now() - Date.parse(estado.atualizado_em || 0);
+  const ts = Date.parse(estado.atualizado_em);
+  const idadeEstado = Number.isNaN(ts) ? Infinity : Date.now() - ts;
   const semConexao = Date.now() - ultimoOk > CONEXAO_MS;
   return h(React.Fragment, null,
     h("div", { className: "header" },
@@ -132,7 +141,7 @@ function Header({ estado, ultimoOk }) {
         h("div", { className: "barra" },
           h("div", { className: "cheio" + (pct >= 85 ? " estourando" : ""),
             style: { width: pct + "%" } }))),
-      h("span", null, "atualizado há " + Math.round(idadeEstado / 1000) + "s")),
+      h("span", null, "atualizado " + idadeTexto(idadeEstado))),
     semConexao && h("div", { className: "banner desconectado" },
       "Sem conexão com o server - o serve.sh caiu? Continuo tentando."),
     !semConexao && idadeEstado > FRESCOR_MS &&
@@ -145,7 +154,7 @@ function Feed({ eventos }) {
   return h("div", { className: "feed" }, itens.map((ev, i) =>
     h("div", { className: "evento " + (ev.nivel || "info"), key: i },
       h("div", { className: "meta" },
-        (ev.t || "").slice(11, 19) + "  " + ev.tipo +
+        (d => Number.isNaN(d.getTime()) ? "??:??:??" : d.toTimeString().slice(0, 8))(new Date(ev.t)) + "  " + ev.tipo +
         (ev.ref ? " · " + ev.ref : "") +
         (ev.custo_cr ? " · " + ev.custo_cr + " cr" : "")),
       h("div", null, ev.msg))));
