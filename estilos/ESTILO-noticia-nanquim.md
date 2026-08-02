@@ -33,17 +33,29 @@ letras; todo super, timeline, número e cartela vive na camada determinística.
 Blocos prontos para colar (inglês). O primeiro gera a arte-mãe do filme; ela vira
 o style key e é anexada como referência em toda geração seguinte.
 
+**Procedência dos quatro blocos abaixo:** são RECONSTRUÇÃO, não transcrição. O A
+CHAVE não deixou registrado o prompt literal do mundo nanquim; estes blocos foram
+escritos a partir da descrição em português do sistema visual na bíblia, das
+cláusulas de PRATICAS e da evidência visual das âncoras entregues. Nunca foram
+disparados nesta forma no modelo - o primeiro filme do estilo valida, corrige e
+promove a versão real ao changelog.
+
 **WORLD - arte-mãe (t2i):**
 
 > ink-drawn isometric mechanical map on aged parchment, engraving and etching
 > linework, fine crosshatching and stippled shading, warm cream paper with visible
 > fiber grain, MODERN-TECH subject matter (server stacks, gears, circuit traces,
 > conduits, heat sinks) - NOT medieval, structures rise as engraved volumes on a
-> contour-line plain, dashed survey lines and gear-toothed compass roses as chart
-> furniture, ONE ink accent: deep oxblood red on the routes connecting the nodes,
-> everything else sepia-black ink on cream, vertical portrait-orientation, UPRIGHT
-> framing, the HORIZON LINE RUNS PERFECTLY HORIZONTAL, non-photorealistic, NO 3D
-> render, NO live-action.
+> contour-line plain, ONE ink accent: deep oxblood red on the routes connecting
+> the nodes, everything else sepia-black ink on cream, vertical
+> portrait-orientation, UPRIGHT framing, the HORIZON LINE RUNS PERFECTLY
+> HORIZONTAL, non-photorealistic, NO 3D render, NO live-action.
+
+O prompt NÃO pede mobiliário de carta (rosa dos ventos, cartucho, legenda,
+escala). Esses elementos são exatamente as superfícies que o modelo preenche com
+letra - pedir e depois proibir no negativo é lutar contra si mesmo. Vale o
+antídoto-mestre: mude a natureza do objeto. A informação de mapa que o vídeo
+precisa entra pela camada determinística, nítida e em português.
 
 **NEGATIVE fixo - anti-texto POR SUPERFÍCIE e anti-atlas:**
 
@@ -153,7 +165,8 @@ nunca dois na tela ao mesmo tempo.
   gerando mais longo que o necessário se preciso.
 - Régua medida: cobertura até o último frame, I ≈ -14 LUFS, TP ≤ -1 dBFS, saída
   48 kHz estéreo. Referência do master do A CHAVE: I = -14,6 LUFS, TP = -4,3 dBFS,
-  LRA 2,5 LU.
+  LRA 2,5 LU - números medidos nesta destilação, rodando `ebur128` sobre o master
+  entregue; a bíblia do filme não os registrou.
 
 ## Camada determinística
 
@@ -188,15 +201,30 @@ Regras da camada:
   para texto claro; sem o cartão o super desaparece na tinta.
 - Escrever o texto num arquivo UTF-8 e ler dele, nunca digitar a string direto no
   comando: acento caído é o erro nº 1 desta camada.
-- Uma peça = um PNG RGBA de tela cheia; entrada e saída por tempo no ffmpeg:
+- Uma peça = um PNG RGBA de tela cheia; entrada e saída por tempo no ffmpeg. Duas
+  regras que fazem a diferença entre o super aparecer e o super sumir:
+  **`-loop 1` em toda entrada PNG** - sem isso o ffmpeg decodifica UM frame em t=0,
+  o overlay congela esse frame na janela inteira e o fade de alpha zera justamente
+  ele: a peça fica invisível o filme todo, sem nenhum erro na saída; e o **`st` do
+  fade-in igual ao início da janela do `enable`** (o fade roda no tempo da ENTRADA,
+  não no da janela).
 
 ```bash
-ffmpeg -i corte.mp4 -i super1.png -i cartela.png -filter_complex \
-  "[1]format=rgba,fade=in:st=0:d=0.3:alpha=1[s1]; \
+ffmpeg -i corte.mp4 \
+  -loop 1 -framerate 24 -t 35.6 -i super1.png \
+  -loop 1 -framerate 24 -t 35.6 -i cartela.png \
+  -filter_complex \
+  "[1]format=rgba,fade=in:st=1.2:d=0.3:alpha=1,fade=out:st=5.7:d=0.3:alpha=1[s1]; \
+   [2]format=rgba,fade=in:st=31.0:d=0.3:alpha=1[c1]; \
    [0][s1]overlay=0:0:enable='between(t,1.2,6.0)'[a]; \
-   [a][2]overlay=0:0:enable='gte(t,31.0)'" \
+   [a][c1]overlay=0:0:enable='gte(t,31.0)'" \
   -c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24 saida.mp4
 ```
+
+  Conferir por medição, não por fé: sondar um pixel dentro da peça em t no meio da
+  janela e comparar com o mesmo pixel fora da janela
+  (`ffmpeg -ss <t> -i saida.mp4 -frames:v 1 -filter:v "crop=2:2:<x>:<y>" -f rawvideo
+  -pix_fmt rgb24 - | od -An -tu1`). Peça invisível dá o mesmo RGB nos dois tempos.
 
 ## Pipeline
 
@@ -207,7 +235,7 @@ ffmpeg -i corte.mp4 -i super1.png -i cartela.png -filter_complex \
 | 2 | Esboço (start do build-up) | still i2i sobre a arte-mãe | 2 cr |
 | 3 | Wide limpo (destino do reveal) | still t2i - altitude nova pede t2i, não i2i | 2 cr |
 | 4 | Takes | `seedance` fast 720p 9:16, 8-10s, nos três modos da montagem | ver custos |
-| 5 | Montagem | concat ffmpeg com dissolves, escala para 1080×1920 (`scale=1080:1920:flags=lanczos`), CRF 16, preset slow, yuv420p, 24 fps | 0 |
+| 5 | Montagem | emendas por `xfade` (dissolve 0,25-0,35s), escala para 1080×1920 (`scale=1080:1920:flags=lanczos`), CRF 16, preset slow, yuv420p, 24 fps | 0 |
 | 6 | Polish de imagem | colorbalance (aquecer, tirar azul), grão, vinheta | 0 |
 | 7 | Overlays e cartela | PIL + ffmpeg, DEPOIS do polish para o texto não pegar grão | 0 |
 | 8 | Áudio | edge-tts (VO) + gerador local (leito) + mix | 0 |
@@ -217,17 +245,34 @@ ffmpeg -i corte.mp4 -i super1.png -i cartela.png -filter_complex \
 Anexar a arte-mãe como referência de estilo em toda geração do filme; ela é o que
 segura a tinta consistente entre planos.
 
+A emenda por dissolve que a régua de QC exige (nada de corte seco entre planos) é
+`xfade`, não `concat`. O `offset` é a duração acumulada até a emenda menos a
+duração da transição, e cada emenda ENCURTA o corte nesse mesmo valor - contar
+isso na conta de tempo do filme:
+
+```bash
+ffmpeg -i p1.mp4 -i p2.mp4 -filter_complex \
+  "[0]scale=1080:1920:flags=lanczos,fps=24,format=yuv420p[a]; \
+   [1]scale=1080:1920:flags=lanczos,fps=24,format=yuv420p[b]; \
+   [a][b]xfade=transition=fade:duration=0.3:offset=9.7" \
+  -c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24 corte.mp4
+```
+
+O `concat` continua servindo para juntar o que NÃO tem emenda visível, como a
+cartela final depois do último plano.
+
 ## Custos típicos
 
 Todo número abaixo tem origem. **Repreflightar sempre** com `get_cost: true`: os
-preços do catálogo mudam entre projetos.
+preços do catálogo mudam entre projetos. Nunca misturar tarifas antiga e atual na
+mesma conta - orçamento novo usa só a linha marcada ATUAL.
 
 | Item | Valor | Origem |
 |---|---|---|
 | still `nano_banana_pro` 2k 9:16 | 2,00 cr | preflight `get_cost` 2026-07-25, A CHAVE |
-| take `seedance` fast 720p 9:16, 10s | 35 cr | jobs medidos no A CHAVE (2026-07-26) |
-| take `seedance` fast 720p, 10s (preço atual) | 45 cr = 4,5 cr/s | PRATICAS: o preço mudou em jul/2026 - o 35 acima é histórico |
-| take `seedance` fast 720p, 5s | 17,5 cr | baseline do workbench em PRATICAS |
+| take `seedance` fast 720p 9:16, 10s - tarifa ANTIGA | 35 cr | jobs medidos no A CHAVE (2026-07-26); histórico, não usar em orçamento novo |
+| take `seedance` fast 720p, 5s - tarifa ANTIGA | 17,5 cr | baseline do workbench em PRATICAS, da mesma tarifa de 3,5 cr/s; histórico |
+| take `seedance` fast 720p, 10s - **tarifa ATUAL** | 45 cr = 4,5 cr/s | PRATICAS: o preço mudou em jul/2026. É esta a linha que orça |
 | `gemini_omni` 10s 720p | 30 cr | preflight 2026-07-25; engine testado no A CHAVE e arquivado para este estilo (sem start/end frame, logo não faz build-up nem reveal controlado) |
 | VO, trilha, overlays, montagem, QC | 0 | edge-tts, gerador local, PIL, ffmpeg |
 
@@ -273,7 +318,7 @@ segunda tentativa.
 - **VO em inglês só se descobre tarde.** Nenhum gate pega pronúncia; o usuário
   pegou depois da aprovação. Antídoto está em Áudio: nomes em inglês nascem como
   texto de tela, não como fala.
-- **Operacionais do catálogo.** Cena escura/tech dispara interceptação por preset -
+- **Operacionais do catálogo.** Cena escura/fria dispara interceptação por preset -
   o servidor devolve recomendação e o job NÃO é submetido, o que parece sucesso;
   reenviar com `declined_preset_id` preventivo. Job de imagem pode travar em
   progresso por 5min ou mais: re-submeter por 2 cr em vez de esperar.
