@@ -62,6 +62,11 @@ genérico? sem personagem? - refs de identidade existem no acervo dos projetos),
 AVISO explícito no brief: casting e linguagem de montagem TRAVAM nos gates - pivô
 depois da produção = re-shoot integral (ALÉM: 2 pivôs tardios ≈ 133 cr refeitos).
 
+**Estilo**: perguntar se o vídeo usa um estilo existente (`estilos/`), declara um
+ESTILO NOVO (nasce `rascunho` - regras em `docs/PROPOSTA-estilos-de-video.md`) ou
+é autoral sem estilo. Estilo declarado entra na bíblia como referência e as fases
+seguintes herdam a receita.
+
 ### 1.5 Conceito (OBRIGATÓRIO para brief abstrato/reflexivo; gate próprio)
 Quando o vídeo traduz uma ideia (reflexão, sentimento, frase) em vez de uma cena
 literal, o conceito tem gate ANTES de qualquer âncora:
@@ -76,6 +81,11 @@ literal, o conceito tem gate ANTES de qualquer âncora:
 **GATE: usuário escolhe o mundo antes do primeiro still.** (Origem: ALÉM queimou
 ~100 cr num mundo conceitualmente errado antes desta fase existir.)
 
+**Com estilo declarado, esta fase ENCURTA**: o mundo já está travado pelo ESTILO -
+em vez de 3-5 mundos, apresentar 2-3 ARCOS dentro do mundo do estilo e o gate vira
+confirmação de aderência. Escape explícito: se o usuário quiser fugir do estilo,
+rodar a fase completa (e considerar declarar estilo novo em rascunho).
+
 ### 2. Setup do projeto
 - Criar a ÁRVORE PADRÃO completa na raiz:
   `<slug>/{storyboard,01_refs,02_ancoras/_descartados,03_takes/_descartados,04_qc,05_cortes,06_master}`
@@ -86,6 +96,10 @@ literal, o conceito tem gate ANTES de qualquer âncora:
 - Criar `<slug>/estado.json` inicial (contrato em `docs/PROPOSTA-visualizador-workflow.md`)
   e subir o board em background: `bash tools/viz/serve.sh <slug>` - mostrar a URL ao
   usuário para ele deixar aberta ao lado do terminal.
+- **Estilo novo declarado no brief**: criar `estilos/ESTILO-<slug>.md` já aqui, no
+  contrato de 11 seções (`docs/PROPOSTA-estilos-de-video.md`), com `Status: rascunho`
+  e as seções sem lição paga marcadas como HIPÓTESE; adicionar a linha na tabela de
+  `estilos/README.md`; registrar o estilo (existente ou novo) na bíblia do filme.
 - **Regras de organização (não negociáveis):** status é PASTA - aprovado mora na pasta
   principal, supersedido DESCE para `_descartados/`/`05_cortes/` no instante em que
   perde o posto; `06_master/` contém SÓ a entrega vigente como `<SLUG>_MASTER.mp4`
@@ -193,6 +207,11 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
   retakes por causa · achados BLOQUEIA/AJUSTE por gate · % de gates aprovados de 1ª ·
   escapes · score de retenção (quando medido). Comparar com a produção anterior no
   review point (manter/ajustar/reverter mudanças de processo em DECISOES.md)
+- **Promoção ao ESTILO (obrigatória quando há estilo declarado)**: lição
+  específica do estilo → changelog do `ESTILO-<slug>.md` (genérica continua indo
+  a PRATICAS); custos medidos do filme atualizam os "Custos típicos"; estilo
+  `rascunho` gradua para `ativo` no primeiro filme concluído, atualizando o Status
+  também em `estilos/README.md`.
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
 
 ## Princípios que não se negociam
