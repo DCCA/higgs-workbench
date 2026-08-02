@@ -53,7 +53,9 @@ dashboard dark neon.
 traço vivo (draw-on, jitter leve, poeira de giz); quantidades como tally marks;
 correção de borracha (esfumaçado) como estado; disciplina suíça de layout - grid,
 margens generosas - que é o antídoto contra "whiteboard animation" de banco de
-imagem.
+imagem. Tally marks e correção de borracha são DIREÇÃO disponível na gramática,
+ainda sem componente no kit v1: quem precisar delas constrói a cena, não caça o
+que não existe.
 
 **Regra-mãe do tipo: giz DESENHA, etiqueta LÊ.** Todo corpo de texto legível vive
 numa ETIQUETA de papel fixada no quadro (material real de aula); o giz fica com
@@ -131,7 +133,7 @@ janela. Cenas de diagrama pedem mais tempo de leitura que cenas de número.
   `offset` é a duração do corte JÁ MONTADO menos a duração da transição, e cada
   emenda ENCURTA o corte nesse mesmo valor. Medido (2026-08-02): `Abertura` de 4s
   + `FluxoDiagrama` de 6s com `xfade duration=0.3 offset=3.7` deram `9.708333s`
-  no `ffprobe` - exatamente 4 + 6 - 0,3.
+  no `ffprobe` - os 9,7s de 4 + 6 - 0,3 quantizados ao frame (233 frames @ 24 fps).
 - **`concat` para o que não tem emenda visível** (a cartela depois do último
   plano, como sempre).
 - **A cena não tem corte interno.** Medido no QC da Task 6: o detector de cena
@@ -178,7 +180,7 @@ justifica adaptar o script.
 ## Camada determinística
 
 Neste estilo a camada determinística não é UMA camada: é o filme inteiro. O kit
-v1 são 6 composições, todas com props validados por schema `zod` e duração
+v1 são 6 cenas, todas com props validados por schema `zod` e duração
 dirigida por props.
 
 | Cena | Props (schema) | Duração | Quando usar |

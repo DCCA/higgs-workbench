@@ -22,7 +22,7 @@ npx remotion still <Cena> --props=demo/<cena>.json saida.png
 # take (a cena inteira, vira o clipe da montagem)
 npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4
 
-# Legendas: fundo transparente, PRECISA das 2 flags juntas + saída .webm
+# Legendas: fundo transparente, PRECISA das 3 flags juntas + saída .webm
 npx remotion render Legendas --props=demo/legendas.json \
   --codec=vp9 --pixel-format=yuva420p --image-format=png saida.webm
 # overlay sobre o clipe base (-c:v libvpx-vp9 vem ANTES do -i do webm):

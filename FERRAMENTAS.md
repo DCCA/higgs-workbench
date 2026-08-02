@@ -88,7 +88,8 @@ Kit Remotion do workbench - produção com ZERO créditos (cena = take; spec em
 - Gate: `bash tools/motion/check.sh` (tipos + render-smoke)
 - Still (âncora): `npx remotion still <Cena> --props=demo/<cena>.json saida.png`
 - Take: `npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4`
-- Legendas com alpha: `npx remotion render Legendas --codec=vp9 --pixel-format=yuva420p saida.webm`,
+- Legendas com alpha (as 3 flags juntas; sem `--image-format=png` o alpha se perde
+  em silêncio): `npx remotion render Legendas --codec=vp9 --pixel-format=yuva420p --image-format=png saida.webm`,
   depois `ffmpeg -i base.mp4 -c:v libvpx-vp9 -i saida.webm -filter_complex overlay ...`
 - Iterar ao vivo: `npx remotion studio`
 

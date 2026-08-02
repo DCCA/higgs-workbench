@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## O que é este repo
 
-Workbench permanente de produção de vídeo com IA (Higgsfield MCP + ferramentas locais gratuitas). O produto são vídeos; o que se versiona é conhecimento - práticas, bíblias e **ferramentas cristalizadas** (`tools/`, incluindo o kit motion com seu próprio `check.sh`): práticas de geração, bíblias de produção e a skill do workflow. Toda mídia gerada fica FORA do git (regenerável pelos job IDs registrados nas bíblias).
+Workbench permanente de produção de vídeo com IA (Higgsfield MCP + ferramentas locais gratuitas). O produto são vídeos; o que se versiona é conhecimento - práticas de geração, bíblias de produção, a skill do workflow e as **ferramentas cristalizadas** de `tools/` (incluindo o kit motion com seu próprio `check.sh`). Toda mídia gerada fica FORA do git (regenerável pelos job IDs registrados nas bíblias).
 
 ## Ordem de leitura obrigatória
 
