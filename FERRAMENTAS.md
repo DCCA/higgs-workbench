@@ -80,6 +80,18 @@ shot antes de decidir o filme inteiro - o local custando zero, o teste é barato
   instruções temporais. Manter brief QUALITATIVO; controle de clímax é por escolha
   de janela via curva RMS (método validado no ALÉM), gerando mais longo se preciso.
 
+## Motion programático (tools/motion)
+
+Kit Remotion do workbench - produção com ZERO créditos (cena = take; spec em
+`docs/PROPOSTA-motion-infografico.md`).
+- Setup: `cd tools/motion && npm install` (node ≥18; ver SETUP.md)
+- Gate: `bash tools/motion/check.sh` (tipos + render-smoke)
+- Still (âncora): `npx remotion still <Cena> --props=demo/<cena>.json saida.png`
+- Take: `npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4`
+- Legendas com alpha: `npx remotion render Legendas --codec=vp9 --pixel-format=yuva420p saida.webm`,
+  depois `ffmpeg -i base.mp4 -c:v libvpx-vp9 -i saida.webm -filter_complex overlay ...`
+- Iterar ao vivo: `npx remotion studio`
+
 ## 6. Ferramentas de review e finalização (aprendidas no ALÉM)
 
 - **Shell interativo é zsh**: `$VAR:t` em comando inline dispara o modificador `:t`

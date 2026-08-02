@@ -9,3 +9,4 @@ fase 10 devolve lições ao changelog do estilo.
 | Estilo | Status | Origem |
 |---|---|---|
 | [Vídeo-notícia nanquim](ESTILO-noticia-nanquim.md) | ativo | A CHAVE (PR #14, 2026-07-26) |
+| [Infográfico animado](ESTILO-infografico.md) | rascunho | direção própria (2026-08; gradua no 1º filme) |

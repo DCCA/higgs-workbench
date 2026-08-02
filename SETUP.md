@@ -35,7 +35,26 @@ pip install numpy pillow
 Aponte os scripts de análise para esse Python. `qc_video.sh` só precisa de ffmpeg;
 `camera_review.py` e a geração de overlays usam numpy/Pillow.
 
-## 5. Áudio (VO e trilha)
+## 5. Node + kit motion (tools/motion)
+
+O kit de infográficos animados (`tools/motion/`, estilo 100% programático) roda em
+Remotion e precisa de **node ≥18** - instale pelo gerenciador do seu sistema
+(`apt install nodejs npm` / `brew install node`) e confirme com `node -v`. Depois:
+
+```bash
+cd tools/motion && npm install   # roda o `prepare`: copia as fontes OFL
+bash check.sh                    # gate: tsc --noEmit + render-smoke de 1s
+```
+
+`node_modules/`, `public/` e renders são gitignorados - é dependência local de
+ferramenta, como o venv do stable-audio. Comandos de uso em `FERRAMENTAS.md` e
+`tools/motion/README.md`.
+
+**Licença do Remotion**: gratuita para uso individual e para empresas de até 3
+pessoas; acima disso exige licença paga. Confira os termos atuais ao mudar de
+contexto de uso (uso pessoal → empresa, ou time crescendo).
+
+## 6. Áudio (VO e trilha)
 
 - **VO**: `edge-tts` (grátis, nuvem), rodado via `uvx --from edge-tts edge-tts ...`
   (instale [uv](https://docs.astral.sh/uv/)). A voz é escolhida POR VÍDEO - ver
@@ -45,12 +64,12 @@ Aponte os scripts de análise para esse Python. `qc_video.sh` só precisa de ffm
   fica em `tools/stable-audio/gerar_trilha.py` (a pasta `tools/stable-audio/` é
   gitignorada - crie o venv e instale `stable-audio-tools` conforme a doc do modelo).
 
-## 6. Fontes
+## 7. Fontes
 
 As fontes OFL em `assets/fonts/` (Inter, Space Mono, Cormorant, EB Garamond, Playfair)
 já vêm no repo. Para outras, use o CDN da fontsource (ver `FERRAMENTAS.md`).
 
-## 7. Pasta de entrega
+## 8. Pasta de entrega
 
 Os cortes para você assistir são copiados para uma pasta de entrega da sua escolha
 (ex.: `~/Downloads/<slug>/`). Não há caminho fixo - use o que fizer sentido no seu
