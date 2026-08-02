@@ -29,6 +29,23 @@
   .react-flow__node.erro{border-color:#f85149;background:#2d1214}
   @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,129,247,.55)}
     50%{box-shadow:0 0 0 7px rgba(47,129,247,0)}}
+  .header{display:flex;gap:16px;align-items:center;padding:10px 16px;
+    border-bottom:1px solid #30363d;background:#161b22}
+  .header .filme{font-weight:700}
+  .custo{flex:1;max-width:340px}
+  .custo .barra{height:8px;background:#30363d;border-radius:4px;overflow:hidden}
+  .custo .cheio{height:100%;background:#3fb950}
+  .custo .cheio.estourando{background:#d29922}
+  .banner{padding:6px 16px;font-size:13px}
+  .banner.congelado{background:#3a2d08;color:#d29922}
+  .banner.desconectado{background:#2d1214;color:#f85149}
+  .feed{width:330px;overflow-y:auto;border-left:1px solid #30363d;
+    padding:10px;background:#0d1117}
+  .evento{padding:6px 8px;border-left:3px solid #30363d;margin-bottom:6px;
+    font-size:12.5px}
+  .evento.alerta{border-color:#d29922}
+  .evento.erro{border-color:#f85149;background:#2d1214}
+  .evento .meta{color:#8b949e;font-family:ui-monospace,monospace;font-size:11px}
 </style>
 <script type="importmap">
 { "imports": {
@@ -98,6 +115,42 @@ function buildGraph(estado) {
   return { nodes, edges };
 }
 
+const FRESCOR_MS = 3 * 60 * 1000;   // board sem escrita há 3 min = congelado
+const CONEXAO_MS = 5 * 1000;        // sem fetch ok há 5 s = server fora
+
+function Header({ estado, ultimoOk }) {
+  const { gasto_cr = 0, teto_cr = 0 } = estado.custos || {};
+  const pct = teto_cr ? Math.min(100, 100 * gasto_cr / teto_cr) : 0;
+  const idadeEstado = Date.now() - Date.parse(estado.atualizado_em || 0);
+  const semConexao = Date.now() - ultimoOk > CONEXAO_MS;
+  return h(React.Fragment, null,
+    h("div", { className: "header" },
+      h("span", { className: "filme" }, estado.filme),
+      h("span", null, "fase atual: " + (estado.fase_atual || "?")),
+      h("div", { className: "custo" },
+        h("div", null, gasto_cr + " / " + teto_cr + " cr"),
+        h("div", { className: "barra" },
+          h("div", { className: "cheio" + (pct >= 85 ? " estourando" : ""),
+            style: { width: pct + "%" } }))),
+      h("span", null, "atualizado há " + Math.round(idadeEstado / 1000) + "s")),
+    semConexao && h("div", { className: "banner desconectado" },
+      "Sem conexão com o server - o serve.sh caiu? Continuo tentando."),
+    !semConexao && idadeEstado > FRESCOR_MS &&
+      h("div", { className: "banner congelado" },
+        "estado.json sem escrita há mais de 3 min - board possivelmente congelado."));
+}
+
+function Feed({ eventos }) {
+  const itens = [...(eventos || [])].reverse().slice(0, 50);
+  return h("div", { className: "feed" }, itens.map((ev, i) =>
+    h("div", { className: "evento " + (ev.nivel || "info"), key: i },
+      h("div", { className: "meta" },
+        (ev.t || "").slice(11, 19) + "  " + ev.tipo +
+        (ev.ref ? " · " + ev.ref : "") +
+        (ev.custo_cr ? " · " + ev.custo_cr + " cr" : "")),
+      h("div", null, ev.msg))));
+}
+
 function App() {
   const [estado, setEstado] = React.useState(null);
   const filme = new URLSearchParams(location.search).get("filme");
@@ -111,11 +164,13 @@ function App() {
   if (!estado) return h("div", { className: "aviso" }, "Carregando estado.json…");
   const { nodes, edges } = buildGraph(estado);
   return h("div", { className: "app" },
+    h(Header, { estado, ultimoOk: Date.now() }),   // Task 4 troca por estado real
     h("div", { className: "corpo" },
       h("div", { className: "grafo" },
         h(ReactFlow, { nodes, edges, fitView: true,
           nodesDraggable: false, nodesConnectable: false },
-          h(Background, { gap: 24 })))));
+          h(Background, { gap: 24 }))),
+      h(Feed, { eventos: estado.eventos })));
 }
 
 createRoot(document.getElementById("root")).render(h(App));
