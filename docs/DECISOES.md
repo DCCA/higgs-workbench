@@ -11,6 +11,20 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-08-02 - Estilos de vídeo reutilizáveis DENTRO do higgs; OpenMontage é inspiração, não dependência
+**Contexto:** o usuário quer tipos/estilos reutilizáveis nas 4 camadas (receita-doc,
+motion determinístico, tipos 100% programáticos, preset híbrido); o OpenMontage já
+tem um motor Remotion parametrizado maduro. **Porquê:** decisão explícita do usuário -
+o workbench público fica independente e autocontido; a arquitetura do OpenMontage
+(composições por props JSON, estilos como playbooks) entra como referência de design.
+Consequência: a filosofia "sem código de aplicação" evolui para "versiona-se
+conhecimento: docs E ferramentas cristalizadas" quando `tools/motion/` chegar.
+Piloto: destilar o A CHAVE em `estilos/ESTILO-noticia-nanquim.md` (só docs, 0 cr).
+Spec: `docs/PROPOSTA-estilos-de-video.md`.
+**Alternativa rejeitada:** consumir o composer do OpenMontage como motor externo
+(padrão edge-tts/stable-audio) - mais DRY, porém acopla o método público a um
+projeto pessoal em evolução; e reconstruir fora do higgs (fragmenta o método).
+
 ## 2026-08-01 - Visualizador de workflow: board por shot via estado.json do diretor + viewer xyflow sem build
 **Contexto:** o usuário quer feedback visual ao vivo da rodada do `/novo-video`
 (fase atual, shots, erros, custo) sem reler o terminal. **Porquê:** estado semântico
