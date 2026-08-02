@@ -42,19 +42,36 @@ export const tema = {
     corpo: "Manrope", // mesma família do display - ground-station não tem um "corpo" separado
     mono: "DM Mono", // todo dado: hora, valor, rótulo, rodapé de fonte
   },
-  // escala tipográfica única do kit - cenas escolhem o degrau, nunca um px solto
+  // escala tipográfica única do kit - cenas escolhem o degrau, nunca um px
+  // solto. Calibrada pra leitura em celular 1080x1920 (não thumbnail):
+  // menor tamanho legível ~32-36px, números-herói 120-200px.
   escala: {
     gigante: 112, // hora do Relogio (cabeçalho hero)
-    display: 92, // título; valor em Cartao acento (texto grande = seguro sobre acento)
-    corpo: 28, // linha de apoio mono; valor de linha do Placar (>=24: seguro com acento)
-    legenda: 20, // Rodape; rótulo de linha do Placar
-    // rótulo mono dentro do Cartao acento. 19px porque é o menor tamanho em
-    // negrito que conta como "texto grande" (limiar WCAG bold: 18,66px) -
-    // medido: tinta sobre acento dá 4,29:1 (só passa AA no limiar de texto
-    // grande, 3:1; não passa o normal-text 4,5:1 em nenhum tamanho pequeno -
-    // branco também não, 4,25:1). Reprovaria a régua de cor de ../../
-    // estilos/ESTILO-ground-station.md se ficasse nos 15px do resto do kit.
-    micro: 19,
+    display: 92, // título de GsBeat/GsCartaoValor - referência do kit, não mexer
+    corpo: 28, // linha de apoio mono de GsBeat - referência do kit, não mexer
+    legenda: 20, // Rodape (fonte)
+    // linha do Placar: rótulo mono junto ao valor. As linhas do Placar são
+    // o payoff do filme (o resultado da aposta) - precisam dominar o
+    // quadro, não ler como legenda de rodapé.
+    rotuloDado: 40,
+    // linha do Placar: valor mono - dominante mas dividido entre até 4
+    // linhas (por isso menor que valorHero, que tem uma cena inteira só
+    // pra si). >=24px: seguro em acento quando `zero` pinta a linha
+    // (regra de cor).
+    valorDado: 96,
+    // Cartao acento: rótulo mono sobre o preenchimento. Substitui o antigo
+    // degrau `micro` (19px, calibrado no limiar mínimo WCAG bold de
+    // "texto grande", 18,66px) por um tamanho pensado pra tela de celular
+    // (faixa "smallest legible" 32-36px) - com folga bem maior sobre o
+    // limiar, o mesmo contraste medido (tinta sobre acento, 4,29:1) segue
+    // seguro (só não passaria o normal-text 4,5:1, o que não se aplica:
+    // 34px bold é "texto grande" pela régua WCAG).
+    rotuloHero: 34,
+    // Cartao acento: valor mono - número-herói de cartão único (mais
+    // espaço vertical disponível que uma linha do Placar, por isso maior
+    // que valorDado). >=24px: seguro em invertido.texto sobre acento
+    // (regra de cor).
+    valorHero: 120,
   },
   ritmo: {
     entradaFrames: 12, // entrada de um bloco (~0,5s a 24fps) - papel assenta, não desenha

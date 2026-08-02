@@ -111,7 +111,9 @@ export const Cartao: React.FC<{
       border: `${tema.sombraDura.borda}px solid ${tema.cor.tinta}`,
       borderRadius: tema.sombraDura.raio,
       boxShadow: `${tema.sombraDura.offset}px ${tema.sombraDura.offset}px 0 ${tema.cor.tinta}`,
-      padding: "28px 32px",
+      // padding proporcional ao valor-herói do Cartao (escala.valorHero,
+      // 120px) - não pode ficar apertado num número desse tamanho.
+      padding: "36px 42px",
       ...style,
     }}
   >

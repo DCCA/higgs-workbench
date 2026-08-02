@@ -2,9 +2,11 @@
 // centralizadas verticalmente no espaço restante pela regra de composição de
 // `Papel` (ver ../papel.tsx), cada uma com régua embaixo e stagger na entrada
 // (mesmo idioma da Timeline do quadro-negro: cascata por índice). `zero:
-// true` pinta o valor em acento - o valor já é escala.corpo (>=24px), seguro
-// em acento sobre o chão pela regra de cor de ../tema.ts. Ver contrato de
-// direção em ../tema.ts.
+// true` pinta o valor em acento - o valor já é escala.valorDado (>=24px),
+// seguro em acento sobre o chão pela regra de cor de ../tema.ts. Linhas são o
+// payoff do filme: rótulo em escala.rotuloDado, valor em escala.valorDado,
+// padding generoso (tema.espaco.gap) - o bloco domina o quadro, não lê como
+// legenda de rodapé. Ver contrato de direção em ../tema.ts.
 import React from "react";
 import { z } from "zod";
 import { tema } from "../tema";
@@ -41,15 +43,23 @@ const Linha: React.FC<{ rotulo: string; valor: string; zero?: boolean; delayFram
   const entrada = useEntradaPapel(delayFrames);
   return (
     <div style={{ opacity: entrada.opacity, transform: `translateY(${entrada.translateY}px)`, width: "100%" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 14 }}>
-        <span style={{ fontFamily: tema.tipo.mono, fontWeight: 500, fontSize: tema.escala.legenda, color: tema.cor.suave }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          paddingBottom: tema.espaco.gap,
+        }}
+      >
+        <span style={{ fontFamily: tema.tipo.mono, fontWeight: 500, fontSize: tema.escala.rotuloDado, color: tema.cor.suave }}>
           {rotulo}
         </span>
         <span
           style={{
             fontFamily: tema.tipo.mono,
             fontWeight: 700,
-            fontSize: tema.escala.corpo,
+            fontSize: tema.escala.valorDado,
+            lineHeight: 1,
             color: zero ? tema.cor.acento : tema.cor.tinta,
           }}
         >

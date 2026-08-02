@@ -1,9 +1,11 @@
 // Cena: GsCartaoValor. Mesmo cabeçalho da GsBeat (Relogio + título com
 // destaque) mais um Cartao em acento pontuando o dado que mais importa do
-// beat. Rótulo pequeno sobre o preenchimento de acento usa TINTA, não branco
-// (regra de cor de ../tema.ts: texto pequeno sobre acento só é seguro em
-// tinta; branco só é seguro em display >=24px, tamanho do valor). Ver
-// contrato de direção em ../tema.ts e primitivas em ../papel.tsx.
+// beat. Rótulo (escala.rotuloHero) sobre o preenchimento de acento usa
+// TINTA, não branco (regra de cor de ../tema.ts: texto pequeno sobre acento
+// só é seguro em tinta; branco só é seguro em texto grande >=24px). Valor
+// (escala.valorHero) é o número-herói do cartão - bem acima do limiar, lê
+// tinta OU invertido.texto com segurança. Ver contrato de direção em
+// ../tema.ts e primitivas em ../papel.tsx.
 import React from "react";
 import { z } from "zod";
 import { tema } from "../tema";
@@ -75,11 +77,11 @@ export const GsCartaoValor: React.FC<GsCartaoValorProps> = ({
           style={{
             fontFamily: tema.tipo.mono,
             fontWeight: 700,
-            fontSize: tema.escala.micro,
+            fontSize: tema.escala.rotuloHero,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             color: tema.cor.tinta,
-            marginBottom: 10,
+            marginBottom: 14,
           }}
         >
           {rotulo}
@@ -88,7 +90,7 @@ export const GsCartaoValor: React.FC<GsCartaoValorProps> = ({
           style={{
             fontFamily: tema.tipo.mono,
             fontWeight: 700,
-            fontSize: tema.escala.display,
+            fontSize: tema.escala.valorHero,
             lineHeight: 1,
             color: tema.invertido.texto,
           }}
