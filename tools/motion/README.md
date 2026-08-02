@@ -9,6 +9,10 @@ intermediário. Zero créditos Higgsfield: o custo é tempo de render local
 Contrato completo (schemas, cenas, decupagem): `docs/PROPOSTA-motion-infografico.md`.
 Guia de estilo/tema (paleta, tipografia, ritmo): `estilos/ESTILO-infografico.md`.
 
+Emendando take cru com take re-encodado (ex.: pós-overlay de Legendas)? Os
+timebases divergem e o xfade recusa a emenda - normalize toda entrada da cadeia
+com `[N:v]settb=AVTB,fps=24[nN]` antes do primeiro xfade.
+
 ## Comandos
 
 ```bash

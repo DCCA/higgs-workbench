@@ -276,6 +276,11 @@ Pagas no build do kit (2026-08-02, incremento 2):
   (alpha sobre footage arbitrário) pintava um halo verde-escuro no fundo do
   usuário. Antídoto: sombra preta neutra - sombra é física de luz, não cor do
   mundo, e por isso não sai de `tema.cor.*`. *Pago por:* fix na cena `Legendas`.
+- **Timebases mistos recusam o xfade.** Take cru do Remotion e take re-encodado
+  (ex.: o que recebeu Legendas por overlay) saem com timebases diferentes e o
+  xfade falha ("timebase do not match"). Antídoto: normalizar TODA entrada da
+  cadeia com `settb=AVTB,fps=24` antes do primeiro xfade. *Pago por:* montagem
+  do demo reel de aceite (2026-08-02), 1 iteração.
 - **Alpha se perde em silêncio se faltar uma flag.** As três flags do render de
   `Legendas` andam juntas, e no overlay o `-c:v libvpx-vp9` vem ANTES do `-i` do
   webm. Errado, o ffmpeg não reclama: entrega fundo preto sólido por cima do
