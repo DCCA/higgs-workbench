@@ -11,6 +11,22 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-08-02 - Motion programático (incremento 2): cena = take; direção nova antes do 1º vídeo; node entra como ferramenta
+**Contexto:** o usuário quer produzir com saldo ZERO de créditos (evals parado por
+crédito de novo); o tipo 100% programático via `tools/motion/` (Remotion) é essa
+linha. **Porquê das escolhas:** piloto = notícia AI em infográfico (mesmo job do
+tipo notícia, reuso semanal); identidade por DIREÇÃO NOVA com sorteio + página de
+decisão (estilo nasce assinado - escolha explícita do usuário sobre reviver a
+linguagem Stripe Minions); **cena = take** (cada cena renderiza como clipe e o
+ffmpeg monta) para árvore/bíblia/QC/gates funcionarem sem bifurcar o workflow;
+1º filme FORA do incremento (é a rodada que gradua o estilo `rascunho`→`ativo`).
+Consequência: node/npm entra como dependência local de ferramenta (como a venv do
+stable-audio) e a filosofia do CLAUDE.md atualiza para "versiona-se conhecimento -
+docs E ferramentas cristalizadas". Spec: `docs/PROPOSTA-motion-infografico.md`.
+**Alternativa rejeitada:** timeline única no Remotion (quebraria o método);
+infra neutra + re-skin (constrói 2x); kit sob demanda no 1º filme (filme viraria
+projeto de infra).
+
 ## 2026-08-02 - Estilos de vídeo reutilizáveis DENTRO do higgs; OpenMontage é inspiração, não dependência
 **Contexto:** o usuário quer tipos/estilos reutilizáveis nas 4 camadas (receita-doc,
 motion determinístico, tipos 100% programáticos, preset híbrido); o OpenMontage já
