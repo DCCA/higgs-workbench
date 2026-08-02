@@ -30,3 +30,6 @@ tools/viz/demo/sim/
 tools/motion/node_modules/
 tools/motion/public/
 tools/motion/out/
+
+# filme SOL (portfolio local)
+/sol/

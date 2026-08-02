@@ -169,6 +169,34 @@ Antes de qualquer geração acima de ~30 cr ou conceito de movimento arriscado:
 No VOO, 4 iterações de storyboard por 0 créditos pegaram 2 problemas antes de um take
 de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado por 2 cr).
 
+## Áudio e loudness (medido no entregue)
+
+- **Loudness e true peak se medem no ARQUIVO ENTREGUE, nunca no PCM antes do encode.**
+  O AAC estoura o true peak em ~1,5 dB sobre o que o `loudnorm` promete. Para fechar
+  o alvo social (-14 LUFS, TP ≤ -1 dB), o TP-alvo do loudnorm precisa ser **-3,0**;
+  alvos de -1,0 a -2,0 furam o teto depois do encode. Varrer o alvo e medir o entregue
+  a cada passo é barato - desistir com uma teoria não medida é caro. *Pago no SOL: o
+  master v1 saiu a -15,0 LUFS com uma justificativa que o validador falsificou medindo.*
+- **VO se mede antes de gravar.** Texto que não cabe no beat se REESCREVE, nunca se
+  acelera. Contraintuitivo e caro de descobrir tarde: `IA` sai soletrado ("i-á") no
+  edge-tts e consome MAIS tempo que "inteligência artificial" por extenso.
+- **Uma fala nunca atropela a seguinte**: a linha `i` entra em
+  `max(início do beat i, fim da linha i-1 + 0,25s)`.
+- **O ID da voz muda por baixo.** Vozes saem do catálogo do edge-tts (a
+  `pt-BR-ThalitaNeural` sumiu); registrar na bíblia o ID EFETIVAMENTE usado, senão a
+  regeneração falha.
+
+## Filme programático (kit de motion)
+
+- **Peso de fonte que a família não tem vira negrito sintético** e engorda o traço ~27%
+  em todo número-herói - invisível a olho, medível por traço/corpo. Carregar só os
+  pesos que existem e travá-los no tema. *Pago no SOL, gate de âncoras.*
+- **Escala de tipo se calibra na resolução final**, não em miniatura: o que parece
+  legenda num comp de 300px é ilegível num frame de 1080×1920 - e vice-versa.
+- **`scene>0.25` não detecta corte em mundo de fundo chapado.** Num filme de papel, 8
+  cortes secos reais devolvem ZERO detecções. Conferir emenda por salto de YAVG e por
+  identidade de frame.
+
 ## Revisão e montagem
 
 - **Strips de frames são controle de produção, não revisão.** 4 frames por shot pegam

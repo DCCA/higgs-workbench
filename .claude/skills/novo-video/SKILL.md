@@ -45,6 +45,13 @@ o custo do preflight), veredito do validador, retake (causa no evento),
 aprovado/descartado. Nunca atualizar em lote no fim da fase: board congelado é bug
 de processo, e o validador confere frescor/coerência em todo gate.
 
+**Trabalho longo DENTRO de uma fase também reporta.** Transição não é só troca de
+fase: construir mundo/kit, esperar subagente, rodar fix - qualquer estirão acima de
+~3 min emite um evento de progresso (`tipo: fase`, ref da fase corrente) dizendo o que
+está acontecendo. Sem isso o board congela no meio de uma fase e o alarme de frescor
+dispara com razão - foi o que aconteceu no SOL (40 min construindo o mundo
+ground-station sem um único reporte).
+
 **Contrato de escrita (o viewer depende disto):** `ref` de evento é o id EXATO do
 shot ou o número da fase - é o que pinta o nó de vermelho; ref errado falha
 silencioso. `atualizado_em` SEMPRE em UTC com `Z` (`date -u +%FT%TZ`; hora local

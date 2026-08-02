@@ -10,3 +10,4 @@ fase 10 devolve lições ao changelog do estilo.
 |---|---|---|
 | [Vídeo-notícia nanquim](ESTILO-noticia-nanquim.md) | ativo | A CHAVE (PR #14, 2026-07-26) |
 | [Infográfico animado](ESTILO-infografico.md) | rascunho | direção própria (2026-08; gradua no 1º filme) |
+| [Ground Station](ESTILO-ground-station.md) | ativo | mundo herdado do AI Signal Desk; graduado pelo filme SOL (2026-08-02) |
