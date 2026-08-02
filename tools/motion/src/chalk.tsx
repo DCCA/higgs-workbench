@@ -130,6 +130,14 @@ export const TracoGiz: React.FC<{
   );
 };
 
+// Sombra da Etiqueta: física de luz (papel projetando sombra), não cor do
+// mundo - por isso não vem de `tema.cor.*`. Era `${tema.cor.fundo}b3` (ardósia
+// com alpha); imperceptível sobre a própria ardósia, mas em `Legendas`
+// (overlay transparente sobre footage arbitrário) isso vazava um halo
+// verde-escuro tingido no fundo do usuário. Preta neutra corrige os dois
+// contextos sem trocar a intensidade percebida sobre a ardósia.
+const SOMBRA_ETIQUETA = "rgba(0,0,0,.35)";
+
 /** Etiqueta de papel fixada no quadro: pino (spring) + leve inclinação, texto legível. */
 export const Etiqueta: React.FC<{
   children: React.ReactNode;
@@ -159,7 +167,7 @@ export const Etiqueta: React.FC<{
         color: tema.etiqueta.tinta,
         transform: `translateY(${translateY}px) rotate(${tilt}deg)`,
         opacity,
-        boxShadow: `0 8px 20px ${tema.cor.fundo}b3`,
+        boxShadow: `0 8px 20px ${SOMBRA_ETIQUETA}`,
         padding: tema.etiqueta.padding,
         borderRadius: tema.etiqueta.raio,
         ...style,

@@ -5,8 +5,12 @@
 // no terço inferior, dentro da margem de segurança do kit. Entrada usa o
 // próprio pino+fade da Etiqueta (delayFrames=t0 em frames); saída é um fade
 // autoral desta cena com a mesma janela (tema.ritmo.entradaFrames), já que
-// Etiqueta não tem saída embutida. Ver contrato de direção em ../theme.ts e
-// primitivas em ../chalk.tsx.
+// Etiqueta não tem saída embutida.
+// NOTA: "sem exit, transição é do ffmpeg" (plano/regra do kit) vale para a
+// CENA/take inteiro - o fade de saída AQUI é animação INTRA-cena de um
+// elemento (o segmento), não uma transição de cena; hard-cut de legenda seria
+// pior prática de legendagem. Não copiar essa exceção para exits de cena.
+// Ver contrato de direção em ../theme.ts e primitivas em ../chalk.tsx.
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
