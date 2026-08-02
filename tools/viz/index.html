@@ -127,6 +127,14 @@ function idadeTexto(ms) {
 }
 
 function Header({ estado, ultimoOk }) {
+  // ponytail: sem isto o banner de conexão nunca reavalia quando o poll falha
+  // (falha = catch() vazio = sem setState = sem re-render); tick próprio força
+  // reavaliação do Date.now() a cada 1s mesmo com o server fora do ar.
+  const [, forceTick] = React.useState(0);
+  React.useEffect(() => {
+    const id = setInterval(() => forceTick(t => t + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
   const { gasto_cr = 0, teto_cr = 0 } = estado.custos || {};
   const pct = teto_cr ? Math.min(100, 100 * gasto_cr / teto_cr) : 0;
   const ts = Date.parse(estado.atualizado_em);
@@ -163,17 +171,25 @@ function Feed({ eventos }) {
 function App() {
   const [estado, setEstado] = React.useState(null);
   const filme = new URLSearchParams(location.search).get("filme");
+  const [ultimoOk, setUltimoOk] = React.useState(0);
   React.useEffect(() => {
     if (!filme) return;
-    fetch("/" + filme + "/estado.json?t=" + Date.now())
-      .then(r => r.json()).then(setEstado).catch(() => {});
+    let vivo = true;
+    const tick = () =>
+      fetch("/" + filme + "/estado.json?t=" + Date.now())
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(j => { if (vivo) { setEstado(j); setUltimoOk(Date.now()); } })
+        .catch(() => {});   // JSON parcial/server fora: mantém último estado bom
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => { vivo = false; clearInterval(id); };
   }, [filme]);
   if (!filme) return h("div", { className: "aviso" },
     "Faltou ?filme=<slug> na URL - use tools/viz/serve.sh <slug>.");
   if (!estado) return h("div", { className: "aviso" }, "Carregando estado.json…");
   const { nodes, edges } = buildGraph(estado);
   return h("div", { className: "app" },
-    h(Header, { estado, ultimoOk: Date.now() }),   // Task 4 troca por estado real
+    h(Header, { estado, ultimoOk }),
     h("div", { className: "corpo" },
       h("div", { className: "grafo" },
         h(ReactFlow, { nodes, edges, fitView: true,
