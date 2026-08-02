@@ -1,52 +1,208 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<!--
+THESIS: a rodada do filme é UMA linha de metrô atravessando as fases; recusa o
+dashboard-de-nós dark com acento neon que a categoria sempre entrega.
+OWN-WORLD: sinalização de metrô à noite - preto de placa, Helvetica, bullets
+numerados na cor da linha (azul), casing vazado p/ trecho futuro, chips de status
+de serviço (âmbar/vermelho/roxo), quadro "ATUALIZAÇÕES DE SERVIÇO".
+STORY: o diretor bate o olho, acha o trem (fase atual pulsando), vê disrupção
+em vermelho antes de qualquer outra coisa, e o custo na régua; visitante do repo
+entende o método como uma jornada com estações e baldeações.
+FIRST VIEWPORT: banda de sinalização no topo (linha, VOCÊ ESTÁ AQUI, régua de
+custo, frescor), diagrama da linha dominando o centro, quadro de serviço à direita.
+FORM: direção 6 da lista fundamentada (seed 6cb3d033, escolha do usuário);
+staging nativo do mundo (quadro de serviço), stagings sorteados recusados.
+-->
 <meta charset="utf-8">
-<title>higgs - board do workflow</title>
+<title>higgs · linha de produção</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://esm.sh/@xyflow/react@12.3.2/dist/style.css">
 <link rel="icon" href="data:,">
 <style>
-  html,body,#root{margin:0;height:100%;background:#0d1117;color:#e6edf3;
-    font:14px/1.4 system-ui,sans-serif}
+  :root{
+    --chao:#0d0f12; --placa:#14171c; --texto:#f5f7fa; --dim:#98a0ac;
+    --fio:#242830; --casing:#3a4048;
+    --linha:#4a86ff; --disrupcao:#e0393f; --aviso:#f2b01e;
+    --validacao:#a97ffb; --aprovado:#46c46d;
+  }
+  html,body,#root{margin:0;height:100%;background:var(--chao);color:var(--texto);
+    font:14px/1.45 "Helvetica Neue",Helvetica,Arial,sans-serif}
   .app{display:flex;flex-direction:column;height:100%}
   .corpo{display:flex;flex:1;min-height:0}
-  .grafo{flex:1}
-  .aviso{padding:2rem;color:#8b949e}
-  /* nós */
-  .react-flow__node{border-radius:8px;border:1.5px solid #30363d;
-    background:#161b22;color:#e6edf3;font-size:12px;padding:8px 12px}
-  .react-flow__node.fase{width:230px}
-  .react-flow__node.shot{width:190px;font-family:ui-monospace,monospace}
-  .react-flow__node.pendente,.react-flow__node.planejado{opacity:.55}
-  .react-flow__node.pulada{opacity:.45;border-style:dashed}
-  .react-flow__node.em_andamento,.react-flow__node.gerando{border-color:#2f81f7;
-    animation:pulso 1.2s ease-in-out infinite}
-  .react-flow__node.validando,.react-flow__node.em_qc{border-color:#a371f7}
-  .react-flow__node.gate_usuario{border-color:#d29922;background:#211a08}
-  .react-flow__node.bloqueada{border-color:#f85149;background:#2d1214}
-  .react-flow__node.concluida,.react-flow__node.aprovado{border-color:#3fb950}
-  .react-flow__node.descartado{opacity:.4;text-decoration:line-through}
-  .react-flow__node.erro{border-color:#f85149;background:#2d1214}
-  @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,129,247,.55)}
-    50%{box-shadow:0 0 0 7px rgba(47,129,247,0)}}
-  .header{display:flex;gap:16px;align-items:center;padding:10px 16px;
-    border-bottom:1px solid #30363d;background:#161b22}
-  .header .filme{font-weight:700}
-  .custo{flex:1;max-width:340px}
-  .custo .barra{height:8px;background:#30363d;border-radius:4px;overflow:hidden}
-  .custo .cheio{height:100%;background:#3fb950}
-  .custo .cheio.estourando{background:#d29922}
-  .banner{padding:6px 16px;font-size:13px}
-  .banner.congelado{background:#3a2d08;color:#d29922}
-  .banner.desconectado{background:#2d1214;color:#f85149}
-  .feed{width:330px;overflow-y:auto;border-left:1px solid #30363d;
-    padding:10px;background:#0d1117}
-  .evento{padding:6px 8px;border-left:3px solid #30363d;margin-bottom:6px;
-    font-size:12.5px}
-  .evento.alerta{border-color:#d29922}
-  .evento.erro{border-color:#f85149;background:#2d1214}
-  .evento .meta{color:#8b949e;font-family:ui-monospace,monospace;font-size:11px}
+  .mapa{flex:1;min-width:0;position:relative;display:flex;flex-direction:column}
+  .mapa::after{content:"";position:absolute;inset:12px;border:1px solid var(--fio);
+    border-radius:3px;pointer-events:none}
+  .mapa .fluxo{flex:1;min-height:0}
+  .legenda{align-self:flex-start;margin:0 22px 20px;display:flex;
+    flex-wrap:wrap;gap:.3rem .85rem;align-items:center;max-width:calc(100% - 44px);
+    padding:.45rem .8rem;background:var(--placa);border:1px solid var(--fio);
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .legenda .item{display:flex;align-items:center;gap:.35rem;white-space:nowrap}
+  .legenda .simb{width:11px;height:11px;border-radius:50%;flex:none}
+  .legenda .simb.gate{background:var(--linha);
+    box-shadow:0 0 0 2px var(--placa),0 0 0 3.5px var(--texto)}
+  .legenda .simb.construir{border-radius:2px;height:4px;width:16px;
+    background:var(--chao);box-shadow:0 0 0 2px var(--casing)}
+  .legenda .simb.trem{border-radius:2px;height:3px;width:16px;
+    background:repeating-linear-gradient(90deg,#cfe0ff 0 4px,transparent 4px 7px)}
+  .legenda .simb.validacao{background:var(--validacao)}
+  .legenda .simb.aviso{background:var(--aviso)}
+  .legenda .simb.erro{background:var(--disrupcao)}
+  .legenda .simb.aprovado{background:var(--aprovado)}
+  .legenda .simb-x{color:var(--dim);font-size:.8rem;line-height:1}
+  .aviso-tela{padding:2.5rem;max-width:34rem}
+  .aviso-tela h1{font-size:1.1rem;letter-spacing:.08em;margin:0 0 .6rem;
+    text-transform:uppercase}
+  .aviso-tela p{color:var(--dim);margin:0}
+  .aviso-tela code{color:var(--texto);font-family:ui-monospace,monospace;font-size:.85em}
+
+  /* ── banda de sinalização (header) ─────────────────────────────── */
+  .banda{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;
+    padding:.7rem 1.1rem;background:var(--placa);border-bottom:1px solid var(--fio)}
+  .rota{display:flex;align-items:center;gap:.55rem;min-width:0}
+  .rota .bullet-linha{width:30px;height:30px;border-radius:50%;background:var(--linha);
+    color:#0b0d10;font-weight:700;font-size:15px;display:flex;align-items:center;
+    justify-content:center;flex:none}
+  .rota .nome-linha{font-weight:700;letter-spacing:.10em;font-size:.8rem;
+    text-transform:uppercase;white-space:nowrap}
+  .aqui{min-width:0}
+  .aqui .rotulo{font-size:.66rem;letter-spacing:.18em;color:var(--dim);
+    text-transform:uppercase}
+  .aqui .estacao-atual{font-size:1.3rem;font-weight:700;letter-spacing:.01em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .regua{min-width:200px;flex:1;max-width:330px}
+  .regua .rotulo{display:flex;justify-content:space-between;font-size:.66rem;
+    letter-spacing:.14em;color:var(--dim);text-transform:uppercase;
+    margin-bottom:.28rem}
+  .regua .valor{color:var(--texto);font-variant-numeric:tabular-nums;letter-spacing:0;
+    font-size:.8rem;font-weight:700}
+  .regua .trilho-regua{position:relative;height:10px}
+  .regua .trilho-regua .base{position:absolute;inset:4px 0;background:var(--casing);
+    border-radius:2px}
+  .regua .trilho-regua .cheio{position:absolute;top:4px;bottom:4px;left:0;width:100%;
+    background:var(--linha);border-radius:2px;transform-origin:left;
+    transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .regua .trilho-regua .cheio.perto{background:var(--aviso)}
+  .regua .trilho-regua .cheio.estourou{background:var(--disrupcao)}
+  .regua .trilho-regua .tick{position:absolute;top:0;bottom:0;width:1px;
+    background:var(--chao)}
+  .frescor{font-size:.8rem;color:var(--dim);font-variant-numeric:tabular-nums;
+    letter-spacing:.04em;white-space:nowrap}
+
+  /* faixas de serviço (banners) */
+  .faixa{display:flex;align-items:center;gap:.6rem;padding:.5rem 1.1rem;
+    font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .faixa .sinal{flex:none}
+  .faixa.congelado{background:var(--aviso);color:#161000}
+  .faixa.desconectado,.faixa.interrupcao{background:var(--disrupcao);color:#fff}
+  .faixa small{font-weight:400;text-transform:none;letter-spacing:0;opacity:.85}
+
+  /* ── quadro de serviço (feed) ──────────────────────────────────── */
+  .quadro{width:330px;flex:none;display:flex;flex-direction:column;
+    border-left:1px solid var(--fio);background:var(--placa)}
+  .quadro h2{margin:0;padding:.75rem 1rem .6rem;font-size:.66rem;font-weight:700;
+    letter-spacing:.2em;color:var(--dim);text-transform:uppercase;
+    border-bottom:1px solid var(--fio)}
+  .quadro .rolagem{overflow-y:auto;flex:1}
+  .atualizacao{padding:.55rem 1rem;border-bottom:1px solid var(--fio);
+    animation:chegada .35s cubic-bezier(.16,1,.3,1)}
+  .atualizacao.erro{background:#231114}
+  .atualizacao .meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.18rem}
+  .atualizacao .hora{font-size:.8rem;color:var(--dim);font-variant-numeric:tabular-nums}
+  .atualizacao .msg{font-size:.8rem;line-height:1.35}
+  .atualizacao.erro .msg{color:#ffd7d9}
+  .quadro .vazio{padding:1rem;color:var(--dim);font-size:.8rem}
+  @keyframes chegada{from{opacity:0;transform:translateY(-4px)}to{opacity:1}}
+
+  .chip{display:inline-block;padding:.12rem .42rem;border-radius:3px;
+    font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .chip.linha{background:var(--linha);color:#0b0d10}
+  .chip.cinza{background:var(--casing);color:var(--texto)}
+  .chip.aviso{background:var(--aviso);color:#161000}
+  .chip.erro{background:var(--disrupcao);color:#fff}
+  .chip.validacao{background:var(--validacao);color:#14061f}
+  .chip.aprovado{background:var(--aprovado);color:#04170b}
+
+  /* ── estações e paradas ────────────────────────────────────────── */
+  .react-flow__node{font-family:inherit}
+  .react-flow__node:focus-visible{outline:2px solid var(--texto);outline-offset:3px}
+  .react-flow__attribution{background:transparent;color:var(--dim)}
+
+  .estacao{display:flex;align-items:center;gap:.6rem;position:relative}
+  .estacao .bullet{width:30px;height:30px;border-radius:50%;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:13px;position:relative;
+    background:var(--linha);color:#0b0d10}
+  .estacao.gate .bullet{box-shadow:0 0 0 3px var(--chao),0 0 0 5px var(--texto)}
+  .estacao.pendente .bullet{background:var(--chao);color:var(--dim);
+    box-shadow:inset 0 0 0 2.5px var(--casing)}
+  .estacao.pendente.gate .bullet{box-shadow:inset 0 0 0 2.5px var(--casing),
+    0 0 0 3px var(--chao),0 0 0 5px var(--casing)}
+  .estacao.pendente .nome,.estacao.pulada .nome{color:var(--dim)}
+  .estacao.pulada .bullet{background:var(--chao);color:transparent;
+    box-shadow:inset 0 0 0 2.5px var(--casing)}
+  .estacao.pulada .bullet::after{content:"✕";position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--dim);font-size:15px;font-weight:400}
+  .estacao.pulada .nome{text-decoration:line-through}
+  .estacao.erro .bullet{background:var(--disrupcao);color:#fff}
+  .estacao .nome{font-size:1.1rem;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;white-space:nowrap}
+  .estacao .infos{display:flex;flex-direction:column;gap:.22rem;align-items:flex-start}
+  .estacao.deitada .infos{position:absolute;left:22px;bottom:36px;
+    transform:rotate(-38deg);transform-origin:left bottom}
+  .estacao.deitada .anota{position:absolute;top:37px;right:calc(100% - 32px);
+    display:flex;flex-direction:column;align-items:flex-end;gap:.24rem;
+    white-space:nowrap}
+  .aqui-tag{font-size:.66rem;font-weight:700;letter-spacing:.16em;
+    color:var(--linha);text-transform:uppercase}
+  .halo{position:absolute;inset:-7px;border-radius:50%;
+    border:2px solid var(--texto);animation:trem-pulso 1.6s cubic-bezier(.16,1,.3,1) infinite}
+  .estacao.erro .halo,.parada.erro .halo{border-color:var(--disrupcao)}
+  @keyframes trem-pulso{0%{opacity:.9;transform:scale(.82)}
+    70%{opacity:0;transform:scale(1.22)}100%{opacity:0;transform:scale(1.22)}}
+
+  .parada{display:flex;align-items:center;gap:.5rem}
+  .parada .ponto{width:15px;height:15px;border-radius:50%;flex:none;
+    position:relative;background:var(--linha);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--linha)}
+  .parada.planejado .ponto{background:var(--chao);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--casing)}
+  .parada.em_qc .ponto{background:var(--validacao);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--validacao)}
+  .parada.aprovado .ponto{background:var(--aprovado);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--aprovado)}
+  .parada.descartado .ponto{background:var(--chao);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--casing)}
+  .parada.descartado .ponto::after{content:"✕";position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;color:var(--dim);
+    font-size:10px}
+  .parada.erro .ponto{background:var(--disrupcao);
+    box-shadow:0 0 0 2px var(--chao),0 0 0 3.5px var(--disrupcao)}
+  .parada .rotulo-parada{font-size:.98rem;white-space:nowrap}
+  .parada .rotulo-parada .custo{color:var(--dim);font-variant-numeric:tabular-nums}
+  .parada.planejado .rotulo-parada,.parada.descartado .rotulo-parada{color:var(--dim)}
+  .parada.descartado .rotulo-parada{text-decoration:line-through}
+  .parada.erro .rotulo-parada{color:#ffd7d9}
+  .parada .halo{inset:-6px}
+
+  /* trilhos */
+  .trilho-casing{fill:none;stroke:var(--casing);stroke-width:9}
+  .trilho-miolo{fill:none;stroke:var(--chao);stroke-width:5}
+  .trilho-feito{fill:none;stroke:var(--linha);stroke-width:7;stroke-linecap:round}
+  .trilho-trem{fill:none;stroke:#cfe0ff;stroke-width:2.5;stroke-linecap:round;
+    stroke-dasharray:7 16;animation:trem-anda 1.6s linear infinite}
+  .ramal-feito{stroke-width:4.5}
+  .ramal-casing{stroke-width:6.5}
+  .ramal-miolo{stroke-width:3}
+  .cruza-trilho{fill:none;stroke:var(--chao);stroke-width:11}
+  .cruza-ramal{fill:none;stroke:var(--chao);stroke-width:8}
+  @keyframes trem-anda{to{stroke-dashoffset:-23}}
+
+  .react-flow__handle{opacity:0;width:1px;height:1px;min-width:0;min-height:0;
+    border:none;background:transparent;pointer-events:none}
 </style>
 <script type="importmap">
 { "imports": {
@@ -61,7 +217,7 @@
 <script type="module">
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { ReactFlow, Background } from "@xyflow/react";
+import { ReactFlow, Handle, Position, getSmoothStepPath } from "@xyflow/react";
 const h = React.createElement;
 
 // Espinha do fluxograma v2 (docs/ESTRUTURA.md). Mudou o workflow? Atualizar AQUI.
@@ -78,46 +234,20 @@ const FASES = [
   { id: "9",   titulo: "Finalização", gate: true },
   { id: "10",  titulo: "Registro" },
 ];
-
-// último nível de evento por ref: pinta o nó de vermelho se for "erro"
-function nivelPorRef(eventos) {
-  const m = {};
-  for (const ev of eventos || []) if (ev.ref) m[ev.ref] = ev.nivel;
-  return m;
-}
-
-function buildGraph(estado) {
-  const nodes = [], edges = [];
-  const ultimoNivel = nivelPorRef(estado.eventos);
-  const porFase = {};
-  for (const s of estado.shots || []) (porFase[s.fase] ||= []).push(s);
-  let y = 0;
-  FASES.forEach((f, i) => {
-    const st = (estado.fases || {})[f.id] || "pendente";
-    const erro = ultimoNivel[f.id] === "erro" ? " erro" : "";
-    nodes.push({ id: "f" + f.id, position: { x: 0, y },
-      data: { label: (f.gate ? "⛩ " : "") + f.id + ". " + f.titulo },
-      className: "fase " + st + erro });
-    if (i > 0) edges.push({ id: "e" + i, source: "f" + FASES[i - 1].id,
-      target: "f" + f.id,
-      animated: st === "em_andamento" || st === "validando" });
-    const shots = porFase[f.id] || [];
-    shots.forEach((s, j) => {
-      const sErro = ultimoNivel[s.id] === "erro" ? " erro" : "";
-      const custo = s.custo_cr ? " · " + s.custo_cr + " cr" : "";
-      nodes.push({ id: "s" + s.id, position: { x: 340, y: y + j * 64 },
-        data: { label: s.id + " v" + (s.versao || 1) + custo },
-        className: "shot " + s.status + sErro });
-      edges.push({ id: "es" + s.id, source: "f" + f.id, target: "s" + s.id,
-        animated: s.status === "gerando" });
-    });
-    y += Math.max(96, shots.length * 64 + 16);
-  });
-  return { nodes, edges };
-}
-
+// só estados de MOVIMENTO animam o trecho; gate/bloqueada são trem parado
+const EM_MOVIMENTO = ["em_andamento", "validando"];
+const CHIP_FASE = {
+  validando:    { classe: "validacao", texto: "validando" },
+  gate_usuario: { classe: "aviso",     texto: "aguardando você" },
+  bloqueada:    { classe: "erro",      texto: "⚠ suspensa" },
+};
+const CHIP_EVENTO = {
+  fase: "linha", gate: "aviso", job: "linha", veredito: "validacao",
+  retake: "aviso", qc: "cinza", audio: "cinza", erro: "erro",
+};
 const FRESCOR_MS = 3 * 60 * 1000;   // board sem escrita há 3 min = congelado
 const CONEXAO_MS = 5 * 1000;        // sem fetch ok há 5 s = server fora
+const numero = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
 
 function idadeTexto(ms) {
   if (!Number.isFinite(ms)) return "há ? (timestamp inválido)";
@@ -127,52 +257,217 @@ function idadeTexto(ms) {
   return "há " + Math.round(s / 3600) + "h";
 }
 
-function Header({ estado, ultimoOk }) {
-  // ponytail: sem isto o banner de conexão nunca reavalia quando o poll falha
-  // (falha = catch() vazio = sem setState = sem re-render); tick próprio força
-  // reavaliação do Date.now() a cada 1s mesmo com o server fora do ar.
-  const [, forceTick] = React.useState(0);
-  React.useEffect(() => {
-    const id = setInterval(() => forceTick(t => t + 1), 1000);
-    return () => clearInterval(id);
-  }, []);
+// último nível de evento por ref: pinta a estação/parada de vermelho se "erro"
+function nivelPorRef(eventos) {
+  const m = {};
+  for (const ev of eventos || []) if (ev.ref) m[ev.ref] = ev.nivel;
+  return m;
+}
+
+/* ── nós ─────────────────────────────────────────────────────────── */
+
+// a linha passa pelo CENTRO do bullet (30px), nunca pelo centro do nó com label
+const meio = (x, y) => ({ left: x + "px", top: y + "px", transform: "none" });
+
+function EstacaoNode({ data }) {
+  const hz = data.horizontal;
+  const cls = ["estacao", data.status, data.erro && "erro", data.fase.gate && "gate",
+    hz && "deitada"].filter(Boolean).join(" ");
+  const chip = data.erro ? h("span", { className: "chip erro" }, "⚠ erro") :
+    CHIP_FASE[data.status] ? h("span", { className: "chip " + CHIP_FASE[data.status].classe },
+      CHIP_FASE[data.status].texto) : null;
+  const tag = data.status === "em_andamento" &&
+    h("span", { className: "aqui-tag" }, "● você está aqui");
+  return h("div", { className: cls },
+    h(Handle, { type: "target", position: hz ? Position.Left : Position.Top,
+      style: hz ? meio(0, 15) : meio(15, 0) }),
+    h(Handle, { type: "source", position: hz ? Position.Right : Position.Bottom,
+      style: hz ? meio(30, 15) : meio(15, 30) }),
+    h(Handle, { type: "source", id: "ramal",
+      position: hz ? Position.Bottom : Position.Right,
+      style: hz ? meio(15, 30) : meio(30, 15) }),
+    h("div", { className: "bullet" },
+      data.status === "em_andamento" && h("span", { className: "halo" }),
+      data.fase.id),
+    hz
+      ? h(React.Fragment, null,
+          h("div", { className: "infos" }, h("span", { className: "nome" }, data.fase.titulo)),
+          (tag || chip) && h("div", { className: "anota" }, tag, chip))
+      : h("div", { className: "infos" }, tag,
+          h("span", { className: "nome" }, data.fase.titulo), chip));
+}
+
+function ParadaNode({ data }) {
+  const cls = ["parada", data.status, data.erro && "erro"].filter(Boolean).join(" ");
+  const custo = data.shot.custo_cr ? " · " + numero.format(data.shot.custo_cr) + " cr" : "";
+  return h("div", { className: cls },
+    h(Handle, { type: "target", position: data.horizontal ? Position.Top : Position.Left,
+      style: data.horizontal ? meio(7, 0) : meio(0, 10) }),
+    h("div", { className: "ponto" },
+      data.status === "gerando" && h("span", { className: "halo" })),
+    h("span", { className: "rotulo-parada" },
+      data.shot.id + " v" + (data.shot.versao || 1),
+      h("span", { className: "custo" }, custo)));
+}
+
+/* ── trilhos (arestas) ───────────────────────────────────────────── */
+
+function TrilhoEdge(props) {
+  const [path] = getSmoothStepPath({
+    sourceX: props.sourceX, sourceY: props.sourceY, sourcePosition: props.sourcePosition,
+    targetX: props.targetX, targetY: props.targetY, targetPosition: props.targetPosition,
+    borderRadius: 26,
+  });
+  const d = props.data || {};
+  const ram = d.ramal ? "ramal-" : "";
+  if (d.estado === "pendente")
+    return h("g", null,
+      h("path", { d: path, className: "trilho-casing " + ram + "casing" }),
+      h("path", { d: path, className: "trilho-miolo " + ram + "miolo" }));
+  return h("g", null,
+    h("path", { d: path, className: d.ramal ? "cruza-ramal" : "cruza-trilho" }),
+    h("path", { d: path, className: "trilho-feito " + ram + "feito" }),
+    d.estado === "ativo" ? h("path", { d: path, className: "trilho-trem" }) : null);
+}
+
+const nodeTypes = { estacao: EstacaoNode, parada: ParadaNode };
+const edgeTypes = { trilho: TrilhoEdge };
+
+/* ── layout: mapa de bolso (vertical) ou strip map (horizontal) ──── */
+
+function buildGraph(estado, horizontal) {
+  const nodes = [], edges = [];
+  const ultimoNivel = nivelPorRef(estado.eventos);
+  const porFase = {};
+  for (const s of estado.shots || []) (porFase[s.fase] ||= []).push(s);
+  let pos = 0;
+  FASES.forEach((f, i) => {
+    const st = (estado.fases || {})[f.id] || "pendente";
+    const erro = ultimoNivel[f.id] === "erro";
+    const shots = porFase[f.id] || [];
+    nodes.push({ id: "f" + f.id, type: "estacao",
+      position: horizontal ? { x: pos, y: 0 } : { x: 0, y: pos },
+      data: { fase: f, status: st, erro, horizontal } });
+    if (i > 0) {
+      const stAnt = (estado.fases || {})[FASES[i - 1].id] || "pendente";
+      const percorrido = stAnt === "concluida" || stAnt === "pulada";
+      edges.push({ id: "e" + i, source: "f" + FASES[i - 1].id, target: "f" + f.id,
+        type: "trilho",
+        data: { estado: !percorrido ? "pendente" : EM_MOVIMENTO.includes(st) ? "ativo" : "feito" } });
+    }
+    shots.forEach((s, j) => {
+      const sErro = ultimoNivel[s.id] === "erro";
+      nodes.push({ id: "s" + s.id, type: "parada",
+        position: horizontal
+          ? { x: pos + 48 + j * 22, y: 86 + j * 52 }
+          : { x: 320, y: pos + 26 + j * 54 },
+        data: { shot: s, status: s.status, erro: sErro, horizontal } });
+      edges.push({ id: "es" + s.id, source: "f" + f.id, sourceHandle: "ramal",
+        target: "s" + s.id, type: "trilho",
+        data: { ramal: true,
+          estado: s.status === "planejado" ? "pendente" :
+                  s.status === "gerando" ? "ativo" : "feito" } });
+    });
+    pos += horizontal
+      ? Math.max(150, 96 + shots.length * 24)
+      : Math.max(96, shots.length * 54 + 56);
+  });
+  return { nodes, edges };
+}
+
+/* ── banda, faixas e quadro ──────────────────────────────────────── */
+
+function Banda({ estado, ultimoOk }) {
   const { gasto_cr = 0, teto_cr = 0 } = estado.custos || {};
   const pct = teto_cr ? Math.min(100, 100 * gasto_cr / teto_cr) : 0;
   const ts = Date.parse(estado.atualizado_em);
   const idadeEstado = Number.isNaN(ts) ? Infinity : Date.now() - ts;
   const semConexao = Date.now() - ultimoOk > CONEXAO_MS;
+  const atual = FASES.find(f => f.id === String(estado.fase_atual));
+  const inicial = (estado.filme || "?").charAt(0).toUpperCase();
+  const bloqueios = Object.values(nivelPorRef(estado.eventos))
+    .filter(n => n === "erro").length;
   return h(React.Fragment, null,
-    h("div", { className: "header" },
-      h("span", { className: "filme" }, estado.filme),
-      h("span", null, "fase atual: " + (estado.fase_atual || "?")),
-      h("div", { className: "custo" },
-        h("div", null, gasto_cr + " / " + teto_cr + " cr"),
-        h("div", { className: "barra" },
-          h("div", { className: "cheio" + (pct >= 85 ? " estourando" : ""),
-            style: { width: pct + "%" } }))),
-      h("span", null, "atualizado " + idadeTexto(idadeEstado))),
-    semConexao && h("div", { className: "banner desconectado" },
-      "Sem conexão com o server - o serve.sh caiu? Continuo tentando."),
+    h("header", { className: "banda" },
+      h("div", { className: "rota" },
+        h("span", { className: "bullet-linha" }, inicial),
+        h("span", { className: "nome-linha" }, "Linha " + (estado.filme || "?"))),
+      h("div", { className: "aqui" },
+        h("div", { className: "rotulo" }, "Você está aqui"),
+        h("div", { className: "estacao-atual" },
+          atual ? "Estação " + atual.id + " · " + atual.titulo : "fase " + (estado.fase_atual || "?"))),
+      h("div", { className: "regua" },
+        h("div", { className: "rotulo" },
+          h("span", null, "Créditos"),
+          h("span", { className: "valor" },
+            numero.format(gasto_cr) + " / " + numero.format(teto_cr) + " cr")),
+        h("div", { className: "trilho-regua" },
+          h("div", { className: "base" }),
+          h("div", { className: "cheio" + (gasto_cr > teto_cr ? " estourou" : pct >= 85 ? " perto" : ""),
+            style: { transform: "scaleX(" + pct / 100 + ")" } }),
+          Array.from({ length: 9 }, (_, i) =>
+            h("span", { className: "tick", key: i, style: { left: (i + 1) * 10 + "%" } })))),
+      h("span", { className: "frescor" }, "atualizado " + idadeTexto(idadeEstado))),
+    bloqueios > 0 && h("div", { className: "faixa interrupcao" },
+      h("span", { className: "sinal" }, "⚠"),
+      "Interrupção na linha · " + bloqueios +
+        (bloqueios === 1 ? " ponto" : " pontos") + " com bloqueio ",
+      h("small", null, "· vermelho no mapa: o último evento do ponto é erro")),
+    semConexao && h("div", { className: "faixa desconectado" },
+      h("span", { className: "sinal" }, "⚠"),
+      "Sem conexão com o server ",
+      h("small", null, "· o serve.sh caiu? Continuo tentando reconectar.")),
     !semConexao && idadeEstado > FRESCOR_MS &&
-      h("div", { className: "banner congelado" },
-        "estado.json sem escrita há mais de 3 min - board possivelmente congelado."));
+      h("div", { className: "faixa congelado" },
+        h("span", { className: "sinal" }, "⚠"),
+        "Linha sem reporte há mais de 3 min ",
+        h("small", null, "· estado.json parou de ser escrito - board possivelmente congelado.")));
 }
 
-function Feed({ eventos }) {
+function Quadro({ eventos }) {
   const itens = [...(eventos || [])].reverse().slice(0, 50);
-  return h("div", { className: "feed" }, itens.map((ev, i) =>
-    h("div", { className: "evento " + (ev.nivel || "info"), key: i },
-      h("div", { className: "meta" },
-        (d => Number.isNaN(d.getTime()) ? "??:??:??" : d.toTimeString().slice(0, 8))(new Date(ev.t)) + "  " + ev.tipo +
-        (ev.ref ? " · " + ev.ref : "") +
-        (ev.custo_cr ? " · " + ev.custo_cr + " cr" : "")),
-      h("div", null, ev.msg))));
+  return h("aside", { className: "quadro" },
+    h("h2", null, "Atualizações de serviço"),
+    h("div", { className: "rolagem" },
+      itens.length === 0
+        ? h("div", { className: "vazio" }, "Sem atualizações - linha em operação normal.")
+        : itens.map(ev =>
+            h("div", { className: "atualizacao" + (ev.nivel === "erro" ? " erro" : ""),
+              key: (ev.t || "") + (ev.tipo || "") + (ev.msg || "") },
+              h("div", { className: "meta" },
+                h("span", { className: "hora" },
+                  (d => Number.isNaN(d.getTime()) ? "??:??:??" : d.toTimeString().slice(0, 8))(new Date(ev.t))),
+                h("span", { className: "chip " + (ev.nivel === "erro" ? "erro" : CHIP_EVENTO[ev.tipo] || "cinza") },
+                  (ev.tipo || "?") + (ev.ref ? " · " + ev.ref : "")),
+                ev.custo_cr ? h("span", { className: "hora" }, numero.format(ev.custo_cr) + " cr") : null),
+              h("div", { className: "msg" }, ev.msg)))));
 }
+
+function Legenda() {
+  return h("div", { className: "legenda", "aria-label": "Legenda do diagrama" },
+    h("span", { className: "item" }, h("span", { className: "simb gate" }), "baldeação = gate"),
+    h("span", { className: "item" }, h("span", { className: "simb-x" }, "✕"), "fechada = pulada"),
+    h("span", { className: "item" }, h("span", { className: "simb construir" }), "a construir"),
+    h("span", { className: "item" }, h("span", { className: "simb trem" }), "trem em movimento"),
+    h("span", { className: "item" }, h("span", { className: "simb validacao" }), "validando"),
+    h("span", { className: "item" }, h("span", { className: "simb aviso" }), "aguardando você"),
+    h("span", { className: "item" }, h("span", { className: "simb erro" }), "bloqueio/erro"),
+    h("span", { className: "item" }, h("span", { className: "simb aprovado" }), "aprovado"));
+}
+
+/* ── app ─────────────────────────────────────────────────────────── */
 
 function App() {
   const [estado, setEstado] = React.useState(null);
-  const filme = new URLSearchParams(location.search).get("filme");
   const [ultimoOk, setUltimoOk] = React.useState(0);
+  const [largo, setLargo] = React.useState(() => matchMedia("(min-width: 1100px)").matches);
+  const filme = new URLSearchParams(location.search).get("filme");
+  React.useEffect(() => {
+    const m = matchMedia("(min-width: 1100px)");
+    const f = e => setLargo(e.matches);
+    m.addEventListener("change", f);
+    return () => m.removeEventListener("change", f);
+  }, []);
   React.useEffect(() => {
     if (!filme) return;
     let vivo = true;
@@ -185,18 +480,33 @@ function App() {
     const id = setInterval(tick, 1000);
     return () => { vivo = false; clearInterval(id); };
   }, [filme]);
-  if (!filme) return h("div", { className: "aviso" },
-    "Faltou ?filme=<slug> na URL - use tools/viz/serve.sh <slug>.");
-  if (!estado) return h("div", { className: "aviso" }, "Carregando estado.json…");
-  const { nodes, edges } = buildGraph(estado);
+  // relógio de parede: banners e frescor precisam re-renderizar mesmo sem poll ok
+  const [, forcar] = React.useState(0);
+  React.useEffect(() => {
+    const id = setInterval(() => forcar(n => n + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+  if (!filme) return h("div", { className: "aviso-tela" },
+    h("h1", null, "Linha não informada"),
+    h("p", null, "Abra com ", h("code", null, "?filme=<slug>"), " na URL - o ",
+      h("code", null, "tools/viz/serve.sh <slug>"), " imprime o endereço completo."));
+  if (!estado) return h("div", { className: "aviso-tela" },
+    h("h1", null, "Aguardando composição"),
+    h("p", null, "O ", h("code", null, "estado.json"), " desta linha ainda não foi publicado. ",
+      "Rode o ", h("code", null, "/novo-video"), " (a fase 2 cria o arquivo) ou o simulador: ",
+      h("code", null, "bash tools/viz/demo/simular.sh"), "."));
+  const { nodes, edges } = buildGraph(estado, largo);
   return h("div", { className: "app" },
-    h(Header, { estado, ultimoOk }),
+    h(Banda, { estado, ultimoOk }),
     h("div", { className: "corpo" },
-      h("div", { className: "grafo" },
-        h(ReactFlow, { nodes, edges, fitView: true,
-          nodesDraggable: false, nodesConnectable: false },
-          h(Background, { gap: 24 }))),
-      h(Feed, { eventos: estado.eventos })));
+      h("div", { className: "mapa" },
+        h("div", { className: "fluxo" },
+          h(ReactFlow, { key: largo ? "strip" : "bolso", nodes, edges, nodeTypes, edgeTypes,
+            fitView: true, fitViewOptions: { padding: 0.12 },
+            proOptions: { hideAttribution: true },
+            nodesDraggable: false, nodesConnectable: false, elementsSelectable: false })),
+        h(Legenda)),
+      h(Quadro, { eventos: estado.eventos })));
 }
 
 createRoot(document.getElementById("root")).render(h(App));
