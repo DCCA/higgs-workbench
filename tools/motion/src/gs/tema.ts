@@ -66,6 +66,11 @@ export const tema = {
     display: 92, // título de GsBeat/GsCartaoValor - referência do kit, não mexer
     corpo: 28, // linha de apoio mono de GsBeat - referência do kit, não mexer
     legenda: 20, // Rodape (fonte)
+    // texto mono dentro do Cartao raised-paper de GsDocumento (citação-
+    // artefato): maior que corpo (28, texto corrido) e menor que rotuloDado
+    // (40, rótulo curto) - calibrado para ~2 linhas de uma frase de citação
+    // em inglês na largura do Cartao (860px úteis a 1080 de largura).
+    citacao: 48,
     // linha do Placar: rótulo mono junto ao valor. As linhas do Placar são
     // o payoff do filme (o resultado da aposta) - precisam dominar o
     // quadro, não ler como legenda de rodapé.

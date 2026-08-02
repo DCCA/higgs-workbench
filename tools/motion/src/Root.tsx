@@ -12,6 +12,8 @@ import { Legendas, legendasSchema } from "./scenes/Legendas";
 import { GsBeat, gsBeatSchema } from "./gs/cenas/GsBeat";
 import { GsCartaoValor, gsCartaoValorSchema } from "./gs/cenas/GsCartaoValor";
 import { GsPlacar, gsPlacarSchema } from "./gs/cenas/GsPlacar";
+import { GsDocumento, gsDocumentoSchema } from "./gs/cenas/GsDocumento";
+import { GsCartela, gsCartelaSchema } from "./gs/cenas/GsCartela";
 import demoAbertura from "../demo/abertura.json";
 import demoStatCard from "../demo/statcard.json";
 import demoFluxo from "../demo/fluxo.json";
@@ -21,6 +23,8 @@ import demoLegendas from "../demo/legendas.json";
 import demoGsBeat from "./gs/demo/beat.json";
 import demoGsCartaoValor from "./gs/demo/cartao-valor.json";
 import demoGsPlacar from "./gs/demo/placar.json";
+import demoGsDocumento from "./gs/demo/documento.json";
+import demoGsCartela from "./gs/demo/cartela.json";
 
 const sanitySchema = z.object({ texto: z.string() });
 
@@ -159,6 +163,32 @@ export const Root: React.FC = () => (
       component={GsPlacar}
       schema={gsPlacarSchema}
       defaultProps={demoGsPlacar}
+      width={1080}
+      height={1920}
+      fps={24}
+      durationInFrames={96}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.round(props.duracaoSeg * 24),
+      })}
+    />
+    <Composition
+      id="GsDocumento"
+      component={GsDocumento}
+      schema={gsDocumentoSchema}
+      defaultProps={demoGsDocumento}
+      width={1080}
+      height={1920}
+      fps={24}
+      durationInFrames={120}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.round(props.duracaoSeg * 24),
+      })}
+    />
+    <Composition
+      id="GsCartela"
+      component={GsCartela}
+      schema={gsCartelaSchema}
+      defaultProps={demoGsCartela}
       width={1080}
       height={1920}
       fps={24}
