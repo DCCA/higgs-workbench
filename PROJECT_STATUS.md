@@ -4,6 +4,47 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` d
 pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
 foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
+## 2026-08-02 - Board ao vivo do workflow (spec → ship → re-skin "linha de metrô") + higiene do repo
+
+**Where we were:** evals pausado por crédito; CLAUDE.md defasado do workflow v2;
+ninguém sabia que a descontaminação (#17) tinha levado as bíblias das pastas locais.
+
+**What we did:**
+- **CLAUDE.md alinhado ao v2** (#19): validador-gate virou princípio 6, comandos do
+  QC empacotado, passo do `.gitignore` por slug (aqui e na fase 2 da skill),
+  edge-tts via uvx, custo de vídeo 17-52 cr nos três docs.
+- **Higiene mare-alta** (#20) que puxou o fio: bíblias de mascaras/voo/alem/chave
+  estavam FORA das pastas locais → restauradas da ref git pré-rewrite; branch
+  remota `docs/proposta-open-source` (pré-rewrite, com as 5 bíblias) DELETADA do
+  GitHub; sobrou exposição residual via `refs/pull/1-16` (fetch por qualquer um;
+  forks: 0).
+- **Board ao vivo do workflow**: spec decidido em conversa (#21 - board por shot,
+  HTML único + xyflow via CDN sem build, estado.json escrito pelo diretor e
+  conferido pelo validador); implementado via plano SDD de 6 tasks com review por
+  task (#22 - viewer + serve.sh + fixture golden + simulador sem créditos +
+  integração skill/validador/ESTRUTURA; bateria de aceite 4/4, reviews pegaram 4
+  bugs herdados do próprio plano); re-skin **impeccable** (#23 - mundo "linha de
+  metrô" Beck/Vignelli: fases=estações, gates=baldeações, erro=disrupção; direção
+  sorteada seed 6cb3d033 e confirmada pelo usuário; PRODUCT.md + DESIGN.md +
+  `.impeccable/` agora são a régua de UI do viewer).
+- **Contrato de escrita do estado.json** na SKILL (ref exato, `atualizado_em` UTC,
+  tmp+mv atômico, estados validando/gate_usuario) + spec coerente com ele.
+
+**Decisions:** em DECISOES.md (2026-08-01, board por shot + abordagem A + sem
+build); erro SEMPRE vence visualmente (produto e cascade); demo/simulador é o
+harness de teste do board a custo zero.
+
+**Pending / next:**
+- [ ] **Estreia real do board na retomada do evals** (pós-renovação de crédito) -
+      o teste de verdade do alarme de frescor ("LINHA SEM REPORTE").
+- [ ] evals (herdado de 27/07): refazer S5 reveal, retake S4, montagem final + VO +
+      trilha + reviews 7b/8b + registro fase 10; conferir dreno de 320 cr
+      "Cinematic Studio 3.5" na conta HF.
+- [ ] **Usuário: decidir purga dos `refs/pull` antigos do GitHub** (história
+      pré-rewrite com bíblias segue baixável; GitHub Support Sensitive Data
+      Removal ou repo privado temporário).
+- [ ] Usuário: rotacionar o token HF (aberto desde 19/07).
+
 ## 2026-07-27 - evals ("evals são os novos PRDs"): pivô p/ voo rasante, pausado por crédito
 
 **Where we were:** vídeo novo na linguagem do A CHAVE (nanquim/mapa GoT), conteúdo de
