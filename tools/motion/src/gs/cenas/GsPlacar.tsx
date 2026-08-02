@@ -1,9 +1,10 @@
-// Cena: GsPlacar. Cabeçalho de objeto-fio (Relogio) + linhas rótulo/valor
-// ancoradas no rodapé do quadro (marginTop: auto), cada uma com régua embaixo
-// e stagger na entrada (mesmo idioma da Timeline do quadro-negro: cascata por
-// índice). `zero: true` pinta o valor em acento - o valor já é escala.corpo
-// (>=24px), seguro em acento sobre o chão pela regra de cor de ../tema.ts.
-// Ver contrato de direção em ../tema.ts e primitivas em ../papel.tsx.
+// Cena: GsPlacar. Cabeçalho de objeto-fio (Relogio) + linhas rótulo/valor,
+// centralizadas verticalmente no espaço restante pela regra de composição de
+// `Papel` (ver ../papel.tsx), cada uma com régua embaixo e stagger na entrada
+// (mesmo idioma da Timeline do quadro-negro: cascata por índice). `zero:
+// true` pinta o valor em acento - o valor já é escala.corpo (>=24px), seguro
+// em acento sobre o chão pela regra de cor de ../tema.ts. Ver contrato de
+// direção em ../tema.ts.
 import React from "react";
 import { z } from "zod";
 import { tema } from "../tema";
@@ -67,7 +68,7 @@ export const GsPlacar: React.FC<GsPlacarProps> = ({ hora, progresso, linhas, fon
     <Papel rodape={fonte ? <Rodape fonte={fonte} delayFrames={delayRodape} /> : undefined}>
       <Relogio hora={hora} progresso={progresso} />
 
-      <div style={{ display: "flex", flexDirection: "column", width: "100%", gap: 6, marginTop: "auto" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", gap: 6 }}>
         {linhas.map((linha, indice) => (
           <Linha key={indice} {...linha} delayFrames={INICIO_LINHAS + indice * PASSO_LINHA} />
         ))}
