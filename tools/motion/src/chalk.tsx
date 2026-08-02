@@ -82,10 +82,17 @@ export const TracoGiz: React.FC<{
   const j = (n: number) => (random(`${seed}-${n}`) - 0.5) * 10;
   const mid = width / 2;
   const c = TRACO_CROSS / 2;
+  // Arco intrínseco do giz: bases de controle assimétricas (∓BOW em torno de
+  // `c`) reproduzem a curva pré-unificação (c9edecc: endpoints em 8, controles
+  // em 0/16 - um bow de ~16px), só recentradas em TRACO_CROSS/2 em vez de
+  // ancoradas em 8 (ancorar em 8 reintroduziria o bug de espinha
+  // descentralizada do finding 2 do fix round 1). Jitter continua por cima
+  // desse arco, nunca é a única fonte de curvatura.
+  const BOW = 8;
   const path =
     orientacao === "v"
-      ? `M${c + j(0)},0 C ${c + j(1)},${mid * 0.5} ${c + j(2)},${mid * 1.5} ${c + j(3)},${width}`
-      : `M0,${c + j(0)} C ${mid * 0.5},${c + j(1)} ${mid * 1.5},${c + j(2)} ${width},${c + j(3)}`;
+      ? `M${c + j(0)},0 C ${c - BOW + j(1)},${mid * 0.5} ${c + BOW + j(2)},${mid * 1.5} ${c + j(3)},${width}`
+      : `M0,${c + j(0)} C ${mid * 0.5},${c - BOW + j(1)} ${mid * 1.5},${c + BOW + j(2)} ${width},${c + j(3)}`;
   const drawn = interpolate(local, [0, tema.ritmo.entradaFrames], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
