@@ -68,6 +68,11 @@ condizente com o material deste gate) e coerente com o disco? Spot-check: 1 shot
 `aprovado` do JSON existe na pasta principal correspondente (`02_ancoras/` ou
 `03_takes/`); a fase deste gate está `validando` no JSON.
 
+**ESTILO (quando o briefing declara um):** o material adere à identidade visual e
+à linguagem de montagem do `estilos/ESTILO-<slug>.md`? Desvios são intencionais e
+anotados na bíblia? A régua de QC própria do estilo foi aplicada? Números citados
+como "custos típicos" têm origem medida (estilo `rascunho` não vale como fonte)?
+
 ## Formato de resposta (sempre)
 
 ```

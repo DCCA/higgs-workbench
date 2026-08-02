@@ -18,6 +18,7 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 | `PROJECT_STATUS.md` | logbook por sessão (mais recente primeiro) |
 | `docs/` | esta pasta: arquitetura viva + log de decisões |
 | `tools/viz/` | board ao vivo do workflow (xyflow sem build): serve.sh + viewer que lê `<slug>/estado.json` escrito pelo diretor a cada transição |
+| `estilos/` | receitas reutilizáveis por tipo de vídeo (`ESTILO-<slug>.md`; contrato em `docs/PROPOSTA-estilos-de-video.md`) - o brief pergunta o estilo, o validador confere aderência, a fase 10 devolve lições |
 
 ## Árvore padrão por filme
 
