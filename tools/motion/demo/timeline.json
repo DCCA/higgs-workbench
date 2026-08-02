@@ -1,0 +1,8 @@
+{
+  "eventos": [
+    { "data": "seg", "texto": "Paper publicado" },
+    { "data": "qua", "texto": "Pesos liberados" },
+    { "data": "sex", "texto": "Benchmark reproduzido" }
+  ],
+  "duracaoSeg": 6
+}

@@ -3,8 +3,33 @@
 // papel LÊ (corpo de texto pequeno, nunca giz). Reusado por todas as cenas do
 // ESTILO-infografico - nenhuma cor/fonte/ritmo aqui é hardcoded fora de `tema`.
 import React from "react";
-import { interpolate, random, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, random, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { tema } from "./theme";
+
+/** Casco padrão de cena: fundo ardósia + poeira + área com margem do kit. Toda
+ * cena do ESTILO-infografico monta seu conteúdo aqui em vez de repetir o shell. */
+export const Quadro: React.FC<{
+  children: React.ReactNode;
+  poeiraSeed: string;
+  poeiraCount?: number;
+  style?: React.CSSProperties;
+}> = ({ children, poeiraSeed, poeiraCount, style }) => (
+  <AbsoluteFill style={{ backgroundColor: tema.cor.fundo }}>
+    <Poeira seed={poeiraSeed} count={poeiraCount} />
+    <AbsoluteFill
+      style={{
+        padding: tema.espaco.margem,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: tema.espaco.gap,
+        ...style,
+      }}
+    >
+      {children}
+    </AbsoluteFill>
+  </AbsoluteFill>
+);
 
 /** Estilo de texto em giz: fonte display + leve textura (camadas de sombra, não "sketch filter"). */
 export const estiloGiz = (color: string): React.CSSProperties => ({
@@ -63,6 +88,46 @@ export const TracoGiz: React.FC<{
         marginRight: align === "center" ? "auto" : 0,
       }}
     >
+      <path
+        d={path}
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeDasharray={length}
+        strokeDashoffset={length * (1 - drawn)}
+      />
+    </svg>
+  );
+};
+
+/** Traço de giz vertical (espinha de timeline etc.): mesmo draw-on/jitter do
+ * TracoGiz horizontal, girado 90°. Primitiva compartilhada - ver chalk.tsx. */
+export const TracoGizVertical: React.FC<{
+  height: number;
+  seed: string;
+  color?: string;
+  strokeWidth?: number;
+  delayFrames?: number;
+}> = ({ height, seed, color = tema.cor.destaque, strokeWidth = 6, delayFrames = 0 }) => {
+  const frame = useCurrentFrame();
+  const local = Math.max(0, frame - delayFrames);
+  const j = (n: number) => (random(`${seed}-${n}`) - 0.5) * 10;
+  const midY = height / 2;
+  const path = `M${8 + j(0)},0 C ${j(1)},${midY * 0.5} ${16 + j(2)},${midY * 1.5} ${8 + j(3)},${height}`;
+  const drawn = interpolate(local, [0, tema.ritmo.entradaFrames], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const assentado = interpolate(
+    local,
+    [tema.ritmo.entradaFrames, tema.ritmo.entradaFrames + tema.ritmo.assentamentoFrames],
+    [1, 0.88],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+  const length = height * 1.15;
+  return (
+    <svg width={28} height={height} style={{ overflow: "visible", opacity: assentado, display: "block" }}>
       <path
         d={path}
         fill="none"
