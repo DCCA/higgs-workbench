@@ -60,7 +60,7 @@ const PontoGiz: React.FC<{ seed: string; delayFrames: number }> = ({ seed, delay
         transform={`translate(${box / 2},${box / 2})`}
         fill="none"
         stroke={tema.cor.destaque}
-        strokeWidth={3}
+        strokeWidth={tema.traco.fino}
         strokeLinecap="round"
       />
     </svg>

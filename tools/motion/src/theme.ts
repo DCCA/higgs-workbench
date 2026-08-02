@@ -48,6 +48,12 @@ export const tema = {
     assentamentoFrames: 8,    // janela de assentamento pós-entrada (spring da etiqueta, settle do traço)
     // sem animação de saída em cena - transições entre cenas são do ffmpeg (decisão do plano)
   },
+  // espessura do traço de giz é do MUNDO (theme), não da cena que desenha
+  traco: {
+    principal: 6,   // traço-título (TracoGiz default: Abertura/StatCard/Cartela/Timeline)
+    medio: 4,       // aresta do FluxoDiagrama
+    fino: 3,        // marcador circular da Timeline
+  },
   espaco: {
     margem: 96,
     gap: 36,

@@ -207,6 +207,9 @@ Regras da camada:
   TRÊS flags juntas (`--codec=vp9 --pixel-format=yuva420p --image-format=png`) e
   o ffmpeg sobrepõe com `-c:v libvpx-vp9` ANTES do `-i` do webm. O clipe base fica
   intacto e cena = take se mantém. Receita completa em `tools/motion/README.md`.
+- **O filtro `overlay` precisa de `eof_action=pass` explícito.** O padrão
+  (`repeat`) reexibe o último frame do webm por cima do resto do clipe base -
+  legenda "fantasma" congelada em ~7% de opacidade depois que o segmento acaba.
 - **Nenhum valor visual fora do tema.** Cor, fonte, degrau de tipo, ritmo e margem
   vêm de `theme.ts`. Geometria de layout (largura de caixa, altura de linha) é da
   cena e vive nela - a fronteira está comentada no código.
@@ -221,7 +224,7 @@ Pré-requisito uma vez por máquina: `cd tools/motion && npm install` (ver
 |---|---|---|---|
 | 0 | Fatos checados, roteiro de VO | papel | 0 cr |
 | 1 | Props JSON por cena (o roteiro vira dado) | editor | 0 cr |
-| 2 | Âncoras = stills renderizados | `npx remotion still <Cena> --props=<props.json> saida.png` | 0 cr |
+| 2 | Âncoras = stills renderizados | `npx remotion still <Cena> --props=<props.json> --frame=60 saida.png` (frame tardio - pós-entrada+assentamento; frame 0 é o quadro vazio) | 0 cr |
 | 3 | Storyboard = os stills na ordem dos beats | ffmpeg / PIL | 0 cr |
 | 4 | Wow-shot = a cena de maior risco, renderizada primeiro | `npx remotion render` | 0 cr + tempo |
 | 5 | Takes = cenas renderizadas | `npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4` | 0 cr + tempo |
@@ -329,3 +332,8 @@ textura e opacidade próprias. Medir no frame, não no token.
   direção autoral (quadro-negro de aula) escolhida pelo usuário na página de
   decisão do seed 4f753cb2. Sem filme concluído: todo bloco marcado `HIPÓTESE:`
   é substituído por medição na fase 10 do 1º filme, que gradua o estilo a `ativo`.
+- 2026-08-02: **`FluxoDiagrama` v1 é o outlier vetorial do kit** - bordas retas,
+  setas sólidas, sem bow/jitter nos edges (todas as outras cenas desenham à mão
+  via `TracoGiz`). Candidato nº1 de re-craft na graduação do estilo: arestas com
+  o mesmo draw-on/jitter do resto do mundo giz, não linhas de diagrama de fluxo
+  corporativo.

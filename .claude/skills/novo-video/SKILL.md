@@ -57,7 +57,8 @@ material chega ao usuário (é o que o checklist transversal do validador confer
 
 Quando o estilo declara produção programática (`tools/motion/`), o workflow NÃO
 muda - muda a origem do take: âncoras = stills renderizados
-(`npx remotion still <Cena> --props=<json>`), wow-shot = a cena de maior risco
+(`npx remotion still <Cena> --props=<json> --frame=60`, sempre com frame tardio
+- pós-entrada + assentamento; frame 0 é o quadro vazio), wow-shot = a cena de maior risco
 renderizada primeiro, takes = cenas renderizadas (`npx remotion render`), montagem
 = ffmpeg como sempre (cena é take; transição NUNCA dentro do Remotion). Preflight
 continua obrigatório: a conta mostra 0 cr + o tempo de render por cena (referência

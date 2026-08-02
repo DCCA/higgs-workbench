@@ -66,8 +66,9 @@ contexto de uso (uso pessoal → empresa, ou time crescendo).
 
 ## 7. Fontes
 
-As fontes OFL em `assets/fonts/` (Inter, Space Mono, Cormorant, EB Garamond, Playfair)
-já vêm no repo. Para outras, use o CDN da fontsource (ver `FERRAMENTAS.md`).
+As fontes OFL em `assets/fonts/` (Inter, Space Mono, Cormorant, EB Garamond, Playfair,
+Fredericka the Great) já vêm no repo. Para outras, use o CDN da fontsource (ver
+`FERRAMENTAS.md`).
 
 ## 8. Pasta de entrega
 

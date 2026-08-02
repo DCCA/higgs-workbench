@@ -19,6 +19,7 @@ renderizadas como takes de vídeo 1080×1920@24.
 - Restrições: cena = take (transições no ffmpeg, nunca no Remotion); props zod;
   zero créditos; theme.ts é a única fonte visual; fontes OFL locais
   (Fredericka the Great = giz; Inter/Space Mono = etiquetas).
-- Momento memorável: o traço de giz se desenhando (draw-on com jitter + poeira) e
-  o tally batendo unidade por unidade.
+- Momento memorável: o traço de giz se desenhando (draw-on com jitter + poeira).
+  Tally marks são direção disponível na gramática (regra-mãe do ESTILO), sem
+  componente no kit v1 - nenhuma cena as usa ainda.
 - Não resolvido: nenhum.

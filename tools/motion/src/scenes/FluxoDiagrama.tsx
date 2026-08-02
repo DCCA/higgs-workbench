@@ -115,7 +115,7 @@ const ArestaGiz: React.FC<EdgeProps<Edge<ArestaData>>> = ({ sourceX, sourceY, ta
         markerEnd={setaPronta ? markerEnd : undefined}
         style={{
           stroke: tema.cor.texto,
-          strokeWidth: 4,
+          strokeWidth: tema.traco.medio,
           opacity: drawn,
           strokeDasharray: length,
           strokeDashoffset: length * (1 - drawn),

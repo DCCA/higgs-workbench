@@ -64,7 +64,6 @@ export const TracoGiz: React.FC<{
   width: number;
   seed: string;
   color?: string;
-  strokeWidth?: number;
   delayFrames?: number;
   align?: "left" | "center";
   orientacao?: "h" | "v";
@@ -72,7 +71,6 @@ export const TracoGiz: React.FC<{
   width,
   seed,
   color = tema.cor.destaque,
-  strokeWidth = 6,
   delayFrames = 0,
   align = "left",
   orientacao = "h",
@@ -121,7 +119,7 @@ export const TracoGiz: React.FC<{
         d={path}
         fill="none"
         stroke={color}
-        strokeWidth={strokeWidth}
+        strokeWidth={tema.traco.principal}
         strokeLinecap="round"
         strokeDasharray={length}
         strokeDashoffset={length * (1 - drawn)}

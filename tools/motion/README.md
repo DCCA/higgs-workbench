@@ -7,8 +7,7 @@ intermediário. Zero créditos Higgsfield: o custo é tempo de render local
 (CPU/GPU), não conta de API.
 
 Contrato completo (schemas, cenas, decupagem): `docs/PROPOSTA-motion-infografico.md`.
-Guia de estilo/tema (paleta, tipografia, ritmo): `estilos/ESTILO-infografico.md`
-(chega na Task 7).
+Guia de estilo/tema (paleta, tipografia, ritmo): `estilos/ESTILO-infografico.md`.
 
 ## Comandos
 
@@ -16,8 +15,10 @@ Guia de estilo/tema (paleta, tipografia, ritmo): `estilos/ESTILO-infografico.md`
 cd tools/motion && npm install          # install (roda `prepare`: copia fontes)
 bash check.sh                            # gate: tsc --noEmit + render-smoke de 1s
 
-# still/âncora (custo zero, 1 frame)
-npx remotion still <Cena> --props=demo/<cena>.json saida.png
+# still/âncora (custo zero, 1 frame) - SEMPRE com --frame tardio: frame 0 é o
+# quadro vazio (toda entrada começa em opacity 0); frame tardio = pós-entrada +
+# assentamento; ex.: --frame=60
+npx remotion still <Cena> --props=demo/<cena>.json --frame=60 saida.png
 
 # take (a cena inteira, vira o clipe da montagem)
 npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4
@@ -25,8 +26,10 @@ npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4
 # Legendas: fundo transparente, PRECISA das 3 flags juntas + saída .webm
 npx remotion render Legendas --props=demo/legendas.json \
   --codec=vp9 --pixel-format=yuva420p --image-format=png saida.webm
-# overlay sobre o clipe base (-c:v libvpx-vp9 vem ANTES do -i do webm):
-ffmpeg -i base.mp4 -c:v libvpx-vp9 -i saida.webm -filter_complex "overlay" \
+# overlay sobre o clipe base (-c:v libvpx-vp9 vem ANTES do -i do webm);
+# eof_action=pass é obrigatório - o padrão (repeat) congela o último frame do
+# webm (legenda "fantasma" em ~7% de opacidade) depois que o segmento acaba:
+ffmpeg -i base.mp4 -c:v libvpx-vp9 -i saida.webm -filter_complex "overlay=eof_action=pass" \
   -c:v libx264 -crf 16 saida.mp4
 
 npx remotion studio                      # preview interativo
