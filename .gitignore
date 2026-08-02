@@ -33,3 +33,6 @@ tools/motion/out/
 
 # filme SOL (portfolio local)
 /sol/
+
+# scratch dos fluxos de subagente (relatorios de producao, efemeros)
+.superpowers/
