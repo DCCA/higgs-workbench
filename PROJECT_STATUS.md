@@ -4,6 +4,45 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` d
 pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
 foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
+## 2026-08-02 (parte 2) - Estilos reutilizáveis + linha de produção com saldo ZERO (tools/motion)
+
+**Where we were:** board ao vivo recém-shipado; `evals` parado esperando renovação de
+crédito; nenhuma forma de produzir vídeo sem Higgsfield.
+
+**What we did:**
+- **Sistema de ESTILOS** (#25 spec, #26 implementação): `estilos/` com contrato de 11
+  seções; piloto `ESTILO-noticia-nanquim.md` destilado do A CHAVE (0 cr; blocos EN são
+  RECONSTRUÇÃO declarada - validar no próximo filme do tipo); `/novo-video` pergunta o
+  estilo no brief, fase 1.5 encurta, fase 2 cria rascunho, fase 10 promove lições e
+  gradua; validador confere aderência. A review EXECUTOU a receita de overlay do doc e
+  provou que ela renderizava supers invisíveis - corrigida e provada por sonda de pixel.
+- **`tools/motion/` - produção com ZERO créditos** (#27 spec, #28 plano, #29
+  implementação): workspace Remotion versionado (fonte no git, deps/renders fora),
+  `check.sh` como gate, kit de **6 cenas** com props JSON (Abertura, StatCard,
+  FluxoDiagrama, Timeline, Cartela, Legendas com alpha). **Cena = take**: árvore,
+  bíblia, `qc_video.sh`, gates e validador funcionam sem bifurcar o workflow.
+- **Direção visual própria** (gate do usuário, seed 4f753cb2): mundo **"quadro-negro de
+  aula"** - ardósia, giz Fredericka the Great (OFL, com atribuição nova em
+  `assets/fonts/README.md`), etiquetas de papel para texto pequeno, tokens únicos em
+  `tools/motion/src/theme.ts`. `ESTILO-infografico.md` nasce **rascunho** com 12
+  HIPÓTESES marcadas.
+- **Demo reel de aceite** (22,8s, 5 takes + legendas, 0 cr) montado pelo pipeline real e
+  aprovado pelo usuário; publicado como artifact para revisão remota.
+- Filosofia do repo atualizada em `CLAUDE.md`: versiona-se conhecimento - docs **e
+  ferramentas cristalizadas** (`tools/`). node/npm entra como dependência local.
+
+**Decisions:** em DECISOES.md (02/08) - tudo dentro do higgs, OpenMontage é inspiração e
+nunca dependência; cena=take; 1º filme FORA do incremento (é ele que gradua o estilo).
+
+**Pending / next:**
+- [ ] **1º vídeo-notícia em quadro-negro** (rodada normal do `/novo-video`, 0 cr): grava
+      os tempos medidos, substitui as 12 HIPÓTESES e gradua o estilo para `ativo`.
+      Candidato nº1 de re-craft na graduação: `FluxoDiagrama` (outlier vetorial - bordas
+      retas e setas sólidas, sem o bow/jitter do resto do kit).
+- [ ] Estreia do **board ao vivo** e do estilo nanquim quando o crédito renovar (evals).
+- [ ] Herdadas: purga dos `refs/pull` antigos do GitHub (decisão do usuário); rotação do
+      token HF (aberto desde 19/07).
+
 ## 2026-08-02 - Board ao vivo do workflow (spec → ship → re-skin "linha de metrô") + higiene do repo
 
 **Where we were:** evals pausado por crédito; CLAUDE.md defasado do workflow v2;
