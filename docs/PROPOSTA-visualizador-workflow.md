@@ -1,7 +1,6 @@
 # Proposta: visualizador de workflow (board ao vivo do /novo-video)
 
-Data: 2026-08-01. Status: spec aprovado em conversa (granularidade, veículo e
-arquitetura decididos com o usuário); aguardando revisão final deste texto via PR.
+Data: 2026-08-01. Status: contrato VIGENTE - aprovado na PR #21, implementado na PR #22.
 
 ## Problema
 
@@ -117,12 +116,13 @@ carga - limitação aceita na decisão de veículo.
 
 ## Verificação (Definition of Done adaptado: repo sem suite de testes)
 
-- `tools/viz/demo/estado_demo.json`: fixture que exercita TODOS os estados do
+- `tools/viz/demo/estado.json`: fixture que exercita TODOS os estados do
   contrato (cada status de fase e de shot, evento de cada nível) - dobra como
-  exemplo normativo do schema.
-- `tools/viz/demo/simular.sh`: loop que muta a fixture a cada ~2s (avança fases,
-  lança jobs, dispara um BLOQUEIA) para ver a animação de ponta a ponta sem
-  gastar créditos.
+  exemplo normativo do schema (a demo se comporta como um "filme").
+- `tools/viz/demo/simular.sh`: loop que escreve um estado simulado a cada ~2s
+  (avança fases, lança jobs, dispara um BLOQUEIA) para ver a animação de ponta a
+  ponta sem gastar créditos; grava em `tools/viz/demo/sim/estado.json`, visto em
+  `?filme=tools/viz/demo/sim`.
 - Verificação visual obrigatória (screenshot do board com a fixture) antes do PR;
   depois, primeiro uso real na retomada do `evals`.
 

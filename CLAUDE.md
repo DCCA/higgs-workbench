@@ -29,7 +29,7 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 - `assets/fonts/` - fontes OFL compartilhadas (Inter, Space Mono, Cormorant, EB Garamond, Playfair) para cartelas/overlays
 - `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
 - `.claude/agents/validador-gate.md` - subagente validador de olhos frios, exigido em todo gate (princípio 6 do workflow)
-- `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
+- `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/viz/` - board ao vivo do workflow (`bash tools/viz/serve.sh <slug>`, ver ESTRUTURA.md); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
 - Entregas para o usuário assistir: copiar para a sua pasta de entrega (ex.: `~/Downloads/<slug>/` ou onde preferir; ver SETUP.md)
 
 ## Workflow

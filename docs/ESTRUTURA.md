@@ -17,6 +17,7 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 | `<slug>/BIBLIA.md` | fonte de verdade de cada filme: identidade, decupagem, job IDs, custos, lições |
 | `PROJECT_STATUS.md` | logbook por sessão (mais recente primeiro) |
 | `docs/` | esta pasta: arquitetura viva + log de decisões |
+| `tools/viz/` | board ao vivo do workflow (xyflow sem build): serve.sh + viewer que lê `<slug>/estado.json` escrito pelo diretor a cada transição |
 
 ## Árvore padrão por filme
 
@@ -33,6 +34,14 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 ```
 Status é PASTA. Mídia fica fora do git (regenerável pelos job IDs da bíblia);
 só docs e fontes são versionados. `Downloads\<slug>\` espelha o gate atual + entrega.
+
+## Board ao vivo
+
+`diretor → <slug>/estado.json → tools/viz/serve.sh (http.server) → browser (poll 1s)`.
+Contrato do JSON e decisões: `docs/PROPOSTA-visualizador-workflow.md`. Demo sem
+créditos: `bash tools/viz/serve.sh tools/viz/demo` (estática) ou, com o serve.sh
+rodando, `bash tools/viz/demo/simular.sh` (rodada simulada em
+`?filme=tools/viz/demo/sim`).
 
 ## Fluxograma do workflow v2
 

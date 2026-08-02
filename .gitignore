@@ -22,3 +22,6 @@ tools/stable-audio/
 
 # saida temporaria de QC na raiz
 qc_out/
+
+# simulacoes do workflow (descartaveis)
+tools/viz/demo/sim/

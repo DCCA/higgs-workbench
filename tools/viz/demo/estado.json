@@ -1,0 +1,42 @@
+{
+  "filme": "demo",
+  "atualizado_em": "2026-08-01T12:00:00Z",
+  "fase_atual": "6",
+  "fases": {
+    "1": "concluida", "1.5": "pulada", "2": "concluida", "3": "concluida",
+    "4": "gate_usuario", "5": "concluida", "6": "em_andamento",
+    "7": "validando", "8": "bloqueada", "9": "pendente", "10": "pendente"
+  },
+  "shots": [
+    { "id": "A1_heroi", "tipo": "ancora", "fase": "3", "versao": 1,
+      "status": "aprovado", "custo_cr": 2.0, "job_id": "j-a1",
+      "arquivo": "02_ancoras/ancora_A1_heroi_v1.png" },
+    { "id": "A2_locacao", "tipo": "ancora", "fase": "3", "versao": 2,
+      "status": "descartado", "custo_cr": 4.0, "job_id": "j-a2",
+      "arquivo": "02_ancoras/_descartados/ancora_A2_locacao_v2.png" },
+    { "id": "S2_wow", "tipo": "take", "fase": "5", "versao": 2,
+      "status": "aprovado", "custo_cr": 45.0, "job_id": "j-s2",
+      "arquivo": "03_takes/take_S2_wow_v2.mp4" },
+    { "id": "S1", "tipo": "take", "fase": "6", "versao": 1,
+      "status": "gerando", "custo_cr": 17.5, "job_id": "j-s1", "arquivo": null },
+    { "id": "S3", "tipo": "take", "fase": "6", "versao": 1,
+      "status": "em_qc", "custo_cr": 17.5, "job_id": "j-s3",
+      "arquivo": "03_takes/take_S3_v1.mp4" },
+    { "id": "S4", "tipo": "take", "fase": "6", "versao": 2,
+      "status": "em_qc", "custo_cr": 35.0, "job_id": "j-s4",
+      "arquivo": "03_takes/take_S4_v2.mp4" },
+    { "id": "S5_reveal", "tipo": "take", "fase": "6", "versao": 1,
+      "status": "planejado", "custo_cr": null, "job_id": null, "arquivo": null }
+  ],
+  "eventos": [
+    { "t": "2026-08-01T11:40:00Z", "tipo": "fase", "ref": "6", "msg": "Produção iniciada", "nivel": "info" },
+    { "t": "2026-08-01T11:41:00Z", "tipo": "job", "ref": "S1", "msg": "seedance fast 5s lançado", "custo_cr": 17.5, "nivel": "info" },
+    { "t": "2026-08-01T11:44:00Z", "tipo": "qc", "ref": "S3", "msg": "qc_video.sh: sem flicker, sem freeze", "nivel": "info" },
+    { "t": "2026-08-01T11:47:00Z", "tipo": "retake", "ref": "S4", "msg": "v1 → v2: beat 99,9% não entrega; bracket persiste", "nivel": "alerta" },
+    { "t": "2026-08-01T11:50:00Z", "tipo": "audio", "ref": null, "msg": "2 candidatas de VO edge-tts geradas", "nivel": "info" },
+    { "t": "2026-08-01T11:52:00Z", "tipo": "gate", "ref": "4", "msg": "Storyboard aguardando decisão do usuário", "nivel": "alerta" },
+    { "t": "2026-08-01T11:55:00Z", "tipo": "veredito", "ref": "8", "msg": "BLOQUEIA: trilha sem cobertura na cauda", "nivel": "erro" },
+    { "t": "2026-08-01T11:58:00Z", "tipo": "veredito", "ref": "S4", "msg": "BLOQUEIA: faux-texto na borda do mostrador", "nivel": "erro" }
+  ],
+  "custos": { "gasto_cr": 123.5, "teto_cr": 300 }
+}
