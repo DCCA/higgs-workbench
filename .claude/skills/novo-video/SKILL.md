@@ -53,6 +53,18 @@ liga o alarme de frescor para sempre). Escrever o arquivo INTEIRO em
 a fase vira `validando` enquanto o validador roda e `gate_usuario` quando o
 material chega ao usuário (é o que o checklist transversal do validador confere).
 
+## Filme programático (transversal - estilos 100% motion)
+
+Quando o estilo declara produção programática (`tools/motion/`), o workflow NÃO
+muda - muda a origem do take: âncoras = stills renderizados
+(`npx remotion still <Cena> --props=<json> --frame=60`, sempre com frame tardio
+- pós-entrada + assentamento; frame 0 é o quadro vazio), wow-shot = a cena de maior risco
+renderizada primeiro, takes = cenas renderizadas (`npx remotion render`), montagem
+= ffmpeg como sempre (cena é take; transição NUNCA dentro do Remotion). Preflight
+continua obrigatório: a conta mostra 0 cr + o tempo de render por cena (referência
+no ESTILO e em tools/motion/README.md). Gates, validador, QC e bíblia idênticos -
+a bíblia registra os props JSON de cada take no lugar de job IDs.
+
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)

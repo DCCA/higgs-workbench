@@ -1,0 +1,12 @@
+{
+  "nos": [
+    { "id": "lab", "rotulo": "Laboratório", "destaque": false },
+    { "id": "modelo", "rotulo": "Modelo aberto", "destaque": true },
+    { "id": "bench", "rotulo": "Benchmark", "destaque": false }
+  ],
+  "arestas": [
+    { "de": "lab", "para": "modelo", "rotulo": "publica" },
+    { "de": "modelo", "para": "bench", "rotulo": "supera" }
+  ],
+  "duracaoSeg": 6
+}

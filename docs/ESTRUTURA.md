@@ -18,6 +18,7 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 | `PROJECT_STATUS.md` | logbook por sessão (mais recente primeiro) |
 | `docs/` | esta pasta: arquitetura viva + log de decisões |
 | `tools/viz/` | board ao vivo do workflow (xyflow sem build): serve.sh + viewer que lê `<slug>/estado.json` escrito pelo diretor a cada transição |
+| `tools/motion/` | kit Remotion de infográficos animados (6 cenas com props JSON, tokens em `src/theme.ts`): cena = take, zero créditos; gate `bash tools/motion/check.sh` |
 | `estilos/` | receitas reutilizáveis por tipo de vídeo (`ESTILO-<slug>.md`; contrato em `docs/PROPOSTA-estilos-de-video.md`) - o brief pergunta o estilo, o validador confere aderência, a fase 10 devolve lições |
 
 ## Árvore padrão por filme
@@ -43,6 +44,15 @@ Contrato do JSON e decisões: `docs/PROPOSTA-visualizador-workflow.md`. Demo sem
 créditos: `bash tools/viz/serve.sh tools/viz/demo` (estática) ou, com o serve.sh
 rodando, `bash tools/viz/demo/simular.sh` (rodada simulada em
 `?filme=tools/viz/demo/sim`).
+
+## Motion programático
+
+`props JSON → npx remotion render <Cena> → <slug>/03_takes/take_<CENA>_v1.mp4 →
+ffmpeg (xfade/concat) → master`. **Cena = take**: a composição renderizada É o
+clipe da montagem, então árvore de pastas, QC, folha de cortes, gates e bíblia
+funcionam sem mudança - só a origem do take muda (props JSON no lugar do ID de
+geração). Transição entre cenas é sempre ffmpeg, nunca Remotion. Receita completa:
+`estilos/ESTILO-infografico.md` e `tools/motion/README.md`.
 
 ## Fluxograma do workflow v2
 

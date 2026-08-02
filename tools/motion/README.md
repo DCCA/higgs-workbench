@@ -1,0 +1,52 @@
+# tools/motion
+
+Kit de infográficos animados via Remotion: **cena = take**. Cada composição
+já é o clipe final da cena - renderiza direto em vídeo e entra no corte por
+`ffmpeg concat`/`xfade` como qualquer outro take do workflow, sem passo
+intermediário. Zero créditos Higgsfield: o custo é tempo de render local
+(CPU/GPU), não conta de API.
+
+Contrato completo (schemas, cenas, decupagem): `docs/PROPOSTA-motion-infografico.md`.
+Guia de estilo/tema (paleta, tipografia, ritmo): `estilos/ESTILO-infografico.md`.
+
+Emendando take cru com take re-encodado (ex.: pós-overlay de Legendas)? Os
+timebases divergem e o xfade recusa a emenda - normalize toda entrada da cadeia
+com `[N:v]settb=AVTB,fps=24[nN]` antes do primeiro xfade.
+
+## Comandos
+
+```bash
+cd tools/motion && npm install          # install (roda `prepare`: copia fontes)
+bash check.sh                            # gate: tsc --noEmit + render-smoke de 1s
+
+# still/âncora (custo zero, 1 frame) - SEMPRE com --frame tardio: frame 0 é o
+# quadro vazio (toda entrada começa em opacity 0); frame tardio = pós-entrada +
+# assentamento; ex.: --frame=60
+npx remotion still <Cena> --props=demo/<cena>.json --frame=60 saida.png
+
+# take (a cena inteira, vira o clipe da montagem)
+npx remotion render <Cena> --props=<props.json> take_<CENA>_v1.mp4
+
+# Legendas: fundo transparente, PRECISA das 3 flags juntas + saída .webm
+npx remotion render Legendas --props=demo/legendas.json \
+  --codec=vp9 --pixel-format=yuva420p --image-format=png saida.webm
+# overlay sobre o clipe base (-c:v libvpx-vp9 vem ANTES do -i do webm);
+# eof_action=pass é obrigatório - o padrão (repeat) congela o último frame do
+# webm (legenda "fantasma" em ~7% de opacidade) depois que o segmento acaba:
+ffmpeg -i base.mp4 -c:v libvpx-vp9 -i saida.webm -filter_complex "overlay=eof_action=pass" \
+  -c:v libx264 -crf 16 saida.mp4
+
+npx remotion studio                      # preview interativo
+```
+
+## Tempos de render medidos
+
+Prova de integração (Step 1): `time npx remotion render <Cena> --props=... out.mp4`.
+Máquina: WSL2, RTX 3070, 12 cores. Medido em 2026-08-02.
+
+| Cena | Duração da cena | Frames | Tempo real (wall) |
+|---|---|---|---|
+| Abertura | 4s | 96 | 5,5s |
+| FluxoDiagrama | 6s | 144 | 7,0s |
+
+Números de referência para o preflight do ESTILO: tempo é o custo, créditos = 0.

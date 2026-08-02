@@ -25,3 +25,8 @@ qc_out/
 
 # simulacoes do workflow (descartaveis)
 tools/viz/demo/sim/
+
+# workspace motion (Remotion) - deps, fontes copiadas e renders
+tools/motion/node_modules/
+tools/motion/public/
+tools/motion/out/
