@@ -42,6 +42,22 @@ export const tema = {
     corpo: "Manrope", // mesma família do display - ground-station não tem um "corpo" separado
     mono: "DM Mono", // todo dado: hora, valor, rótulo, rodapé de fonte
   },
+  // pesos REAIS carregados por fontes.ts - nunca 700 em DM Mono: a família só
+  // ship 300/400/500 upstream, Chromium sintetiza (faux-bold) um 700 que não
+  // existe, engordando o traço ~27-36% sobre o peso real medido (ver nota em
+  // GsCartaoValor/GsPlacar). `dado` é o peso mais pesado de verdade da mono -
+  // usar em todo número/rótulo mono do kit, mesmo onde antes lia "700".
+  peso: {
+    normal: 400, // DM Mono Regular - reservado, nenhuma cena usa hoje
+    dado: 500, // DM Mono Medium - todo texto mono do kit (relógio, apoio, rótulo, valor, rodapé)
+    display: 800, // Manrope Variable cobre 200-800 de verdade - sem faux-bold aqui
+  },
+  // tracking: "apertado" pra leitura corrida (display e mono de leitura
+  // contínua), "largo" pra rótulo mono maiúsculo (rodapé, cabeçalho de cartão)
+  rastreio: {
+    apertado: "-0.02em",
+    largo: "0.08em",
+  },
   // escala tipográfica única do kit - cenas escolhem o degrau, nunca um px
   // solto. Calibrada pra leitura em celular 1080x1920 (não thumbnail):
   // menor tamanho legível ~32-36px, números-herói 120-200px.
@@ -81,6 +97,13 @@ export const tema = {
   espaco: {
     margem: 68, // mesmo valor do reel de origem (`style.css` .topline/.headline)
     gap: 32,
+    // pausa deliberada entre título e apoio do GsBeat (a "batida" do beat) -
+    // cena com só 2 blocos de texto (sem cartão/linhas) media 70% de vazio
+    // contíguo acima+abaixo do conteúdo contra ~55-65% das outras 2 cenas;
+    // `gap` (32, calibrado pra dado denso: cabeçalho/placar/cartão) deixava o
+    // par título+apoio colado demais pro pouco que ocupa - maior que `gap`
+    // mas < escala.display (92) pra não desconectar o apoio do título.
+    gapBeat: 120,
   },
   // assinatura do mundo: cartão com borda + sombra dura deslocada (não blur) -
   // valores do reel de origem (`.stage-node` em style.css), únicos p/ o kit

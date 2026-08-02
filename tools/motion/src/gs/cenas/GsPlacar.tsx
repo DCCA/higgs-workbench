@@ -51,13 +51,13 @@ const Linha: React.FC<{ rotulo: string; valor: string; zero?: boolean; delayFram
           paddingBottom: tema.espaco.gap,
         }}
       >
-        <span style={{ fontFamily: tema.tipo.mono, fontWeight: 500, fontSize: tema.escala.rotuloDado, color: tema.cor.suave }}>
+        <span style={{ fontFamily: tema.tipo.mono, fontWeight: tema.peso.dado, fontSize: tema.escala.rotuloDado, color: tema.cor.suave }}>
           {rotulo}
         </span>
         <span
           style={{
             fontFamily: tema.tipo.mono,
-            fontWeight: 700,
+            fontWeight: tema.peso.dado,
             fontSize: tema.escala.valorDado,
             lineHeight: 1,
             color: zero ? tema.cor.acento : tema.cor.tinta,

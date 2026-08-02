@@ -53,10 +53,10 @@ export const GsCartaoValor: React.FC<GsCartaoValorProps> = ({
         <h1
           style={{
             fontFamily: tema.tipo.display,
-            fontWeight: 800,
+            fontWeight: tema.peso.display,
             fontSize: tema.escala.display,
             lineHeight: 1.02,
-            letterSpacing: "-0.02em",
+            letterSpacing: tema.rastreio.apertado,
             color: tema.cor.tinta,
             margin: 0,
           }}
@@ -76,9 +76,9 @@ export const GsCartaoValor: React.FC<GsCartaoValorProps> = ({
         <div
           style={{
             fontFamily: tema.tipo.mono,
-            fontWeight: 700,
+            fontWeight: tema.peso.dado,
             fontSize: tema.escala.rotuloHero,
-            letterSpacing: "0.08em",
+            letterSpacing: tema.rastreio.largo,
             textTransform: "uppercase",
             color: tema.cor.tinta,
             marginBottom: 14,
@@ -89,7 +89,7 @@ export const GsCartaoValor: React.FC<GsCartaoValorProps> = ({
         <div
           style={{
             fontFamily: tema.tipo.mono,
-            fontWeight: 700,
+            fontWeight: tema.peso.dado,
             fontSize: tema.escala.valorHero,
             lineHeight: 1,
             color: tema.invertido.texto,

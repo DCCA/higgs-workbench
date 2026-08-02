@@ -33,17 +33,20 @@ export const GsBeat: React.FC<GsBeatProps> = ({ hora, progresso, titulo, destaqu
   const apoio_ = useEntradaPapel(ATRASO_APOIO);
 
   return (
-    <Papel rodape={fonte ? <Rodape fonte={fonte} delayFrames={ATRASO_RODAPE} /> : undefined}>
+    <Papel
+      rodape={fonte ? <Rodape fonte={fonte} delayFrames={ATRASO_RODAPE} /> : undefined}
+      gapConteudo={tema.espaco.gapBeat}
+    >
       <Relogio hora={hora} progresso={progresso} />
 
       <div style={{ opacity: titulo_.opacity, transform: `translateY(${titulo_.translateY}px)` }}>
         <h1
           style={{
             fontFamily: tema.tipo.display,
-            fontWeight: 800,
+            fontWeight: tema.peso.display,
             fontSize: tema.escala.display,
             lineHeight: 1.02,
-            letterSpacing: "-0.02em",
+            letterSpacing: tema.rastreio.apertado,
             color: tema.cor.tinta,
             margin: 0,
           }}
@@ -58,10 +61,10 @@ export const GsBeat: React.FC<GsBeatProps> = ({ hora, progresso, titulo, destaqu
             opacity: apoio_.opacity,
             transform: `translateY(${apoio_.translateY}px)`,
             fontFamily: tema.tipo.mono,
-            fontWeight: 500,
+            fontWeight: tema.peso.dado,
             fontSize: tema.escala.corpo,
             lineHeight: 1.4,
-            letterSpacing: "-0.02em",
+            letterSpacing: tema.rastreio.apertado,
             color: tema.cor.suave,
             maxWidth: 820,
           }}

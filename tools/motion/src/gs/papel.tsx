@@ -49,8 +49,12 @@ export const Papel: React.FC<{
   children: React.ReactNode;
   rodape?: React.ReactNode;
   ancora?: "centro" | "topo";
+  // gap entre os blocos do conteúdo (título/apoio, título/cartão) - default
+  // tema.espaco.gap (dado denso); GsBeat passa tema.espaco.gapBeat (conteúdo
+  // curto de só 2 blocos precisa de mais peso próprio - ver nota em tema.ts).
+  gapConteudo?: number;
   style?: React.CSSProperties;
-}> = ({ children, rodape, ancora = "centro", style }) => {
+}> = ({ children, rodape, ancora = "centro", gapConteudo = tema.espaco.gap, style }) => {
   const [cabecalho, ...resto] = React.Children.toArray(children);
   return (
     <AbsoluteFill style={{ backgroundColor: tema.cor.chao }}>
@@ -80,7 +84,7 @@ export const Papel: React.FC<{
               flexDirection: "column",
               alignItems: "flex-start",
               justifyContent: ancora === "topo" ? "flex-start" : "center",
-              gap: tema.espaco.gap,
+              gap: gapConteudo,
             }}
           >
             {resto}
@@ -132,9 +136,9 @@ export const Rodape: React.FC<{ fonte: string; delayFrames?: number }> = ({ font
         opacity: entrada.opacity,
         transform: `translateY(${entrada.translateY}px)`,
         fontFamily: tema.tipo.mono,
-        fontWeight: 500,
+        fontWeight: tema.peso.dado,
         fontSize: tema.escala.legenda,
-        letterSpacing: "0.08em",
+        letterSpacing: tema.rastreio.largo,
         textTransform: "uppercase",
         color: tema.cor.suave,
       }}
@@ -164,9 +168,9 @@ export const Relogio: React.FC<{
       <div
         style={{
           fontFamily: tema.tipo.mono,
-          fontWeight: 500,
+          fontWeight: tema.peso.dado,
           fontSize: tema.escala.gigante,
-          letterSpacing: "-0.02em",
+          letterSpacing: tema.rastreio.apertado,
           lineHeight: 1,
           color: cor,
         }}
