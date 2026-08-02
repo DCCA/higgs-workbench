@@ -27,6 +27,7 @@ export const tema = {
     papel: "#efe9da",
     tinta: "#2b2b28",      // 11.7:1 sobre o papel
     padding: "16px 24px",
+    paddingCompacto: "6px 14px", // etiquetas pequenas (rótulo de aresta etc.)
     raio: 3,
   },
   tipo: {

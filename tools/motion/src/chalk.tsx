@@ -50,7 +50,16 @@ export const useEntradaGiz = (delayFrames = 0) => {
   return { opacity: t, scale: interpolate(t, [0, 1], [0.92, 1]) };
 };
 
-/** Traço de giz que se desenha (draw-on via strokeDasharray/strokeDashoffset), com jitter determinístico. */
+/** Espessura do "corredor" perpendicular ao traço (svg cross-axis) - o path
+ * fica centrado nesse eixo (TRACO_CROSS / 2), então um caller vertical só
+ * precisa alinhar seu marcador ao mesmo centro para bater com o traço. */
+export const TRACO_CROSS = 28;
+
+/** Traço de giz que se desenha (draw-on via strokeDasharray/strokeDashoffset),
+ * com jitter determinístico. `width` é o comprimento ao longo do eixo do
+ * traço (nome mantido por compat - também vale para orientacao="v", onde é
+ * uma altura). `orientacao="v"` gira o traço 90° (espinha de timeline etc.);
+ * o path fica centrado no eixo cruzado nas duas orientações. */
 export const TracoGiz: React.FC<{
   width: number;
   seed: string;
@@ -58,12 +67,25 @@ export const TracoGiz: React.FC<{
   strokeWidth?: number;
   delayFrames?: number;
   align?: "left" | "center";
-}> = ({ width, seed, color = tema.cor.destaque, strokeWidth = 6, delayFrames = 0, align = "left" }) => {
+  orientacao?: "h" | "v";
+}> = ({
+  width,
+  seed,
+  color = tema.cor.destaque,
+  strokeWidth = 6,
+  delayFrames = 0,
+  align = "left",
+  orientacao = "h",
+}) => {
   const frame = useCurrentFrame();
   const local = Math.max(0, frame - delayFrames);
   const j = (n: number) => (random(`${seed}-${n}`) - 0.5) * 10;
-  const midX = width / 2;
-  const path = `M0,${8 + j(0)} C ${midX * 0.5},${j(1)} ${midX * 1.5},${16 + j(2)} ${width},${8 + j(3)}`;
+  const mid = width / 2;
+  const c = TRACO_CROSS / 2;
+  const path =
+    orientacao === "v"
+      ? `M${c + j(0)},0 C ${c + j(1)},${mid * 0.5} ${c + j(2)},${mid * 1.5} ${c + j(3)},${width}`
+      : `M0,${c + j(0)} C ${mid * 0.5},${c + j(1)} ${mid * 1.5},${c + j(2)} ${width},${c + j(3)}`;
   const drawn = interpolate(local, [0, tema.ritmo.entradaFrames], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -78,8 +100,8 @@ export const TracoGiz: React.FC<{
   const length = width * 1.15;
   return (
     <svg
-      width={width}
-      height={28}
+      width={orientacao === "v" ? TRACO_CROSS : width}
+      height={orientacao === "v" ? width : TRACO_CROSS}
       style={{
         overflow: "visible",
         opacity: assentado,
@@ -88,46 +110,6 @@ export const TracoGiz: React.FC<{
         marginRight: align === "center" ? "auto" : 0,
       }}
     >
-      <path
-        d={path}
-        fill="none"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeDasharray={length}
-        strokeDashoffset={length * (1 - drawn)}
-      />
-    </svg>
-  );
-};
-
-/** Traço de giz vertical (espinha de timeline etc.): mesmo draw-on/jitter do
- * TracoGiz horizontal, girado 90°. Primitiva compartilhada - ver chalk.tsx. */
-export const TracoGizVertical: React.FC<{
-  height: number;
-  seed: string;
-  color?: string;
-  strokeWidth?: number;
-  delayFrames?: number;
-}> = ({ height, seed, color = tema.cor.destaque, strokeWidth = 6, delayFrames = 0 }) => {
-  const frame = useCurrentFrame();
-  const local = Math.max(0, frame - delayFrames);
-  const j = (n: number) => (random(`${seed}-${n}`) - 0.5) * 10;
-  const midY = height / 2;
-  const path = `M${8 + j(0)},0 C ${j(1)},${midY * 0.5} ${16 + j(2)},${midY * 1.5} ${8 + j(3)},${height}`;
-  const drawn = interpolate(local, [0, tema.ritmo.entradaFrames], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const assentado = interpolate(
-    local,
-    [tema.ritmo.entradaFrames, tema.ritmo.entradaFrames + tema.ritmo.assentamentoFrames],
-    [1, 0.88],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
-  const length = height * 1.15;
-  return (
-    <svg width={28} height={height} style={{ overflow: "visible", opacity: assentado, display: "block" }}>
       <path
         d={path}
         fill="none"

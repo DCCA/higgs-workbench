@@ -4,12 +4,13 @@
 // dagre), posições calculadas para já caber no quadro. Ver contrato de
 // direção em ../theme.ts e primitivas em ../chalk.tsx.
 //
-// GOTCHA: `fitView` do xyflow depende do ResizeObserver medir o DOM dos nós
-// antes de calcular o enquadramento; no still/render headless do Remotion
-// esse ciclo não fecha a tempo do 1º frame (testado com width/height/measured
-// declarados no node - mesmo assim recorta o 1º nó). Layout determinístico
-// (posição por índice já dimensionada para o quadro) é mais correto aqui:
-// todo frame do Remotion precisa nascer certo de primeira, sem "settle".
+// GOTCHA: `fitView` do xyflow roda UMA VEZ no mount inicial e nunca re-executa
+// depois - não é um auto-fit contínuo. A medição do DOM em si funciona (o
+// ResizeObserver mede certo), mas roda DEPOIS desse fitView inicial; no
+// still/render headless do Remotion não existe um "segundo frame" para o
+// fitView reagir à medição e reenquadrar. Layout determinístico (posição por
+// índice já dimensionada para o quadro) é mais correto aqui: todo frame do
+// Remotion precisa nascer certo de primeira, sem "settle".
 import React from "react";
 import "@xyflow/react/dist/style.css";
 import {
@@ -80,7 +81,6 @@ const NoQuadro: React.FC<NodeProps<Node<NoData>>> = ({ data }) => {
         border: `3px solid ${cor}`,
         borderRadius: 10,
         backgroundColor: `${tema.cor.texto}0d`,
-        boxShadow: `0 0 18px ${cor}33`,
         opacity: entrada.opacity,
         transform: `scale(${entrada.scale})`,
       }}
@@ -104,12 +104,15 @@ const ArestaGiz: React.FC<EdgeProps<Edge<ArestaData>>> = ({ sourceX, sourceY, ta
   });
   const [path] = getStraightPath({ sourceX, sourceY, targetX, targetY });
   const length = Math.hypot(targetX - sourceX, targetY - sourceY) + 40;
+  // a seta só aparece quando a linha já chegou perto do destino - senão ela
+  // "flutua" pronta no ponto final antes do traço tê-lo alcançado.
+  const setaPronta = drawn > 0.95;
 
   return (
     <>
       <BaseEdge
         path={path}
-        markerEnd={markerEnd}
+        markerEnd={setaPronta ? markerEnd : undefined}
         style={{
           stroke: tema.cor.texto,
           strokeWidth: 4,
@@ -127,7 +130,7 @@ const ArestaGiz: React.FC<EdgeProps<Edge<ArestaData>>> = ({ sourceX, sourceY, ta
           style={{ overflow: "visible", opacity: drawn }}
         >
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Etiqueta seed={`fluxo-rotulo-${data.rotulo}`} style={{ padding: "6px 14px" }}>
+            <Etiqueta seed={`fluxo-rotulo-${data.rotulo}`} delayFrames={delay} style={{ padding: tema.etiqueta.paddingCompacto }}>
               <span style={{ fontFamily: tema.tipo.corpo, fontWeight: 700, fontSize: tema.escala.micro }}>
                 {data.rotulo}
               </span>
@@ -149,18 +152,28 @@ export const FluxoDiagrama: React.FC<FluxoProps> = ({ nos, arestas }) => {
 
   // Passo entre entradas escalona por índice, mas encolhe se a duração for
   // curta demais para acomodar até 8 nós no ritmo ideal do kit (mín. 3s).
+  // -2*entradaFrames (não -1x): a última ARESTA só começa a desenhar depois
+  // que seu nó de origem termina de entrar (+entradaFrames) e ainda precisa
+  // de mais entradaFrames pra se desenhar - duas janelas de entrada, não uma.
   const passoIdeal = tema.ritmo.entradaFrames + tema.ritmo.assentamentoFrames;
-  const janela = Math.max(0, durationInFrames - tema.ritmo.entradaFrames);
+  const janela = Math.max(0, durationInFrames - 2 * tema.ritmo.entradaFrames);
   const passo = nos.length > 1 ? Math.min(passoIdeal, janela / (nos.length - 1)) : 0;
   const delayNo = (indice: number) => Math.round(indice * passo);
 
   const indicePorId = new Map(nos.map((no, indice) => [no.id, indice]));
-  const step = altura / nos.length;
+  // Espaçamento entre nós nunca passa de 1.6x a altura da caixa (senão 2 nós
+  // viram uma seta vazia gigante); o bloco resultante fica centralizado no
+  // quadro em vez de esticado ponta a ponta.
+  const step = Math.min(altura / nos.length, ALTURA_NO * 1.6);
+  const blocoAltura = step * nos.length;
+  const topoBloco = (altura - blocoAltura) / 2;
 
   const nodes: Array<Node<NoData>> = nos.map((no, indice) => ({
     id: no.id,
     type: "no",
-    position: { x: largura / 2, y: step * indice + step / 2 },
+    position: { x: largura / 2, y: topoBloco + step * indice + step / 2 },
+    width: LARGURA_NO,
+    height: ALTURA_NO,
     data: { rotulo: no.rotulo, destaque: no.destaque, delayFrames: delayNo(indice) },
     draggable: false,
     selectable: false,
