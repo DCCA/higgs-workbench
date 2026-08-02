@@ -31,7 +31,7 @@
 - [ ] **Step 1: Criar a branch**
 
 ```bash
-cd /home/dcca/projects/higgs && git checkout main && git pull --ff-only && git checkout -b feat/estilos-incremento-1
+cd <raiz-do-repo> && git checkout main && git pull --ff-only && git checkout -b feat/estilos-incremento-1
 ```
 
 - [ ] **Step 2: Escrever `estilos/README.md`** (índice + ponteiro, SEM duplicar o contrato):

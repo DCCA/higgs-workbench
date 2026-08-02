@@ -54,13 +54,13 @@ rodando, `bash tools/viz/demo/simular.sh` (rodada simulada em
                      │    (1 rodada)         │  CASTING, momento-wow
                      └───────────┬───────────┘
                 brief abstrato/reflexivo?
-                     sim │              │ não
-              ┌──────────▼─────────┐    │
-              │ 1.5 CONCEITO       │    │   ◄─ o além é OUTRA categoria;
-              │ 3-5 mundos + arco  │    │      arco termina ≠ começa
-              │ ══ GATE usuário ══ │    │
-              └──────────┬─────────┘    │
-                         └──────┬───────┘
+                     sim │                             │ não
+              ┌──────────▼────────────────────────┐    │
+              │ 1.5 CONCEITO                      │    │   ◄─ o além é OUTRA categoria;
+              │ 3-5 mundos (2-3 arcos com ESTILO) │    │      arco termina ≠ começa
+              │ ══ GATE usuário ══                │    │
+              └──────────┬────────────────────────┘    │
+                         └──────┬──────────────────────┘
                      ┌──────────▼───────────┐
                      │ 2. SETUP             │  árvore padrão + bíblia +
                      │    preflight get_cost│  conta ANTES do 1º crédito
@@ -98,7 +98,7 @@ rodando, `bash tools/viz/demo/simular.sh` (rodada simulada em
                      │ ══ GATE: entrega ══  │
                      └──────────┬───────────┘
                      ┌──────────▼───────────┐
-                     │ 10. REGISTRO         │  lições→PRATICAS, faxina,
+                     │ 10. REGISTRO         │  lições→PRATICAS/ESTILO, faxina,
                      │     bíblia, PR       │  escapes→CALIBRACAO
                      └──────────────────────┘
 

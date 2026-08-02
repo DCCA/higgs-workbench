@@ -234,7 +234,7 @@ ffmpeg -i corte.mp4 \
 | 1 | Arte-mãe do mundo (style key do filme) | still t2i `nano_banana_pro` 2k 9:16 | 2 cr |
 | 2 | Esboço (start do build-up) | still i2i sobre a arte-mãe | 2 cr |
 | 3 | Wide limpo (destino do reveal) | still t2i - altitude nova pede t2i, não i2i | 2 cr |
-| 4 | Takes | `seedance` fast 720p 9:16, 8-10s, nos três modos da montagem | ver custos |
+| 4 | Takes | `seedance_2_0` fast 720p 9:16, 8-10s, nos três modos da montagem | ver custos |
 | 5 | Montagem | emendas por `xfade` (dissolve 0,25-0,35s), escala para 1080×1920 (`scale=1080:1920:flags=lanczos`), CRF 16, preset slow, yuv420p, 24 fps | 0 |
 | 6 | Polish de imagem | colorbalance (aquecer, tirar azul), grão, vinheta | 0 |
 | 7 | Overlays e cartela | PIL + ffmpeg, DEPOIS do polish para o texto não pegar grão | 0 |
@@ -247,8 +247,10 @@ segura a tinta consistente entre planos.
 
 A emenda por dissolve que a régua de QC exige (nada de corte seco entre planos) é
 `xfade`, não `concat`. O `offset` é a duração acumulada até a emenda menos a
-duração da transição, e cada emenda ENCURTA o corte nesse mesmo valor - contar
-isso na conta de tempo do filme:
+duração da transição (a partir da 2ª emenda, "acumulada" é a duração do corte JÁ
+MONTADO, que já vem encurtado: três planos de 10s com 0,3s dão offsets 9,7 e 19,4;
+usar 19,7 descarta o último plano SEM erro do ffmpeg), e cada emenda ENCURTA o
+corte nesse mesmo valor - contar isso na conta de tempo do filme:
 
 ```bash
 ffmpeg -i p1.mp4 -i p2.mp4 -filter_complex \
@@ -263,22 +265,24 @@ cartela final depois do último plano.
 
 ## Custos típicos
 
-Todo número abaixo tem origem. **Repreflightar sempre** com `get_cost: true`: os
-preços do catálogo mudam entre projetos. Nunca misturar tarifas antiga e atual na
-mesma conta - orçamento novo usa só a linha marcada ATUAL.
+Todo número abaixo tem origem. **Repreflightar sempre** com `get_cost: true`
+(param é `mode`, não `quality`): os preços do catálogo mudam entre projetos.
+Nunca misturar tarifas antiga e atual na mesma conta - orçamento novo usa só a
+linha marcada ATUAL.
 
 | Item | Valor | Origem |
 |---|---|---|
 | still `nano_banana_pro` 2k 9:16 | 2,00 cr | preflight `get_cost` 2026-07-25, A CHAVE |
-| take `seedance` fast 720p 9:16, 10s - tarifa ANTIGA | 35 cr | jobs medidos no A CHAVE (2026-07-26); histórico, não usar em orçamento novo |
-| take `seedance` fast 720p, 5s - tarifa ANTIGA | 17,5 cr | baseline do workbench em PRATICAS, da mesma tarifa de 3,5 cr/s; histórico |
-| take `seedance` fast 720p, 10s - **tarifa ATUAL** | 45 cr = 4,5 cr/s | PRATICAS: o preço mudou em jul/2026. É esta a linha que orça |
+| take `seedance_2_0` fast 720p 9:16, 10s - tarifa ANTIGA | 35 cr | jobs medidos no A CHAVE (2026-07-26); histórico, não usar em orçamento novo |
+| take `seedance_2_0` fast 720p, 5s - tarifa ANTIGA | 17,5 cr | baseline do workbench em PRATICAS, da mesma tarifa de 3,5 cr/s; histórico |
+| take `seedance_2_0` fast 720p, 10s - **tarifa ATUAL** | 45 cr = 4,5 cr/s | PRATICAS: o preço mudou em jul/2026. É esta a linha que orça |
 | `gemini_omni` 10s 720p | 30 cr | preflight 2026-07-25; engine testado no A CHAVE e arquivado para este estilo (sem start/end frame, logo não faz build-up nem reveal controlado) |
 | VO, trilha, overlays, montagem, QC | 0 | edge-tts, gerador local, PIL, ffmpeg |
 
 **Filme de referência:** A CHAVE, 35,6s entregues por ~180 cr = **5,1 cr/s**
-(scorecard da bíblia). Esse total já inclui 2 takes descartados - o reveal
-alucinado e o push substituído por flyover - e o teste do engine arquivado.
+(tarifa antiga; não usar como régua de orçamento novo) (scorecard da bíblia).
+Esse total já inclui 2 takes descartados - o reveal alucinado e o push
+substituído por flyover - e o teste do engine arquivado.
 
 **Orçamento de um vídeo novo do estilo**, aos preços de jul/2026: 3 stills (6) +
 3 takes de 10s (135) + margem de 1 retake do wow (45) = **~190 cr**. A margem do
@@ -339,8 +343,10 @@ validador-gate confere neste estilo:
    para todos os takes derivados.
 3. **Bordas do reveal:** no plano de pull-back, varrer o terço externo do quadro
    atrás de continente, costa ou nome de lugar inventado.
-4. **Continuidade da tinta entre planos:** matiz e saturação do papel não podem
-   driftar entre takes, e o acento tem que aparecer nos mesmos elementos.
+4. **Continuidade da tinta entre planos (MEDIDA):** `signalstats` por take
+   (HUEAVG/SATAVG médios), comparados entre takes e com a arte-mãe - calibração é
+   o baseline registrado em PRATICAS.md ("drift de matiz/saturação médias entre
+   takes ≤ baseline ALÉM"). O acento tem que aparecer nos mesmos elementos.
 5. **Legibilidade do overlay sobre parchment:** medir o contraste do cartão no
    frame MAIS CLARO do trecho em que o super vive, não num frame qualquer.
 6. **Emendas como dissolve, não corte:** o detector de cena não pode acusar corte

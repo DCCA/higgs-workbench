@@ -96,6 +96,10 @@ rodar a fase completa (e considerar declarar estilo novo em rascunho).
 - Criar `<slug>/estado.json` inicial (contrato em `docs/PROPOSTA-visualizador-workflow.md`)
   e subir o board em background: `bash tools/viz/serve.sh <slug>` - mostrar a URL ao
   usuário para ele deixar aberta ao lado do terminal.
+- **Estilo novo declarado no brief**: criar `estilos/ESTILO-<slug>.md` já aqui, no
+  contrato de 11 seções (`docs/PROPOSTA-estilos-de-video.md`), com `Status: rascunho`
+  e as seções sem lição paga marcadas como HIPÓTESE; adicionar a linha na tabela de
+  `estilos/README.md`; registrar o estilo (existente ou novo) na bíblia do filme.
 - **Regras de organização (não negociáveis):** status é PASTA - aprovado mora na pasta
   principal, supersedido DESCE para `_descartados/`/`05_cortes/` no instante em que
   perde o posto; `06_master/` contém SÓ a entrega vigente como `<SLUG>_MASTER.mp4`
@@ -206,7 +210,8 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 - **Promoção ao ESTILO (obrigatória quando há estilo declarado)**: lição
   específica do estilo → changelog do `ESTILO-<slug>.md` (genérica continua indo
   a PRATICAS); custos medidos do filme atualizam os "Custos típicos"; estilo
-  `rascunho` gradua para `ativo` no primeiro filme concluído.
+  `rascunho` gradua para `ativo` no primeiro filme concluído, atualizando o Status
+  também em `estilos/README.md`.
 - Commit dos docs (mídia fica fora do git; regenerável pelos job IDs)
 
 ## Princípios que não se negociam
