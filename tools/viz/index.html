@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>higgs - board do workflow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://esm.sh/@xyflow/react@12.3.2/dist/style.css">
+<style>
+  html,body,#root{margin:0;height:100%;background:#0d1117;color:#e6edf3;
+    font:14px/1.4 system-ui,sans-serif}
+  .app{display:flex;flex-direction:column;height:100%}
+  .corpo{display:flex;flex:1;min-height:0}
+  .grafo{flex:1}
+  .aviso{padding:2rem;color:#8b949e}
+  /* nós */
+  .react-flow__node{border-radius:8px;border:1.5px solid #30363d;
+    background:#161b22;color:#e6edf3;font-size:12px;padding:8px 12px}
+  .react-flow__node.fase{width:230px}
+  .react-flow__node.shot{width:190px;font-family:ui-monospace,monospace}
+  .react-flow__node.pendente{opacity:.55}
+  .react-flow__node.pulada{opacity:.45;border-style:dashed}
+  .react-flow__node.em_andamento,.react-flow__node.gerando{border-color:#2f81f7;
+    animation:pulso 1.2s ease-in-out infinite}
+  .react-flow__node.validando,.react-flow__node.em_qc{border-color:#a371f7}
+  .react-flow__node.gate_usuario{border-color:#d29922;background:#211a08}
+  .react-flow__node.bloqueada,.react-flow__node.erro{border-color:#f85149;
+    background:#2d1214}
+  .react-flow__node.concluida,.react-flow__node.aprovado{border-color:#3fb950}
+  .react-flow__node.descartado{opacity:.4;text-decoration:line-through}
+  @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(47,129,247,.55)}
+    50%{box-shadow:0 0 0 7px rgba(47,129,247,0)}}
+</style>
+<script type="importmap">
+{ "imports": {
+  "react": "https://esm.sh/react@18.3.1",
+  "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+  "@xyflow/react": "https://esm.sh/@xyflow/react@12.3.2?deps=react@18.3.1,react-dom@18.3.1"
+}}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { ReactFlow, Background } from "@xyflow/react";
+const h = React.createElement;
+
+// Espinha do fluxograma v2 (docs/ESTRUTURA.md). Mudou o workflow? Atualizar AQUI.
+const FASES = [
+  { id: "1",   titulo: "Brief" },
+  { id: "1.5", titulo: "Conceito", gate: true },
+  { id: "2",   titulo: "Setup + preflight" },
+  { id: "3",   titulo: "Âncoras", gate: true },
+  { id: "4",   titulo: "Storyboard", gate: true },
+  { id: "5",   titulo: "Wow-shot", gate: true },
+  { id: "6",   titulo: "Produção" },
+  { id: "7",   titulo: "Montagem + review 7b", gate: true },
+  { id: "8",   titulo: "Áudio + review 8b" },
+  { id: "9",   titulo: "Finalização", gate: true },
+  { id: "10",  titulo: "Registro" },
+];
+
+// último nível de evento por ref: pinta o nó de vermelho se for "erro"
+function nivelPorRef(eventos) {
+  const m = {};
+  for (const ev of eventos || []) if (ev.ref) m[ev.ref] = ev.nivel;
+  return m;
+}
+
+function buildGraph(estado) {
+  const nodes = [], edges = [];
+  const ultimoNivel = nivelPorRef(estado.eventos);
+  const porFase = {};
+  for (const s of estado.shots || []) (porFase[s.fase] ||= []).push(s);
+  let y = 0;
+  FASES.forEach((f, i) => {
+    const st = (estado.fases || {})[f.id] || "pendente";
+    const erro = ultimoNivel[f.id] === "erro" ? " erro" : "";
+    nodes.push({ id: "f" + f.id, position: { x: 0, y },
+      data: { label: (f.gate ? "⛩ " : "") + f.id + ". " + f.titulo },
+      className: "fase " + st + erro });
+    if (i > 0) edges.push({ id: "e" + i, source: "f" + FASES[i - 1].id,
+      target: "f" + f.id,
+      animated: st === "em_andamento" || st === "validando" });
+    const shots = porFase[f.id] || [];
+    shots.forEach((s, j) => {
+      const sErro = ultimoNivel[s.id] === "erro" ? " erro" : "";
+      const custo = s.custo_cr ? " · " + s.custo_cr + " cr" : "";
+      nodes.push({ id: "s" + s.id, position: { x: 340, y: y + j * 64 },
+        data: { label: s.id + " v" + (s.versao || 1) + custo },
+        className: "shot " + s.status + sErro });
+      edges.push({ id: "es" + s.id, source: "f" + f.id, target: "s" + s.id,
+        animated: s.status === "gerando" });
+    });
+    y += Math.max(96, shots.length * 64 + 16);
+  });
+  return { nodes, edges };
+}
+
+function App() {
+  const [estado, setEstado] = React.useState(null);
+  const filme = new URLSearchParams(location.search).get("filme");
+  React.useEffect(() => {
+    if (!filme) return;
+    fetch("/" + filme + "/estado.json?t=" + Date.now())
+      .then(r => r.json()).then(setEstado).catch(() => {});
+  }, [filme]);
+  if (!filme) return h("div", { className: "aviso" },
+    "Faltou ?filme=<slug> na URL - use tools/viz/serve.sh <slug>.");
+  if (!estado) return h("div", { className: "aviso" }, "Carregando estado.json…");
+  const { nodes, edges } = buildGraph(estado);
+  return h("div", { className: "app" },
+    h("div", { className: "corpo" },
+      h("div", { className: "grafo" },
+        h(ReactFlow, { nodes, edges, fitView: true,
+          nodesDraggable: false, nodesConnectable: false },
+          h(Background, { gap: 24 })))));
+}
+
+createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>
