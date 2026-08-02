@@ -38,7 +38,7 @@ export const Abertura: React.FC<z.infer<typeof aberturaSchema>> = ({ titulo, kic
             style={{
               fontFamily: tema.tipo.corpo,
               fontWeight: 700,
-              fontSize: 28,
+              fontSize: tema.escala.legenda,
               letterSpacing: 2,
               textTransform: "uppercase",
             }}
@@ -51,7 +51,7 @@ export const Abertura: React.FC<z.infer<typeof aberturaSchema>> = ({ titulo, kic
           <h1
             style={{
               ...estiloGiz(tema.cor.texto),
-              fontSize: 88,
+              fontSize: tema.escala.display,
               lineHeight: 1.1,
               margin: 0,
             }}
@@ -62,7 +62,7 @@ export const Abertura: React.FC<z.infer<typeof aberturaSchema>> = ({ titulo, kic
         </div>
 
         <Etiqueta seed="abertura-data" delayFrames={ATRASO_DATA} style={{ alignSelf: "flex-start" }}>
-          <span style={{ fontFamily: tema.tipo.numeros, fontSize: 24 }}>{data}</span>
+          <span style={{ fontFamily: tema.tipo.numeros, fontSize: tema.escala.legenda }}>{data}</span>
         </Etiqueta>
       </AbsoluteFill>
     </AbsoluteFill>

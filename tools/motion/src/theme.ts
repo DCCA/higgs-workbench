@@ -26,15 +26,26 @@ export const tema = {
   etiqueta: {
     papel: "#efe9da",
     tinta: "#2b2b28",      // 11.7:1 sobre o papel
+    padding: "16px 24px",
+    raio: 3,
   },
   tipo: {
     display: "Fredericka the Great", // giz (assets/fonts, OFL)
     corpo: "Inter",                  // só em etiquetas de papel, nunca "giz"
     numeros: "Space Mono",           // dados tabulares em etiquetas
   },
+  // escala tipográfica única do kit - cenas escolhem o degrau, nunca um px solto
+  escala: {
+    gigante: 220,   // numeral-herói (StatCard valor)
+    display: 88,    // título em giz
+    corpo: 34,      // texto de etiqueta
+    legenda: 24,    // contexto/data/mono
+    micro: 20,      // rótulos mínimos
+  },
   ritmo: {
-    entradaFrames: 14,    // draw-on de um traço de giz (~0,58s)
-    saidaFrames: 8,
+    entradaFrames: 14,        // draw-on de um traço de giz (~0,58s)
+    assentamentoFrames: 8,    // janela de assentamento pós-entrada (spring da etiqueta, settle do traço)
+    // sem animação de saída em cena - transições entre cenas são do ffmpeg (decisão do plano)
   },
   espaco: {
     margem: 96,

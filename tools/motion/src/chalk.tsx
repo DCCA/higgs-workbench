@@ -46,7 +46,7 @@ export const TracoGiz: React.FC<{
   // poeira do giz assentando depois que o traço fecha
   const assentado = interpolate(
     local,
-    [tema.ritmo.entradaFrames, tema.ritmo.entradaFrames + tema.ritmo.saidaFrames],
+    [tema.ritmo.entradaFrames, tema.ritmo.entradaFrames + tema.ritmo.assentamentoFrames],
     [1, 0.88],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
@@ -90,7 +90,7 @@ export const Etiqueta: React.FC<{
   const pin = spring({
     frame: local,
     fps,
-    durationInFrames: tema.ritmo.entradaFrames + tema.ritmo.saidaFrames,
+    durationInFrames: tema.ritmo.entradaFrames + tema.ritmo.assentamentoFrames,
     config: { damping: 14, mass: 0.6 },
   });
   const translateY = interpolate(pin, [0, 1], [24, 0]);
@@ -106,8 +106,8 @@ export const Etiqueta: React.FC<{
         transform: `translateY(${translateY}px) rotate(${tilt}deg)`,
         opacity,
         boxShadow: `0 8px 20px ${tema.cor.fundo}b3`,
-        padding: "16px 24px",
-        borderRadius: 3,
+        padding: tema.etiqueta.padding,
+        borderRadius: tema.etiqueta.raio,
         ...style,
       }}
     >

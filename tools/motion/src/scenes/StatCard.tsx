@@ -36,7 +36,7 @@ export const StatCard: React.FC<z.infer<typeof statCardSchema>> = ({ valor, labe
         }}
       >
         <div style={{ opacity: valor_.opacity, transform: `scale(${valor_.scale})` }}>
-          <div style={{ ...estiloGiz(tema.cor.destaque), fontSize: 220, lineHeight: 1 }}>{valor}</div>
+          <div style={{ ...estiloGiz(tema.cor.destaque), fontSize: tema.escala.gigante, lineHeight: 1 }}>{valor}</div>
           <TracoGiz
             width={360}
             seed="statcard-traco"
@@ -47,9 +47,11 @@ export const StatCard: React.FC<z.infer<typeof statCardSchema>> = ({ valor, labe
         </div>
 
         <Etiqueta seed="statcard-label" delayFrames={ATRASO_LABEL} style={{ maxWidth: 760 }}>
-          <div style={{ fontFamily: tema.tipo.corpo, fontWeight: 700, fontSize: 34, lineHeight: 1.3 }}>{label}</div>
+          <div style={{ fontFamily: tema.tipo.corpo, fontWeight: 700, fontSize: tema.escala.corpo, lineHeight: 1.3 }}>
+            {label}
+          </div>
           {contexto ? (
-            <div style={{ fontFamily: tema.tipo.numeros, fontSize: 20, marginTop: 12, opacity: 0.7 }}>
+            <div style={{ fontFamily: tema.tipo.numeros, fontSize: tema.escala.micro, marginTop: 12, opacity: 0.7 }}>
               {contexto}
             </div>
           ) : null}
