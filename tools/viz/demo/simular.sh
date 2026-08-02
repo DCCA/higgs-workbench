@@ -12,6 +12,8 @@ e = {"filme":"sim","atualizado_em":agora(),"fase_atual":"1",
      "fases":{f:"pendente" for f in ["1","1.5","2","3","4","5","6","7","8","9","10"]},
      "shots":[],"eventos":[],"custos":{"gasto_cr":0,"teto_cr":300}}
 def grava():
+    e["fase_atual"] = next((f for f, s in e["fases"].items()
+                            if s in ("em_andamento", "validando", "gate_usuario")), e["fase_atual"])
     e["atualizado_em"]=agora()
     pathlib.Path("sim/estado.json").write_text(json.dumps(e,ensure_ascii=False,indent=1))
 def ev(tipo,ref,msg,nivel="info",custo=None):
