@@ -9,12 +9,18 @@ import { FluxoDiagrama, fluxoSchema } from "./scenes/FluxoDiagrama";
 import { Timeline, timelineSchema } from "./scenes/Timeline";
 import { Cartela, cartelaSchema } from "./scenes/Cartela";
 import { Legendas, legendasSchema } from "./scenes/Legendas";
+import { GsBeat, gsBeatSchema } from "./gs/cenas/GsBeat";
+import { GsCartaoValor, gsCartaoValorSchema } from "./gs/cenas/GsCartaoValor";
+import { GsPlacar, gsPlacarSchema } from "./gs/cenas/GsPlacar";
 import demoAbertura from "../demo/abertura.json";
 import demoStatCard from "../demo/statcard.json";
 import demoFluxo from "../demo/fluxo.json";
 import demoTimeline from "../demo/timeline.json";
 import demoCartela from "../demo/cartela.json";
 import demoLegendas from "../demo/legendas.json";
+import demoGsBeat from "./gs/demo/beat.json";
+import demoGsCartaoValor from "./gs/demo/cartao-valor.json";
+import demoGsPlacar from "./gs/demo/placar.json";
 
 const sanitySchema = z.object({ texto: z.string() });
 
@@ -120,6 +126,45 @@ export const Root: React.FC = () => (
       durationInFrames={144}
       calculateMetadata={({ props }) => ({
         durationInFrames: Math.round(Math.max(...props.segmentos.map((s) => s.t1)) * 24),
+      })}
+    />
+    <Composition
+      id="GsBeat"
+      component={GsBeat}
+      schema={gsBeatSchema}
+      defaultProps={demoGsBeat}
+      width={1080}
+      height={1920}
+      fps={24}
+      durationInFrames={96}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.round(props.duracaoSeg * 24),
+      })}
+    />
+    <Composition
+      id="GsCartaoValor"
+      component={GsCartaoValor}
+      schema={gsCartaoValorSchema}
+      defaultProps={demoGsCartaoValor}
+      width={1080}
+      height={1920}
+      fps={24}
+      durationInFrames={96}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.round(props.duracaoSeg * 24),
+      })}
+    />
+    <Composition
+      id="GsPlacar"
+      component={GsPlacar}
+      schema={gsPlacarSchema}
+      defaultProps={demoGsPlacar}
+      width={1080}
+      height={1920}
+      fps={24}
+      durationInFrames={96}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.round(props.duracaoSeg * 24),
       })}
     />
   </>

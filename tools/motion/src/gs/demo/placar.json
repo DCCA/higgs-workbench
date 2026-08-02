@@ -1,0 +1,11 @@
+{
+  "hora": "24:00",
+  "progresso": 1,
+  "linhas": [
+    { "rotulo": "usuários", "valor": "+5" },
+    { "rotulo": "receita nova", "valor": "$0", "zero": true },
+    { "rotulo": "campanha", "valor": "não rodou", "zero": true }
+  ],
+  "fonte": "Bottleneck Labs",
+  "duracaoSeg": 4
+}
