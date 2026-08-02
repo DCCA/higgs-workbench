@@ -4,6 +4,45 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` d
 pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
 foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
+## 2026-08-02 (parte 3) - SOL: primeiro filme com ZERO créditos, e o estilo Ground Station graduado
+
+**Where we were:** kit motion recém-shipado com o mundo quadro-negro; nenhum filme feito
+nele; `evals` ainda parado por crédito.
+
+**What we did:** produzimos o filme **SOL** (48,7s, 9:16) sobre o experimento do
+Bottleneck Labs - um agente que recebeu um negócio real e 24 horas - do brief à entrega,
+**custo 0 créditos** (~2 min de render local). O usuário pediu um estilo NOVO pinando a
+referência: paleta do próprio AI Signal Desk. Descobrimos que o mundo já existia lá
+(o reel `social-drafts/2026-08-01-anthropic-egress-reel/`), então o estilo foi HERDADO
+com evidência (13/13 hexes conferidos), não inventado: papel bone, tinta, um vermelho,
+Manrope + DM Mono, sombra dura deslocada, grão.
+
+- **`ESTILO-ground-station.md` nasceu rascunho e GRADUOU no mesmo dia** (PR #31), com
+  hipóteses substituídas por medições do filme: decupagem real (10 beats/49s), regra de
+  montagem corrigida (o xfade marca a SAÍDA do objeto-fio, não a permanência), tempos de
+  render (~9,1s por cena de 4s, 65% acima da hipótese herdada), loudness e contraste.
+- **Segundo mundo no kit** (`tools/motion/src/gs/`, 5 cenas), aditivo.
+- **3 blocos novos no PRATICAS** + cláusula de heartbeat na SKILL.
+
+**Decisions:** arco "as 24 horas" escolhido pelo usuário vendo comps; só números
+auditáveis em tela (o "$447" do título do artigo não fecha com o corpo e ficou fora);
+VO em português com nomes próprios só na tela; voz Thalita escolhida ouvindo contra o corte.
+
+**O que o processo pegou** (50 achados do validador em 4 gates, 2 BLOQUEIA - os dois meus
+e do mesmo tipo, *afirmar sem medir*): a v1 do conceito descrevia como abuso um ato que o
+artigo registra como consentido; o faux-bold engordava 27% todo número-herói (peso que a
+família não tem); e o validador **falsificou por medição** minha justificativa de loudness,
+que estava a um passo de virar cláusula errada no PRATICAS. Um escape: o usuário viu o
+alarme de board congelado antes de mim.
+
+**Pending / next:**
+- [ ] **Escuta do beat aos 26s** ("e-mails" - estrangeirismo é onde o edge-tts tropeça)
+      antes de publicar o SOL em qualquer lugar.
+- [ ] Publicar o SOL, se for o caso (o master está em `sol/06_master/`, local).
+- [ ] Herdadas: estreia do board/nanquim quando o crédito renovar (evals); 1º filme do
+      ESTILO-infografico (quadro-negro) ainda em rascunho; purga dos `refs/pull` antigos
+      do GitHub; rotação do token HF.
+
 ## 2026-08-02 (parte 2) - Estilos reutilizáveis + linha de produção com saldo ZERO (tools/motion)
 
 **Where we were:** board ao vivo recém-shipado; `evals` parado esperando renovação de
