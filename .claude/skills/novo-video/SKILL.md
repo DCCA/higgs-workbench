@@ -45,6 +45,14 @@ o custo do preflight), veredito do validador, retake (causa no evento),
 aprovado/descartado. Nunca atualizar em lote no fim da fase: board congelado é bug
 de processo, e o validador confere frescor/coerência em todo gate.
 
+**Contrato de escrita (o viewer depende disto):** `ref` de evento é o id EXATO do
+shot ou o número da fase - é o que pinta o nó de vermelho; ref errado falha
+silencioso. `atualizado_em` SEMPRE em UTC com `Z` (`date -u +%FT%TZ`; hora local
+liga o alarme de frescor para sempre). Escrever o arquivo INTEIRO em
+`estado.json.tmp` e mover por cima (`mv`) - nunca patch parcial. Estados de gate:
+a fase vira `validando` enquanto o validador roda e `gate_usuario` quando o
+material chega ao usuário (é o que o checklist transversal do validador confere).
+
 ## Fases (com gates de aprovação do usuário)
 
 ### 1. Brief (1 rodada de perguntas, no máximo)

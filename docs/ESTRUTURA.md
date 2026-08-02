@@ -39,8 +39,9 @@ só docs e fontes são versionados. `Downloads\<slug>\` espelha o gate atual + e
 
 `diretor → <slug>/estado.json → tools/viz/serve.sh (http.server) → browser (poll 1s)`.
 Contrato do JSON e decisões: `docs/PROPOSTA-visualizador-workflow.md`. Demo sem
-créditos: `bash tools/viz/serve.sh tools/viz/demo` (estática) ou
-`bash tools/viz/demo/simular.sh` (rodada simulada em `?filme=tools/viz/demo/sim`).
+créditos: `bash tools/viz/serve.sh tools/viz/demo` (estática) ou, com o serve.sh
+rodando, `bash tools/viz/demo/simular.sh` (rodada simulada em
+`?filme=tools/viz/demo/sim`).
 
 ## Fluxograma do workflow v2
 
