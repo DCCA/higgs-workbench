@@ -29,7 +29,7 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 - `assets/fonts/` - fontes OFL compartilhadas (Inter, Space Mono, Cormorant, EB Garamond, Playfair, Fredericka the Great) para cartelas/overlays
 - `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
 - `.claude/agents/validador-gate.md` - subagente validador de olhos frios, exigido em todo gate (princípio 6 do workflow)
-- `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/viz/` - board ao vivo do workflow (`bash tools/viz/serve.sh <slug>`, ver ESTRUTURA.md); `tools/motion/` - kit Remotion de infográficos animados, cena = take e zero créditos (gate: `bash tools/motion/check.sh`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
+- `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/viz/` - board ao vivo do workflow (`bash tools/viz/serve.sh <slug>`, ver ESTRUTURA.md; o mundo visual dele mora em `DESIGN.md` + `PRODUCT.md`, mantidos pela skill impeccable - ler antes de mexer na UI do board); `tools/motion/` - kit Remotion de infográficos animados, cena = take e zero créditos (gate: `bash tools/motion/check.sh`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
 - `estilos/` - receitas reutilizáveis por tipo de vídeo (`ESTILO-<slug>.md`; contrato em `docs/PROPOSTA-estilos-de-video.md`), incluindo o tipo **programático**, produzido 100% em `tools/motion/` (`ESTILO-infografico.md`)
 - Entregas para o usuário assistir: copiar para a sua pasta de entrega (ex.: `~/Downloads/<slug>/` ou onde preferir; ver SETUP.md)
 
@@ -48,8 +48,17 @@ Vídeo novo = invocar a skill `/novo-video` (escala padrão: 15-60s, 3-8 shots, 
 
 - ffmpeg é o motor de montagem: concat com `-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`; `ffprobe` para durações. Medir, não olhar, quando dá.
 - QC medido (não re-inventar em ffmpeg cru): `bash tools/qc/qc_video.sh <video> <pasta_qc>` cobre folhas de contato 2fps, flicker (YAVG), freeze, cortes duros e loudness; câmera (wobble/jerk): `tools/qc/camera_review.py` (uso no cabeçalho do script); lint do veredito do validador: `bash tools/qc/lint_veredito.sh <veredito.txt>`; calibração dos checklists em `tools/qc/CALIBRACAO.md`
+- Python do QC: o `python3` do sistema NÃO tem numpy/Pillow. Scripts de análise e geração de overlays rodam com `tools/stable-audio/.venv/bin/python` (a venv que serve numpy/PIL ao QC nesta máquina) ou com a venv do `SETUP.md` §4, num clone limpo
+- Motion: `cd tools/motion && npm install` uma vez (o `prepare` copia as fontes); render de cena/still e a receita das Legendas transparentes (3 flags + `.webm` + `eof_action=pass`) estão em `tools/motion/README.md` - não improvisar
 - VO: `edge-tts` via `uvx --from edge-tts edge-tts ...` - gerar 2-3 candidatas com o texto real do vídeo; a voz é escolhida POR VÍDEO, nunca fixada como padrão do workbench
 - Trilha: `tools/stable-audio/.venv/bin/python tools/stable-audio/gerar_trilha.py "prompt" <segundos> <saida.wav> [seed]`
+
+## Gates verificáveis
+
+Não há suíte de testes: o que se roda antes de dizer "pronto" é `bash tools/motion/check.sh`
+(tipos + render-smoke, só quando mexer em `tools/motion/`), `bash tools/qc/qc_video.sh` no
+vídeo entregue e `bash tools/qc/lint_veredito.sh` no veredito do validador. Mudança só de
+docs não tem gate automatizado - a revisão é a PR.
 
 ## Fluxo de git (obrigatório para qualquer agente)
 
