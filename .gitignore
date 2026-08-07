@@ -36,3 +36,6 @@ tools/motion/out/
 
 # scratch dos fluxos de subagente (relatorios de producao, efemeros)
 .superpowers/
+
+# promo AI Signal Desk (portfolio local)
+/sinal/
