@@ -4,6 +4,50 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` d
 pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
 foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
+## 2026-08-08 - Promo do AI Signal Desk: SINAL abortado no corte, CORRENTEZA de pé com corte v2
+
+**Where we were:** SOL entregue; saldo Higgsfield de volta (3000 cr, plano ultra);
+usuário pediu um promo para o AI Signal Desk.
+
+**What we did:** duas produções na mesma sessão - uma morreu, a outra está de pé.
+
+- **SINAL (abortado no gate de corte, 0 cr).** Promo 100% programático no
+  ground-station, 6 beats/30s. O processo funcionou demais no que ele mede e não
+  mede o que importa: 5 rodadas de validador barraram **7 BLOQUEIA reais** (4
+  premissas minhas da mesma família - *campo de dado lido como feature sem abrir o
+  código do produto*: `tier` como funil, escopo de semanas, score 0-100 aposentado
+  e guardado por CI, "todo dia" com 2 dias vazios) - e o usuário assistiu e
+  reprovou: "slideshow com fade-in", chato, sem vender. **Nenhuma rodada perguntou
+  se o filme era bom.** Eu tinha pulado a fase 5 alegando que o comp (frame parado)
+  provava o wow. Pasta `sinal/` local com bíblia e 3 vereditos; lições de faixa de
+  cor (219/255), freezedetect e concat-timebase promovidas ao PRATICAS.
+- **CORRENTEZA (vivo, corte v2 entregue).** O usuário escreveu a história ele
+  mesmo (7 beats: enxurrada sai da tela → luta → amanhecer da pessoa B → site
+  filtrando a maré). Cena real cinematográfica, gates por STILL (2 cr) antes de
+  cada take, wow em MOVIMENTO antes de produzir o resto. 4 takes gerados + 2
+  composições de site real (captura chromium + warp + máscara de oclusão por
+  frame) + palavras derivando na correnteza (drawtext) + cartela nativa.
+  `corte_v2.mp4`: 24,1s, QC de emendas limpo. **207,5 cr** (25 stills + 7 takes,
+  3 retakes com causa; extrato bate com preflight ao centavo).
+- **PRATICAS.md**: +13 cláusulas pagas nesta sessão (interceptação em cena clara,
+  figurino-default hacker, causa no end frame, olhar coreografado, sujeito-estátua,
+  ~70% do volume do still, faixa de cor, freezedetect, concat, site-em-tela,
+  pegadinha zsh, preço nos dois sentidos).
+- Também: CLAUDE.md do repo ganhou os comandos que faltavam (PR #33, merged).
+
+**Decisions:** o usuário assume o gate de impacto vendo MOVIMENTO (validador não
+julga "é bom"); pedir direção mínima ANTES de construir (3 artefatos completos
+morreram por eu não perguntar); casting v5/v2 e end frames escolhidos pelo usuário
+still a still; virada noite→dia em corte seco; site só na tela da pessoa B.
+
+**Pending / next:**
+- [ ] Veredito do usuário no `corte_v2.mp4` (em `Downloads\correnteza\`)
+- [ ] Áudio: usuário tem uma faixa em mente e ainda não disse qual
+- [ ] Master 1080 (upscale A/B) + QC no entregue; validador técnico antes do master
+- [ ] "Otimizar o workflow depois" (pedido explícito do usuário pós-sinal - a
+      discussão é o custo das 5 rodadas de gate contra o gate de impacto que faltava)
+- [ ] Escuta do beat aos 26s do SOL (pendência antiga, segue aberta)
+
 ## 2026-08-02 (parte 3) - SOL: primeiro filme com ZERO créditos, e o estilo Ground Station graduado
 
 **Where we were:** kit motion recém-shipado com o mundo quadro-negro; nenhum filme feito

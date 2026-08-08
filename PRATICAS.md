@@ -6,9 +6,10 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 ## Custo e orçamento
 
 - **Preflight sempre, estimativa nunca.** `get_cost: true` responde sem gastar. A estimativa
-  de imagem estava errada 40x (chute ~8 cr, real 0,12-2 cr). Os PREÇOS MUDAM: seedance
-  fast 720p era 35/10s no A CHAVE, virou **4,5 cr/s (45/10s)** em jul/2026 - repreflightar
-  por projeto, não confiar no número da bíblia antiga.
+  de imagem estava errada 40x (chute ~8 cr, real 0,12-2 cr). Os PREÇOS MUDAM NOS DOIS
+  SENTIDOS: seedance fast 720p era 3,5 cr/s no A CHAVE, subiu a 4,5 em jul/2026 e
+  **voltou a 3,5 cr/s em ago/2026** (medido na CORRENTEZA) - repreflightar por projeto,
+  não confiar no número da bíblia antiga nem desta cláusula.
 - **Saldo pode cair por OUTRA sessão na mesma conta HF.** Se os créditos somem mais rápido
   que o seu gasto, cheque `transactions` (não só `balance`): pode haver jobs de outro
   projeto/agente na mesma conta. (evals: 4x "Cinematic Studio 3.5" a 80 cr = 320 cr
@@ -108,12 +109,33 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 - **Semântica invertida em composição de objetos.** "Máscara sobre máscara" virou
   "máscaras erguidas na testa, rosto exposto" - a imagem oposta. Antídoto: posição
   explícita ("covers his face COMPLETELY, absolutely NO skin visible").
-- **Interceptação por preset.** O servidor intercepta prompts de cena escura/fria e
-  devolve recomendação de preset SEM submeter o job (parece sucesso, não é). Antídoto:
-  reenviar com `declined_preset_id`. Em bloco de cenas escuras, incluir preventivamente.
-  A interceptação tem VÁRIOS padrões (IN THE DARK, 3D RENDER, FREE FALL...); o id
-  declinado suprime só aquele preset exato - prompt novo pode disparar outro
-  [herdado da skill vox, parcialmente verificado por nós].
+- **Interceptação por preset.** O servidor intercepta prompts e devolve recomendação
+  de preset SEM submeter o job (parece sucesso, não é). Antídoto: reenviar com
+  `declined_preset_id`. **Dispara também em cena CLARA** - um prompt de leitura
+  tranquila ao NASCER DO SOL recebeu "IN THE DARK" (CORRENTEZA): a heurística é do
+  servidor, não da sua cena; incluir o declined preventivo em qualquer bloco do
+  filme, não só nos escuros. A interceptação tem VÁRIOS padrões (IN THE DARK, 3D
+  RENDER, FREE FALL...); o id declinado suprime só aquele preset exato.
+- **Figurino default de "pessoa no computador à noite" é capuz de hacker.** Sem
+  figurino explícito no prompt de casting, 2 de 3 variantes vieram encapuzadas (e
+  uma com logo de marca na tela). Travar roupa + "no hood" já no primeiro still
+  (CORRENTEZA).
+- **End frame de transformação mostra a CAUSA no quadro, não a consequência.**
+  "Sala inundada" como destino interpola uma sala parada molhando; "água JORRANDO
+  da tela" dá o evento que o take precisa encenar. Variante da lição da evidência
+  física, aplicada ao PAR start/end (CORRENTEZA).
+- **Olhar é coreografia com proibição explícita.** "Cabeça inclinada para cima E
+  encarando a tela" é contraditório - o modelo escolhe um (escolheu o teto). Dirigir
+  o olhar como evento ("os olhos seguem a água; NUNCA sobem acima da borda do
+  monitor") e proibir o erro por extenso (CORRENTEZA, retake de 35 cr).
+- **Sujeito que oclui o herói do plano é ESTÁTUA.** "Ela se inclina uns centímetros
+  para ler" virou avanço que cobriu 1/3 da tela - num plano cujo herói é a tela,
+  todo movimento do sujeito é ruído. Pedir imobilidade por extenso ("nunca cresce
+  no quadro, nunca cobre mais da tela que no primeiro frame") e MEDIR: área visível
+  do herói por frame (CORRENTEZA, retake de 17,5 cr).
+- **Take entrega ~70% do volume do end frame.** O still é o teto do evento, não a
+  média do take - dimensionar o end frame ACIMA do que se quer ver em movimento
+  (CORRENTEZA, medido na cachoeira).
 - **Mapa de moderação [herdado da skill vox - NÃO verificado por nós; confirmar ou
   remover no 1º encontro real]:** político NOMEADO no prompt de vídeo → job submete
   ok e MORRE na renderização (seedance); rosto reconhecível em close falha no
@@ -196,6 +218,19 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
 - **`scene>0.25` não detecta corte em mundo de fundo chapado.** Num filme de papel, 8
   cortes secos reais devolvem ZERO detecções. Conferir emenda por salto de YAVG e por
   identidade de frame.
+- **Salto de YAVG se mede no arquivo ENTREGUE, nunca nos takes.** Takes do Remotion
+  saem em faixa CHEIA (`yuvj420p`, `color_range=pc`); o corte H.264 é faixa LIMITADA
+  (`yuv420p`, `tv`). Fator exato 219/255 = 0,8588 - um salto de 12,53 nos takes vale
+  10,73 no entregue. Mesma regra do loudness, agora para luminância. *Pago no SINAL:
+  quase gastei o único xfade do estilo consertando uma emenda que não estourava.*
+- **`freezedetect` é cego em mundo de cauda estática** - dispara na tipografia parada
+  pós-entrada de cada beat e as janelas fecham exatamente nas fronteiras. NÃO é frame
+  repetido: falsificar com `framemd5` (no SINAL, 23 idênticos em 713 = 3,2%). Vale o
+  par com o scene-detect: os dois detectores mentem neste tipo de mundo, cada um para
+  um lado.
+- **`concat` RESETA o timebase da saída** (1/1000000) - normalizar as entradas com
+  `settb=AVTB,fps=24` não basta: precisa repetir DEPOIS do concat, senão o xfade
+  seguinte recusa a emenda (SINAL/CORRENTEZA).
 
 ## Revisão e montagem
 
@@ -242,6 +277,18 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
 - **Motion-graphics/notícia = arte IA + texto OVERLAY**: geração por IA embola texto;
   gerar a arte SEM texto e cravar todo super/timeline/cartela como overlay PIL nítido.
   Vale para explainer, colagem editorial, mapa gravado.
+- **Site/UI real em tela gerada: captura + warp de perspectiva + máscara POR FRAME.**
+  Gerar o plano com a tela EM BRANCO (câmera travada, conferida por
+  `camera_review.py` a 0,00 px/f), capturar o site de verdade (chromium headless 2x)
+  e compor com warp fixo. Se existe oclusor móvel (cabeça, mão), overlay estático
+  pinta POR CIMA dele - a máscara nasce dos pixels claros da tela em CADA frame
+  (lum/sat threshold dentro do quad). E o teste de estabilidade tem que poder
+  FALHAR: medir a área coberta contra o oclusor, não um recorte fixo contra si
+  mesmo (CORRENTEZA, beat 6 refeito por isso).
+- **zsh come `$F:t...` em heredoc**: `fontfile=$F:textfile=` expande como `${F:t}`
+  (modificador basename do zsh) e o caminho da fonte some em silêncio - o drawtext
+  falha com erro que aponta para o textfile. Sempre `${F}` com chaves em filtros
+  ffmpeg gerados por heredoc (CORRENTEZA, 3 rodadas de debug).
 - **`nano_banana` insere texto sozinho** quando o conceito sugere rótulo ("gabarito",
   "answer key", mapa) - o NEGATIVE não basta; limpar por i2i explícito "BLANK/textless".
 - **Interceptação de preset no gemini_omni tb** ("3D RENDER" em colagem); mesmo
