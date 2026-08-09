@@ -9,7 +9,7 @@ filmes SINAL e CORRENTEZA.
 ## O diagnóstico (hipótese do usuário, confirmada duas vezes)
 
 **Pela auditoria interna:** na CORRENTEZA, a pessoa A foi congelada POR ACIDENTE
-(toda âncora derivada por i2i da anterior) e ficou consistente em 6 âncoras e 3
+(toda âncora derivada por i2i da anterior) e ficou consistente em 6 âncoras e 4
 takes. A pessoa B nunca foi congelada: o beat 6 foi um t2i independente descrito de
 memória - outra sala, outro monitor, mulher "parecida". O monitor (em cena em 6 de
 7 beats) teve 3 designs. Nenhuma geração levou style key. Nenhum setup de câmera
@@ -112,12 +112,17 @@ IMPACTO segue sendo o usuário vendo movimento (lição do SINAL, agora com resp
 todo pipeline pesquisado mantém o "fresh-eyes human gate"). Board, bíblia e QC
 medido ficam como estão.
 
-## Custo da proposta
+## Custo da proposta (conta honesta)
 
 O LOCK adiciona ~10-20 cr por filme (character sheets + location masters + prop
-sheets são stills de 2-4 cr) e economiza retakes de 17,5-35 cr - na CORRENTEZA,
-teria custado ~8 cr e evitado no mínimo os 2 retakes de identidade/oclusão
-(52,5 cr) e a sala trocada da B.
+sheets são stills de 2-4 cr). **O que ele compra não é redução de retake pago -
+é qualidade que hoje escapa de graça**: na CORRENTEZA, os 3 retakes pagos (52,5
+cr) foram erros de DIREÇÃO, cobertos pela M3 (coreografia de olhar, sujeito-
+estátua); o que o LOCK teria evitado são os defeitos que ficaram NO FILME sem
+custar crédito - a sala e o monitor trocados da pessoa B e os 3 designs de
+monitor no mesmo filme. M1 compra consistência; M3 compra retakes; a economia
+de créditos mensurável vem de M3 + N-stills-por-shot, e o scorecard do próximo
+filme mede as duas separadamente.
 
 ## Aplicação
 
