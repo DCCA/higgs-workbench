@@ -11,6 +11,30 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-08-09 - Reprovação de ritmo se responde com régua, não com gosto
+**Contexto:** o usuário reprovou o corte da CORRENTEZA v3 com "os cortes estão péssimos,
+quebrando todo ritmo do video". A resposta foi medir movimento interno por plano e a razão
+pico-da-emenda ÷ ambiente-do-plano-que-entra, que apontou a causa real: os planos do lado B
+estavam congelados (0,25 contra 2,6 do resto) e a razão dava 386× na virada - o corte era o
+único evento em cena. **Porquê:** "o ritmo está ruim" é um sintoma sem endereço; a régua dá
+endereço, e o conserto passou a ser 0 cr (movimento no plano, gramática de corte-para-dentro)
+em vez de regen. Virou cláusula na seção Revisão e montagem do PRATICAS.
+
+## 2026-08-09 - Três variantes de montagem em vez de uma, quando o eixo da decisão é gosto
+**Contexto:** com a causa medida, havia dois consertos possíveis (encurtar o plano parado ou
+dar movimento a ele) e eles quebravam cláusulas diferentes que o usuário mesmo havia travado.
+Foram entregues três variantes completas (0 cr) com o que cada uma quebra declarado, e a
+terceira - a que o validador sugeriu e nenhuma das duas primeiras testava - foi a escolhida.
+**Porquê:** quando o eixo é impacto, o gate é o usuário assistindo; entregar o par de extremos
+mais a síntese custa nada em créditos e evita a rodada de "não era isso".
+
+## 2026-08-09 - Ferramenta de medição declara a própria cegueira
+**Contexto:** `camera_review.py` devolveu 0,00 px/f para uma deriva real de 0,73 px/f porque
+mede em 180×320 com precisão inteira; e a primeira máscara de site por cor do validador
+travava no céu do amanhecer, dando borda falsa. **Porquê:** um PASS de régua cega é pior que
+nenhum PASS - passou a ser obrigatório declarar a resolução/limite da régua junto com o
+número, e descartar por escrito a régua que falhou no controle.
+
 ## 2026-08-08 - Workflow v3: congelamento de ativos (LOCK) + disciplina do still
 **Contexto:** o usuário diagnosticou ("não congelamos ativos, personagens e views")
 depois de a pessoa B da CORRENTEZA trocar de sala e de monitor entre beats; deep
