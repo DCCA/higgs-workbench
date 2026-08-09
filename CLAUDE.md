@@ -15,7 +15,7 @@ Workbench permanente de produção de vídeo com IA (Higgsfield MCP + ferramenta
 `PROJECT_STATUS.md` é o logbook por sessão (mais recente primeiro): onde as coisas pararam, decisões e pendências. Consultar no início da sessão, atualizar ao encerrar.
 
 `docs/` é a arquitetura viva: `ESTRUTURA.md` (as peças do sistema + fluxograma do
-workflow v2 com o loop de validação) e `DECISOES.md` (log append-only de decisões de
+workflow v3 com o loop de validação) e `DECISOES.md` (log append-only de decisões de
 arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
 
 ## Estrutura
@@ -25,9 +25,11 @@ arquitetura/processo, com o porquê - decisões novas SEMPRE entram lá).
   pasta nova - o portfólio fica local)
   com sua `BIBLIA.md` e a árvore padrão `storyboard/ 01_refs/ 02_ancoras/ 03_takes/
   04_qc/ 05_cortes/ 06_master/` (status é pasta: aprovado na principal, supersedido em
-  `_descartados/`; `06_master/` só com a entrega vigente - detalhes na fase 2 da skill)
-- `assets/fonts/` - fontes OFL compartilhadas (Inter, Space Mono, Cormorant, EB Garamond, Playfair, Fredericka the Great) para cartelas/overlays
-- `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação (10 fases com gates de aprovação do usuário)
+  `_descartados/`; `06_master/` só com a entrega vigente - detalhes na fase 2 da skill).
+  Vale para todo projeto novo; `mascaras/` e `voo/` (julho/2026) são anteriores ao padrão
+  e são despejo achatado - não usar como modelo
+- `assets/fonts/` - fontes OFL compartilhadas para cartelas/overlays: Inter (Light/Regular/SemiBold/Bold), **Manrope** e **DM Mono** (Regular/Medium) - o par das cartelas -, Space Mono, Cormorant, EB Garamond, Playfair, Fredericka the Great. O `prepare` do motion copia a pasta inteira, então acrescentar fonte aqui já a disponibiliza lá
+- `.claude/skills/novo-video/SKILL.md` - workflow oficial de criação: fases 1 a 10 com gates de aprovação do usuário, mais 3 sub-gates obrigatórios (1.5 conceito, 7b anti-slop, 8b soundtrack)
 - `.claude/agents/validador-gate.md` - subagente validador de olhos frios, exigido em todo gate (princípio 6 do workflow)
 - `tools/` - ferramentas de QC versionadas (`tools/qc/`); `tools/viz/` - board ao vivo do workflow (`bash tools/viz/serve.sh <slug>`, ver ESTRUTURA.md; o mundo visual dele mora em `DESIGN.md` + `PRODUCT.md`, mantidos pela skill impeccable - ler antes de mexer na UI do board); `tools/motion/` - kit Remotion de infográficos animados, cena = take e zero créditos (gate: `bash tools/motion/check.sh`); `tools/stable-audio/` (gitignorado) roda o gerador de trilha na GPU local (ver SETUP.md)
 - `estilos/` - receitas reutilizáveis por tipo de vídeo (`ESTILO-<slug>.md`; contrato em `docs/PROPOSTA-estilos-de-video.md`), incluindo o tipo **programático**, produzido 100% em `tools/motion/` (`ESTILO-infografico.md`)
@@ -43,6 +45,8 @@ Vídeo novo = invocar a skill `/novo-video` (escala padrão: 15-60s, 3-8 shots, 
 4. Wow-shot prototipado primeiro, fora de ordem - se não impressiona, replaneja antes de produzir
 5. Nenhum vídeo é gerado sem storyboard aprovado (custo zero: PIL + frames já pagos como beats)
 6. Nenhum material de gate chega ao usuário sem passar pelo subagente `validador-gate` (`.claude/agents/validador-gate.md` - olhos frios, read-only); aceite do veredito via `bash tools/qc/lint_veredito.sh` + 1 spot-check de evidência
+7. Brief abstrato tem gate de CONCEITO com 3-5 opções antes do primeiro still - o além é outra categoria, e o arco termina diferente de onde começou
+8. Casting, mundo e props travam no gate de LOOK DEV; linguagem de montagem trava no storyboard - pivô tardio = re-shoot, e o usuário decide sabendo o preço
 
 ## Comandos
 

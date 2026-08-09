@@ -55,8 +55,9 @@ workflow v2 do workbench, vivo.
 - Nome do repo: **higgs-workbench**; sem logo.
 - Voz dos docs: português direto, "medir, não olhar", "olhos frios".
 - **Fontes OFL já versionadas em `assets/fonts/`** (Inter, Space Mono, Cormorant
-  Light it., EB Garamond it., Playfair it.) - servíveis pela mesma origem do
-  viewer, sem CDN. São a paleta tipográfica canônica do workbench (cartelas dos
+  Light it., EB Garamond it., Playfair it., Fredericka the Great, Manrope, DM Mono
+  - a lista canônica vive em `assets/fonts/README.md`) - servíveis pela mesma
+  origem do viewer, sem CDN. São a paleta tipográfica canônica do workbench (cartelas dos
   filmes).
 
 ## Evidence on Hand

@@ -10,7 +10,7 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 | `CLAUDE.md` | guia do repo + fluxo de git obrigatório (branch→PR→review→merge) |
 | `PRATICAS.md` | a RÉGUA: toda lição paga vira cláusula; o validador lê antes de validar |
 | `FERRAMENTAS.md` | stack gratuito (VO/trilha/foley/upscale) + tooling de review |
-| `.claude/skills/novo-video/` | o workflow v2 (fases, gates, princípios 1-8) |
+| `.claude/skills/novo-video/` | o workflow v3 (fases, gates, princípios 1-8) |
 | `.claude/agents/validador-gate.md` | olhos frios: valida TODO material antes de chegar ao usuário |
 | `tools/qc/` | medições determinísticas: `qc_video.sh`, `camera_review.py`, `lint_veredito.sh`, `CALIBRACAO.md` |
 | `tools/stable-audio/` | trilha local (RTX 3070) + a venv que serve numpy/PIL ao QC (fora do git) |
@@ -18,7 +18,7 @@ Como o sistema funciona hoje. Documento vivo: atualizar quando a arquitetura mud
 | `PROJECT_STATUS.md` | logbook por sessão (mais recente primeiro) |
 | `docs/` | esta pasta: arquitetura viva + log de decisões |
 | `tools/viz/` | board ao vivo do workflow (xyflow sem build): serve.sh + viewer que lê `<slug>/estado.json` escrito pelo diretor a cada transição |
-| `tools/motion/` | kit Remotion de infográficos animados (6 cenas com props JSON, tokens em `src/theme.ts`): cena = take, zero créditos; gate `bash tools/motion/check.sh` |
+| `tools/motion/` | kit Remotion de infográficos animados (11 cenas com props JSON: 6 do mundo quadro-negro em `src/scenes/` + 5 do ground-station em `src/gs/cenas/`, mais a composição `Sanity` do check; tokens em `src/theme.ts` e `src/gs/tema.ts`): cena = take, zero créditos; gate `bash tools/motion/check.sh` |
 | `estilos/` | receitas reutilizáveis por tipo de vídeo (`ESTILO-<slug>.md`; contrato em `docs/PROPOSTA-estilos-de-video.md`) - o brief pergunta o estilo, o validador confere aderência, a fase 10 devolve lições |
 
 ## Árvore padrão por filme
@@ -54,7 +54,7 @@ funcionam sem mudança - só a origem do take muda (props JSON no lugar do ID de
 geração). Transição entre cenas é sempre ffmpeg, nunca Remotion. Receita completa:
 `estilos/ESTILO-infografico.md` e `tools/motion/README.md`.
 
-## Fluxograma do workflow v2
+## Fluxograma do workflow v3
 
 ```
                             /novo-video
@@ -76,9 +76,10 @@ geração). Transição entre cenas é sempre ffmpeg, nunca Remotion. Receita co
                      │    preflight get_cost│  conta ANTES do 1º crédito
                      └──────────┬───────────┘
                      ┌──────────▼───────────┐
-                     │ 3. ÂNCORAS (stills)  │  checklist por still (bordas!)
-                     │ ══ GATE: casting     │  ◄─ pivô depois = re-shoot
-                     │    TRAVA aqui ══     │
+                     │ 3. LOOK DEV + LOCK   │  sheets, masters de sala e
+                     │ ══ GATE: casting +   │  props; checklist por still
+                     │    mundo + props     │  ◄─ pivô depois = re-shoot
+                     │    TRAVAM aqui ══    │
                      └──────────┬───────────┘
                      ┌──────────▼───────────┐
                      │ 4. STORYBOARD (0 cr) │  beats com frames pagos;

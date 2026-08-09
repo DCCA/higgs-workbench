@@ -2,9 +2,27 @@
 # Lint determinístico do veredito do validador-gate. Decide se a RODADA é aceitável
 # (formato, cobertura, evidência) - NÃO julga o mérito (isso é calibração + escapes).
 # Uso: bash tools/qc/lint_veredito.sh <arquivo_com_o_veredito.txt>
-# Exit 0 = rodada válida; exit 1 = re-rodar com feedback.
+# Exit 0 = rodada válida; exit 1 = re-rodar com feedback; exit 2 = erro de uso.
 set -u
-V="$1"; FAIL=0
+
+# Guarda de uso ANTES de qualquer grep: sem ela, um caminho com typo cospe uma parede de
+# erros de grep e termina em "RE-RODAR o validador", ou seja um erro MEU lê como veredito
+# de que o validador precisa re-rodar. Exit 2 separa "não consegui ler" de "rodada ruim".
+if [ $# -lt 1 ]; then
+  echo "uso: bash tools/qc/lint_veredito.sh <arquivo_com_o_veredito.txt>" >&2
+  exit 2
+fi
+V="$1"
+if [ ! -f "$V" ]; then
+  echo "ERRO: arquivo de veredito não existe: $V" >&2
+  exit 2
+fi
+if [ ! -s "$V" ]; then
+  echo "ERRO: arquivo de veredito está vazio: $V" >&2
+  exit 2
+fi
+
+FAIL=0
 say() { echo "  $1"; }
 bad() { echo "  ✗ $1"; FAIL=1; }
 

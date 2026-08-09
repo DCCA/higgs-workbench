@@ -23,6 +23,10 @@ tools/stable-audio/
 # saida temporaria de QC na raiz
 qc_out/
 
+# bytecode do python (py_compile nas provas de QC)
+__pycache__/
+*.pyc
+
 # simulacoes do workflow (descartaveis)
 tools/viz/demo/sim/
 

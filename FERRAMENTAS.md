@@ -64,6 +64,15 @@ Trade-off honesto: o `upscale_video` do Higgsfield tende a tratar melhor os arte
 típicos de vídeo gerado por IA; o local é grátis mas genérico. Vale o teste A/B num
 shot antes de decidir o filme inteiro - o local custando zero, o teste é barato.
 
+**Estado nesta máquina (medido em 2026-08-09): nem `video2x` nem
+`realesrgan-ncnn-vulkan` estão instalados**, e instalar exigiria `sudo`. Não tratar
+Video2X como premissa de teto sem antes conferir com `command -v`. O caminho de 0 cr que
+funcionou no master da CORRENTEZA v3 foi `scale=...:flags=lanczos` do próprio ffmpeg: para
+1,5× (720→1080) é adequado, porque Real-ESRGAN rende de verdade em 2-4×. Ganho grátis que
+importa mais que o upscaler: **renderizar o que é sintético (cartelas, supers, overlays de
+texto) NATIVO na resolução alvo** em vez de ampliar - medidos 2,76× de nitidez no texto da
+cartela.
+
 ## 5b. Catálogo Higgsfield além do padrão (verificado 2026-07-25)
 
 - **`gemini_omni`**: 30 cr/10s (3,0 cr/s vs 3,5 do seedance fast), só 720p, 9:16 ok,
@@ -121,3 +130,9 @@ Kit Remotion do workbench - produção com ZERO créditos (cena = take; spec em
       → DaVinci (cor final, mix, cartela) → Video2X (upscale/interp) → export
 
 Higgsfield fica só onde é insubstituível: geração e, se o A/B disser, upscale.
+
+Este diagrama é **proposta**, não inventário: conferido em 2026-08-09, desta lista só
+`ffmpeg`, `edge-tts` (via `uvx`) e o Stable Audio local estão instalados nesta máquina -
+**DaVinci Resolve e Video2X não estão**. Os filmes entregues até aqui foram montados,
+graduados e masterizados só com ffmpeg + PIL. Rodar `command -v` antes de assumir
+qualquer estágio como disponível.

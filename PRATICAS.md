@@ -354,6 +354,12 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   de 2s (um piscar) geram em 4 e aparam na montagem, com fade se o estado final importa.
 - **Medir, não olhar, quando dá:** `signalstats YAVG` para confirmar preto de vídeo,
   `ffprobe` para durações.
+- **Nunca pendurar uma mutação atrás de `cd` num shell de cwd persistente.** `cd X && cp/mv/edit`
+  vira silêncio quando o `cd` falha porque já se está em X: o `&&` engole o resto e o
+  relatório sai dizendo "aplicado". Aconteceu 3× numa só sessão, com `cp` de âncoras, edição
+  de bíblia e correção de script. Usar caminho absoluto, ou `cd` numa linha própria, e
+  SEMPRE conferir o efeito (`ls`, `grep`, `git diff`) em vez de confiar no exit code do
+  encadeamento.
 - **Scrub 0,25x em mãos, bordas e texto em tela (v3)** - estatisticamente onde os
   erros de geração moram; frame a frame nos segundos de contato físico.
 - **Edição concorrente (v3): o corte começa no primeiro take aprovado** e cresce com
@@ -367,11 +373,15 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   parado.** Os B-frames do H.264 produzem modulação de nitidez frame a frame nesse caso:
   medido 9,95% do nível no corte com B-frames contra **0,58%** com `-bf 0`. O defeito não
   vem do filtro (a mesma cadeia antes do encode dá 0,78%), então só se conserta no encode.
-- **Grão sintético não é obrigatório quando a origem já tem grão.** A cláusula do grão
-  compartilhado existe para não deixar um plano ampliado parecer plástico ao lado de
-  outro; se todos vêm do mesmo gerador e levam o mesmo fator de ampliação, a consistência
-  já existe. `noise=alls=4` inflou um master de 22s de 31 MB para **189 MB** sem
-  acrescentar informação.
+- **Grão sintético não é obrigatório quando a origem já tem grão - mas a razão NÃO é
+  "todos levam o mesmo fator de ampliação".** Essa premissa foi falsificada na medição:
+  num filme com reenquadramentos, cada plano recorta um tamanho diferente do supersample
+  e portanto amplia diferente (medidos 1,500× / 1,831× / 1,651× / 2,177× no mesmo filme,
+  45% de espalhamento), e a textura do grão nativo difere de fato entre planos vizinhos
+  (comprimento de correlação 1,29 px contra 2,45 px, razão 1,90×). O que justifica pular o
+  grão é o resultado medido: nenhum plano lê como plástico (razão de textura 1,01-1,03 com
+  sigma casado) e `noise=alls=4` inflou um master de 22s de 31 MB para **189 MB** (5,9×)
+  sem acrescentar informação. Medir textura por plano antes de decidir, não presumir.
 - **Ordem fixa do pós (v3): upscale → grade pelo HERO clip → grão 24fps
   compartilhado** por cima de tudo (grão único esconde variação de textura entre
   gerações); speed-up sutil ~105-115% contra movimento flutuante. Cláusula-guarda:
