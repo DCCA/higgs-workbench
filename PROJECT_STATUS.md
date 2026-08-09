@@ -44,8 +44,9 @@ still a still; virada noite→dia em corte seco; site só na tela da pessoa B.
 - [ ] Veredito do usuário no `corte_v2.mp4` (em `Downloads\correnteza\`)
 - [ ] Áudio: usuário tem uma faixa em mente e ainda não disse qual
 - [ ] Master 1080 (upscale A/B) + QC no entregue; validador técnico antes do master
-- [ ] "Otimizar o workflow depois" (pedido explícito do usuário pós-sinal - a
-      discussão é o custo das 5 rodadas de gate contra o gate de impacto que faltava)
+- [x] Workflow otimizado → **v3 (congelamento de ativos)**: deep research em 4
+      frentes + proposta aprovada pelo usuário (PR #35) e aplicada em SKILL,
+      validador-gate e PRATICAS (PR #36)
 - [ ] Escuta do beat aos 26s do SOL (pendência antiga, segue aberta)
 
 ## 2026-08-02 (parte 3) - SOL: primeiro filme com ZERO créditos, e o estilo Ground Station graduado

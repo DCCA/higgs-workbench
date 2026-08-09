@@ -36,27 +36,39 @@ dentro do mundo do estilo + aderência (a fase 1.5 encurta por contrato da skill
 Nomes de parâmetro conferidos via `models_explore` (armadilha `quality` vs `mode`)?
 Margem de retake do wow incluída? Total dentro do alvo declarado?
 
-**ÂNCORAS (fase 3):** zoom nas 4 bordas de CADA still - objeto estranho/não-diegético
-= REPROVAR (parallax contamina o take). Logos de marca (TNF volta sozinha). Figurino
-idêntico ao bloco de identidade da bíblia. Escala do sujeito legível (≥~1/10).
-Cláusula anti-rotação aplicada em paisagem/arquitetura (horizonte horizontal)?
-Pares start/end são gêmeos de enquadramento?
+**LOOK DEV + LOCK (fase 3, v3):** zoom nas 4 bordas de CADA still - objeto
+estranho/não-diegético = REPROVAR (parallax contamina o take). Logos de marca (TNF
+volta sozinha). Figurino idêntico ao bloco de identidade da bíblia. Escala do
+sujeito legível (≥~1/10). Cláusula anti-rotação aplicada em paisagem/arquitetura
+(horizonte horizontal)? Pares start/end são gêmeos de enquadramento?
+**Checks do LOCK:** artefatos obrigatórios existem em `02_ancoras/LOCK/` (character
+sheet p/ personagem em 2+ shots; location master p/ locação em 2+ shots; prop sheet
+p/ objeto em 3+ shots; style key; bloco de identidade na bíblia)? **Derivação:**
+todo still de entidade EXISTENTE aponta o artefato-mãe do LOCK na bíblia - still de
+entidade conhecida nascido de t2i = BLOQUEIA (é o modo de falha da sala trocada da
+CORRENTEZA). Prop recorrente idêntico entre stills (compare lado a lado)?
 
 **STORYBOARD (fase 4):** todo movimento tem destino e é geometricamente possível da
 câmera desenhada? Setas/trajetórias NIVELADAS com o movimento real? Timecodes somam a
 duração alvo? Linguagem de montagem (cortes × oner) declarada com custos? Beats sem
-frame estão marcados como fantasma?
+frame estão marcados como fantasma? **Setups (v3):** todo shot referencia um setup
+nomeado do plano de cobertura (máx 5-7 por cena)? Shot sem setup = achado.
 
 **TAKE (fases 5-6):** strip de beats confere com a coreografia temporizada do prompt?
 Bordas nos segundos críticos limpas? Câmera medida (`camera_review.py`): jerk sem
 picos não-intencionais, assentamento quando o sujeito para, enquadramento disciplinado?
-Identidade/figurino constantes? Rotação de moldura?
+Identidade/figurino constantes? Rotação de moldura? **Scrub 0,25x (v3) em mãos,
+bordas e texto em tela** - frame a frame nos segundos de contato físico. Take deriva
+do still-âncora aprovado (não de outro take)? Salto de YAVG entre takes se mede no
+ARQUIVO ENTREGUE (takes saem em faixa cheia; fator 219/255).
 
 **CORTE (fase 7):** suite completa `qc_video.sh` + folha de cortes medida (YAVG das
 emendas), travessias por branco/preto com duração ≥1s, sem frame repetido entre shots.
 
 **SOM (fase 8):** cobertura até o último frame (cauda ≥ -30 dB significa buraco),
 ebur128 I≈-14 LUFS / TP≤-1, mapa de sincronia música×imagem confere no corte FINAL.
+**Som obrigatório (v3):** corte sem camada de som (ambiência + foley) só passa se o
+brief declarar mudo EXPLICITAMENTE - senão é achado BLOQUEIA.
 **Risco de pronúncia (proxy textual, escape da A CHAVE):** se a VO é edge-tts e o
 TEXTO da fala contém termos em INGLÊS/estrangeiros, FLAGAR como risco de pronúncia
 para revisão auditiva do usuário (edge-tts atropela inglês). Acentuação dos supers
@@ -64,7 +76,9 @@ em PT: conferir à/ã/ç/é/ê... nos overlays (erro comum = input ASCII).
 
 **MASTER (fase 9):** 7b+8b re-rodados no produto; cartela: fonte com intenção (nunca
 de sistema), off-white quente (nunca branco 255), texto nativo na resolução final;
-resolução de entrega 1080×1920; grão presente.
+resolução de entrega 1080×1920; grão presente. **Ordem do pós (v3) respeitada:**
+upscale → grade pelo hero clip → grão 24fps compartilhado; loudness e YAVG medidos
+no arquivo ENTREGUE, nunca em intermediário.
 
 **TRANSVERSAL (todo gate):** `<slug>/estado.json` está fresco (`atualizado_em`
 condizente com o material deste gate) e coerente com o disco? Spot-check: 1 shot
