@@ -58,9 +58,11 @@ sessão custou 0 crédito.
   documentados rodados como prova. E o `lint_veredito.sh` ganhou guarda: com caminho errado ele
   concluía "RE-RODAR o validador", ou seja um typo meu lia como veredito sobre o validador.
 
-**Scorecard v3 × baseline** (na bíblia, com leitura honesta): 11,5 cr/s contra 8,6 - **26% mais
-caro**, porque 154 dos 260,5 cr foram 5 iterações do wow-shot em movimento -, e **47% de gates
-aprovados de 1ª**. Em troca: 7 BLOQUEIA reais pegos antes do usuário, o defeito nº 1 da baseline
+**Scorecard v3 × baseline** (na bíblia, com leitura honesta): 11,5 cr/s contra 8,6 - **33,7% mais
+caro**, porque 154 dos 260,5 cr foram 5 iterações do wow-shot em movimento -, e **47% dos vereditos
+saindo APROVADO** (9 de 19). Os dois números estavam errados na primeira redação: eu havia escrito
+"26% mais caro", que é quanto a baseline era mais BARATA (1 − 8,61/11,51), e rotulado a fração de
+vereditos como "gates aprovados de 1ª". Pegos por revisão adversarial. Em troca: 7 BLOQUEIA reais pegos antes do usuário, o defeito nº 1 da baseline
 (monitor/sala mudando entre beats 5 e 6) morto com régua falsificável, e **0 cr** em todo o
 retrabalho de montagem, som e master.
 
