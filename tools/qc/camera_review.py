@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
 """Review de linguagem de camera: movimento global (phase correlation) +
 estabilidade de enquadramento (centroide do sueter vermelho).
-Le rawvideo rgb24 do stdin (180x320)."""
+Le rawvideo rgb24 do stdin (180x320).
+
+Uso (o CLAUDE.md aponta para este cabecalho):
+    ffmpeg -v error -i take.mp4 -vf scale=180:320 -f rawvideo -pix_fmt rgb24 - \
+      | tools/stable-audio/.venv/bin/python tools/qc/camera_review.py "take"
+
+CEGUEIRA DECLARADA: mede em 180x320 com precisao inteira, entao deriva abaixo de
+~0,25 px/f a 720 sai como 0,00 px/f. Nao ler 0,00 como "camera travada" sem antes
+conferir o deslocamento ACUMULADO no plano."""
 import sys
 import numpy as np
 

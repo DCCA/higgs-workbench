@@ -295,7 +295,7 @@ terminando no tom do fundo da cartela. Re-rodar 7b + 8b no produto final.
 
 ## Princípios que não se negociam
 
-1. Todo problema resolvível no still (2 cr) não chega ao vídeo (17-45 cr)
+1. Todo problema resolvível no still (2 cr) não chega ao vídeo (17-52 cr)
 2. Preflight sempre; mostrar a conta antes de gastar
 3. Julgar shot por strip é produção; revisão é folha de cortes
 4. Wow-shot primeiro - se o vídeo não impressiona no protótipo, replaneja antes de produzir
