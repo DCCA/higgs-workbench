@@ -210,6 +210,13 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
   o novo ângulo - o modelo re-encena. Para mudar CONTEÚDO mantendo o mundo: o oposto,
   referenciar a mãe. (evals: 4 tentativas i2i falharam antes do t2i acertar.)
 
+**Armadilhas de ferramenta do ffmpeg (medidas, não teóricas):** `zoompan` com `d=1`
+cospe 512 frames por frame de entrada neste build (trim de 86 f virou 44032 f), então
+zoom animado sai por outro caminho; `crop` não tem `eval=frame` - só `x`/`y` são
+por-frame, `w`/`h` são avaliados uma vez; `alimiter limit=X` com o `level=true` do
+default **não é teto**, ele renormaliza a saída (+2,04 dB medidos com limit=0,79) e age
+como modelador de ganho - o teto de verdade vem do `loudnorm TP`.
+
 ## Storyboard antes do take caro (custo zero)
 
 Antes de qualquer geração acima de ~30 cr ou conceito de movimento arriscado:
@@ -237,6 +244,28 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   alvos de -1,0 a -2,0 furam o teto depois do encode. Varrer o alvo e medir o entregue
   a cada passo é barato - desistir com uma teoria não medida é caro. *Pago no SOL: o
   master v1 saiu a -15,0 LUFS com uma justificativa que o validador falsificou medindo.*
+- **Ambiência gerada tem de ser MEDIDA no espectro, não só no nível.** Um prompt de
+  "água" pode devolver drone de sub-bass: *pago na CORRENTEZA v3 - o leito tinha 100% da
+  energia abaixo de 200 Hz e centroide em 61 Hz, e com Butterworth de 4ª ordem em 500 Hz
+  (proxy de alto-falante de celular) o contraste entre os dois lados do filme ia de
+  +2,84 dB para **-1,84 dB**: a tese do filme invertia no dispositivo em que um 9:16 é
+  assistido.* Régua obrigatória em todo elemento gerado: fração de energia abaixo de
+  200 Hz, centroide espectral e o teste de high-pass em 500 Hz comparando os blocos que
+  precisam contrastar. Água/chuva/multidão real tem centroide de milhares de Hz.
+- **Um transiente sequestra o true peak e obriga o filme inteiro a ficar baixo.** O mix
+  cru com LRA 20 LU e TP +1,04 fez o `loudnorm` linear aplicar os -2,54 dB que o TP
+  exigia em vez do ganho que a loudness pedia, e o filme saiu 1,7 LU abaixo do alvo.
+  `alimiter` no elemento percussivo + `acompressor` leve na soma resolvem - mas
+  compressor pesado achata justamente a dinâmica que às vezes É a tese do filme
+  (LRA 10,6 → 4,7 LU, com bombeamento de 7,29 dB pico-a-pico).
+- **`loudnorm` de uma passada não acerta o alvo** (deu -16,9 LUFS contra -14): medir com
+  `print_format=json` e re-aplicar com `measured_*` + `linear=true`.
+- **Silêncio digital absoluto não existe na natureza.** Um buraco de 85 ms em zero exato
+  pode ler como falha de player no celular; piso de room tone a -55/-60 dB mantém o
+  degrau (55,9 dB medidos) e tira o risco.
+- **O AAC descarta o último frame incompleto.** Ele escreve frames de 1024 amostras, e
+  com `-shortest` o áudio termina antes do último frame de vídeo (11,7 ms medidos).
+  `apad` até o primeiro limite de frame ACIMA do vídeo, e sem `-shortest`.
 - **VO se mede antes de gravar.** Texto que não cabe no beat se REESCREVE, nunca se
   acelera. Contraintuitivo e caro de descobrir tarde: `IA` sai soletrado ("i-á") no
   edge-tts e consome MAIS tempo que "inteligência artificial" por extenso.
@@ -280,6 +309,41 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   mesmo frame.
 - **Fixes de edição antes de regen.** Trim, micro-dissolve (0,25-0,35s) e fade resolvem
   metade dos achados de graça. Regen só quando o conteúdo está errado.
+- **Plano congelado é o que quebra o ritmo, não o corte.** Quando o usuário reclama de
+  "os cortes estão péssimos", medir movimento interno por plano ANTES de mexer em
+  transição: régua = `tblend=all_mode=difference` + `signalstats`, e a razão
+  **pico da emenda ÷ movimento ambiente do plano que ENTRA**. *Pago na CORRENTEZA v3:
+  b5/b6 tinham 0,25 de movimento interno contra 2,6 do resto, e a razão dava 386× na
+  virada - o corte era o único evento em cena e o lado B lia como slideshow.* Cura de
+  0 cr: dar movimento ao plano ou encurtá-lo. Razões ≤ 16× leem como corte normal.
+- **Dissolve de 2-3 frames é sempre errado.** 83-125 ms é longo demais para ser
+  invisível e curto demais para ler como dissolve: vira stutter. Ou corte de 1 frame,
+  ou dissolve ≥ 12 frames. E o crossfade tem de ser `xfade transition=fade`:
+  **`transition=dissolve` no ffmpeg NÃO é crossfade, é dither aleatório por pixel** -
+  medido no meio de uma transição de 12 f, 49,4% dos pixels vinham de um plano, 49,9%
+  do outro e só 0,7% eram mistura real (MAE 65,91 contra um crossfade linear ideal;
+  com `fade`, 100% de mistura e MAE 1,76).
+- **Salto de conteúdo no MESMO enquadramento é jump cut, e o conserto é a lente, não a
+  transição.** Reenquadrar o plano que entra em ≥ 20% transforma a emenda em
+  corte-para-dentro; abaixo de ~10% é cosmético (a 1,08 a pose seguia com MAE 42 e a
+  emenda seguia lendo como salto; a 1,22 o blob do rosto foi a 2,36× linear).
+- **Dois planos com o MESMO fundo e só a pessoa mudando violam a regra dos 30°** e leem
+  como falha, não como novo ângulo - mesmo sendo dois takes legítimos e bem gerados.
+- **Deriva digital para dar vida a plano parado: passo INTEIRO no supersample.** Com
+  passo fracionário o valor inteiro de `crop` repete em alguns frames e o plano ganha
+  stutter (variação frame-a-frame 1,5-2,1 contra 0,036 com passo inteiro). E escolher o
+  EIXO pela sobra: quando a margem de segurança de um elemento composto (um site na
+  tela) e o curso da deriva disputam a mesma sobra, mudar de eixo em vez de cortar o
+  curso - na vertical a sobra costuma ser várias vezes maior.
+- **Overlay de texto nasce no enquadramento FINAL, nunca no nativo.** Desenhar antes de
+  reenquadrar encurtou 35-56% a janela em que cada palavra aparecia inteira e deixou a
+  folga do texto na mandíbula em 1 px. Crop primeiro, `drawtext` depois, `tw` (text_w)
+  no x para não estimar largura à mão, e **uma faixa por palavra**: com duas palavras
+  dividindo faixa, o vão entre elas é `15t−262` px e só fica positivo depois de 17,5s,
+  ou seja elas se sobrepõem o filme inteiro.
+- **Régua tem resolução, e ela mente por omissão.** `camera_review.py` mede em 180×320
+  com precisão inteira e devolve 0,00 px/f para uma deriva real de 0,73 px/f a 720.
+  Declarar a cegueira junto com o número, sempre.
 - **Emendas exatas entre blocos:** terminar o shot N no mesmo frame âncora que abre o
   N+1 (ex.: mergulho termina na imagem ÁGUA, submersão começa nela) - a emenda entre
   atos sai perfeita sem pós.
@@ -295,6 +359,19 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
 - **Edição concorrente (v3): o corte começa no primeiro take aprovado** e cresce com
   a produção - a timeline é o instrumento de continuidade e a espera de render vira
   revisão (achado do *Catacombs*, 3.229 gerações).
+- **Master: renderizar o que é sintético NATIVO na resolução alvo.** Cartelas, supers e
+  overlays de texto não se ampliam - parametrizar a resolução de saída no script de
+  montagem e redesenhá-los em 1080. Ganho medido de 2,76× na nitidez do texto da cartela
+  (variância do laplaciano 371,0 nativo contra 134,3 ampliado).
+- **`-bf 0` no encode do master quando há plano com movimento uniforme sobre fundo
+  parado.** Os B-frames do H.264 produzem modulação de nitidez frame a frame nesse caso:
+  medido 9,95% do nível no corte com B-frames contra **0,58%** com `-bf 0`. O defeito não
+  vem do filtro (a mesma cadeia antes do encode dá 0,78%), então só se conserta no encode.
+- **Grão sintético não é obrigatório quando a origem já tem grão.** A cláusula do grão
+  compartilhado existe para não deixar um plano ampliado parecer plástico ao lado de
+  outro; se todos vêm do mesmo gerador e levam o mesmo fator de ampliação, a consistência
+  já existe. `noise=alls=4` inflou um master de 22s de 31 MB para **189 MB** sem
+  acrescentar informação.
 - **Ordem fixa do pós (v3): upscale → grade pelo HERO clip → grão 24fps
   compartilhado** por cima de tudo (grão único esconde variação de textura entre
   gerações); speed-up sutil ~105-115% contra movimento flutuante. Cláusula-guarda:

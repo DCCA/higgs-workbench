@@ -4,6 +4,53 @@ Logbook por sessão, mais recente primeiro. Detalhe por projeto na `BIBLIA.md` d
 pasta de cada filme (local, fora do repo público). MARÉ ALTA (pausado em 2026-07-18)
 foi removido do disco local; o histórico dele segue nas entradas antigas abaixo.
 
+## 2026-08-09 - CORRENTEZA v3: reprovação de ritmo consertada por medição, master 1080 mudo
+
+**Where we were:** o remake da CORRENTEZA rodando o workflow v3 completo tinha chegado ao
+gate do corte com `corte_v2.mp4` (23,08s, 260,5 cr de teto 275) aprovado pelo validador.
+
+**What we did:** o usuário reprovou o corte - "os cortes estão péssimos, quebrando todo
+ritmo do video" - e o resto da sessão foi responder isso com régua, a 0 crédito.
+
+- **Diagnóstico medido** (`tblend=all_mode=difference` + `signalstats`): o lado B estava
+  congelado (movimento interno 0,25/0,27 contra 2,6-3,3 do resto) e a razão pico-da-emenda ÷
+  ambiente dava **386× na virada** e 52× em b5→b6 - o corte era o único evento em cena. Mais:
+  o "estouro" não existia dentro de nenhuma fonte (é fabricado pela emenda), WOW→luta era jump
+  cut e b5/b6 violam a regra dos 30° (mesmo fundo, só a pessoa muda).
+- **Três variantes completas** entregues ao usuário, com o que cada uma quebra das cláusulas
+  que ele mesmo travou. Ele escolheu a `tese` (22,625s): deriva vertical no lado B com TODOS
+  os cortes secos, inclusive a virada. Movimento interno do lado B subiu para 1,76/2,49 e
+  todas as emendas ficaram ≤ 56×, sendo esse valor o corte deliberado da tese.
+- **4 rodadas de validador no corte.** Duas pegaram defeito real de mídia (site fatiado na
+  borda no frame que revela o produto; `xfade transition=dissolve` que **não é crossfade, é
+  dither por pixel**, entregando 1,0s de sal-e-pimenta) e duas gastaram em números que eu
+  havia escrito errado na bíblia. Palavras redesenhadas sobre o plano já reenquadrado, uma
+  faixa por palavra: CLICKBAIT saiu de 0,08s legível para 2,04s.
+- **Fase 8 (som) feita e depois CANCELADA pelo usuário** ("lets cancel audio for now"), no
+  meio da segunda rodada de validação. Antes de cancelar, o gate de som pegou o achado mais
+  instrutivo da sessão: o leito de "água" gerado era **drone de sub-bass** (100% da energia
+  abaixo de 200 Hz) e, no filtro de alto-falante de celular, o contraste entre os dois lados
+  do filme **invertia** - a tese morria no dispositivo-alvo do 9:16. Consertado com hiss largo
+  (+10,00 dB de contraste) e foley de teclado (+25,6 dB na abertura) antes do cancelamento.
+  Material preservado e regenerável em `05_cortes/som/`.
+- **Master 1080 mudo** (`master_tese_1080.mp4`, 31 MB): cartela e palavras renderizadas
+  NATIVAS em 1080 (2,76× de nitidez no texto contra ampliar), `-bf 0` matando a modulação de
+  nitidez de 9,95% → 0,58% no plano com deriva, sem grão sintético (o teste inflou 31 MB para
+  189 MB) e sem grade (o look foi aprovado sem ela).
+
+**Decisions:** reprovação de ritmo se responde com régua e não com gosto; três variantes
+quando o eixo da decisão é impacto; toda régua declara a própria cegueira. As três estão em
+`docs/DECISOES.md`. Gasto do filme segue **260,5 cr de teto 275** - todo o retrabalho desta
+sessão custou 0 crédito.
+
+**Pending / next:**
+- [ ] Faixa de áudio do usuário - pendência mais antiga do projeto, agora sem prazo (fase 8
+      cancelada). Se ela entrar, os achados de espectro e o loudness precisam ser re-medidos.
+- [ ] Gate do master 1080 com o usuário (validação rodando ao fim da sessão).
+- [ ] Fase 10: entrega final na pasta do usuário e limpeza dos intermediários.
+- [ ] Opcional, custa créditos e reabre a conta: A/B do `upscale_video` do Higgsfield contra
+      o lanczos local (Video2X não está instalado e instalar exigiria sudo).
+
 ## 2026-08-08 - Promo do AI Signal Desk: SINAL abortado no corte, CORRENTEZA de pé com corte v2
 
 **Where we were:** SOL entregue; saldo Higgsfield de volta (3000 cr, plano ultra);
