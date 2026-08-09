@@ -11,6 +11,22 @@ Template:
 **Alternativa rejeitada:** <o que não fizemos e por quê>
 ```
 
+## 2026-08-08 - Workflow v3: congelamento de ativos (LOCK) + disciplina do still
+**Contexto:** o usuário diagnosticou ("não congelamos ativos, personagens e views")
+depois de a pessoa B da CORRENTEZA trocar de sala e de monitor entre beats; deep
+research em 4 frentes (docs/pesquisa-2026-08/) confirmou e trouxe as receitas.
+**Decisão:** fase 3 vira LOOK DEV + LOCK (character sheet, location master, prop
+sheet, style key, bloco de identidade; regra "entidade existente nunca nasce de
+t2i"; Anchor Frame Method); setups de câmera travados no storyboard; 2-4 stills por
+shot; apara planejada; multiplicador 1,3-1,5x; edição concorrente; som obrigatório;
+ordem fixa do pós. **Porquê:** consistência é propriedade do workflow, não do
+modelo - o que congelamos (pessoa A, por cadeia i2i) ficou consistente; o que não
+congelamos derivou. M1 compra consistência, M3 compra retakes; o scorecard do
+próximo filme mede as duas contra o baseline CORRENTEZA (3 retakes, 207,5 cr/24s).
+**Alternativa rejeitada:** confiar em multi-shot nativo dos modelos (a própria
+pesquisa recomenda orçar retries e não confiar para o filme inteiro).
+Proposta: docs/PROPOSTA-workflow-v3-congelamento.md (PR #35, aprovada pelo usuário).
+
 ## 2026-08-02 - Motion programático (incremento 2): cena = take; direção nova antes do 1º vídeo; node entra como ferramenta
 **Contexto:** o usuário quer produzir com saldo ZERO de créditos (evals parado por
 crédito de novo); o tipo 100% programático via `tools/motion/` (Remotion) é essa

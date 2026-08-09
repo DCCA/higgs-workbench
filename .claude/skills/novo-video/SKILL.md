@@ -129,15 +129,44 @@ rodar a fase completa (e considerar declarar estilo novo em rascunho).
 - Preflight de custos com `get_cost: true` - nunca estimar. Mostrar a conta ao usuário
   antes do primeiro crédito gasto.
 
-### 3. Frames-âncora
-Gerar com `nano_banana_pro` 2k: identidade do personagem (se houver) + locação-mãe.
-Travar identidade POR ESCRITO na bíblia e colar o bloco em todo prompt subsequente.
-Todo frame derivado nasce de um âncora via `medias` ("EXACT same scene... ONLY change:").
+### 3. Look dev + LOCK (era "frames-âncora"; ampliada no workflow v3)
+Gerar com `nano_banana_pro` 2k e APROVAR os artefatos de congelamento, que moram em
+`02_ancoras/LOCK/` (versionados, job IDs na bíblia). Origem e fontes:
+`docs/PROPOSTA-workflow-v3-congelamento.md` + `docs/pesquisa-2026-08/`.
+
+**Artefatos do LOCK (o que é obrigatório quando):**
+- **Character sheet** (personagem em 2+ shots): turnaround corpo inteiro
+  frente/lado/costas + ângulos de cabeça + closes de detalhe, fundo branco, luz
+  neutra - vira referência anexada em toda geração do personagem
+- **Soul ID** (personagem recorrente ENTRE filmes): treino nativo Higgsfield,
+  ~20 fotos variadas com 1 de corpo inteiro
+- **Location master** (locação em 2+ shots): wide do set VAZIO; ângulos novos
+  derivados por i2i "same room, new angle" com prompt SÓ de câmera - nunca t2i
+  fresco da mesma sala
+- **Prop sheet** (objeto em 3+ shots): isolado em fundo neutro, multi-ângulo;
+  ref em toda cena + *detail restoration* sobre o frame gerado se o detalhe borrar
+- **Style key** (todo filme): 1 still de estilo + bloco de estilo VERBATIM
+  (lente, grão, paleta, luz) em toda geração
+- **Bloco de identidade congelado** (todo personagem): texto fixo na bíblia,
+  colado ÍNTEGRO - nunca reescrito de memória (é o modo de falha nº 1 de drift)
+
+**Regra de derivação:** entidade que JÁ existe no LOCK nunca nasce de t2i - toda
+imagem nova dela deriva por i2i/`medias` de um artefato do LOCK ("EXACT same
+scene... ONLY change:"). t2i só para entidade/câmera inéditas, e o resultado
+aprovado ENTRA no LOCK na hora.
+
+**Anchor Frame Method:** um still âncora aprovado e VERSIONADO por
+personagem-por-locação; todo take deriva DELE, nunca do take anterior
+(encadeamento clip→clip degrada). Âncora nova por mudança de cena ou escala.
+
 **Checklist de aceitação POR STILL (antes de mostrar ao usuário):**
 - Zoom nas BORDAS: objeto estranho = REJEITAR no still (contamina o take com parallax)
 - Logos de marca (a jaqueta TNF volta sozinha), figurino idêntico ao bloco de identidade
+  (travar figurino explícito no casting - o default de "pessoa no computador" é capuz)
 - Escala do sujeito legível; cláusula anti-rotação aplicada se paisagem/arquitetura
-**GATE: usuário aprova os âncoras antes de qualquer vídeo - e o CASTING trava aqui.**
+- Derivação conferível: still de entidade existente aponta o artefato-mãe do LOCK
+**GATE: usuário aprova o LOCK antes de qualquer vídeo - CASTING + MUNDO + PROPS +
+ESTILO travam aqui.** Pivô depois = re-shoot, e o usuário decide sabendo o preço.
 
 ### 4. Storyboard (custo ZERO, obrigatório antes de qualquer vídeo)
 Todo movimento e trajetória validados NO PAPEL antes do primeiro crédito de vídeo:
@@ -146,6 +175,11 @@ Todo movimento e trajetória validados NO PAPEL antes do primeiro crédito de v�
 - Cada painel: timecode + legenda com o EVENTO FÍSICO do beat (coreografia, não adjetivo)
 - Setas de trajetória NIVELADAS com o movimento real - anotação errada cria o
   mal-entendido que deveria evitar
+- **SETUPS de câmera travados (v3)**: até 5-7 setups fixos por cena, nomeados
+  (`SETUP-A wide`, `SETUP-B médio`...), escritos ANTES de gerar; todo shot do
+  storyboard referencia um setup. Enquadramento fora de setup não é "ficou até
+  bom" - é drift, e reprova no still. Closes e wides são mais estáveis que
+  low/high angles run-to-run.
 - Copiar para Downloads e iterar de graça até o usuário visualizar o filme inteiro
 - **A LINGUAGEM DE MONTAGEM é decisão explícita deste gate**: cortes tradicionais ×
   oner costurado (emendas escondidas em branco/preto/whip) × oner literal (≤15s).
@@ -163,12 +197,28 @@ que o wow-shot existir.
 ### 6. Produção em lote
 `seedance_2_0` fast 720p, mudo (`generate_audio: false`). Aplicar as cláusulas de
 PRATICAS.md: end frame para movimento de câmera/transformação (outpaint fabrica
-destinos), start só para ação no quadro, anti-rotação em paisagem, objeto-rígido
-em máscara/adereço, `declined_preset_id` preventivo em cena escura.
+destinos; o end mostra a CAUSA do evento, não só a consequência), start só para
+ação no quadro, start+end SÓ com mudança pequena de composição, anti-rotação em
+paisagem, objeto-rígido em máscara/adereço, `declined_preset_id` preventivo em
+QUALQUER bloco (a interceptação dispara também em cena clara).
 Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revisão).
 
+**Regras v3 de produção:**
+- **2-4 stills candidatos por shot, escolher 1** - a seleção acontece no still de
+  2 cr, nunca no take; o still escolhido é a âncora do take
+- **Apara planejada**: gerar 5-10s contando ~10s de render para ~6s úteis
+  (coerência degrada >15s); o preflight já orça o descarte de cabeça/cauda
+- **Batch por personagem/locação**, não por ordem de história - mesmas refs do
+  LOCK anexadas ao lote inteiro
+- **Preflight com multiplicador de retake 1,3-1,5x** em TODOS os shots
+  (2x continua no wow)
+
 ### 7. Montagem e revisão de verdade
-- Concat ffmpeg (`-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`)
+- **Edição CONCORRENTE (v3)**: o corte começa no primeiro take aprovado e cresce
+  junto com a produção - a timeline é o instrumento de continuidade, e a espera
+  de render vira revisão do corte
+- Concat ffmpeg (`-c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p -r 24`);
+  emendar com `settb=AVTB,fps=24` também DEPOIS do concat (senão o xfade recusa)
 - **Folha de cortes**: último frame × primeiro frame de cada emenda, par a par.
   É onde moram os erros (repetição de quadro, jump cut, pop de luminância).
 - Fixes de edição (trim, dissolve 0,25-0,35s, fade) antes de qualquer regen.
@@ -179,6 +229,8 @@ Revisar cada shot por strip de 4 frames ANTES de aprovar (produção, não revis
 Nenhum corte vai ao usuário sem este passe, todo medido (custo zero, ffmpeg + numpy):
 - **Anti-slop visual**: folhas de contato 2fps do filme INTEIRO + zoom nas bordas
   (objetos fantasmas têm parallax - crescem; câmera/equipamento em quadro é o pior tell)
+- **Scrub 0,25x em mãos, bordas e texto em tela (v3)** - estatisticamente onde os
+  erros de geração moram; frame a frame nos segundos de contato físico
 - **QC técnico**: YAVG por frame (flicker), `freezedetect` (frames congelados),
   `astats` (clipping de áudio)
 - **Câmera se MEDE, não se olha**: correlação de fase frame a frame (wobble/jerk -
@@ -189,6 +241,10 @@ Nenhum corte vai ao usuário sem este passe, todo medido (custo zero, ffmpeg + n
   vira lição na bíblia)
 
 ### 8. Áudio (custo zero primeiro)
+- **Som NÃO é opcional (v3)**: sound design é metade do realismo percebido. Todo
+  filme leva no mínimo ambiência + foley NOMEADO (passos, tecido, água), ambiência
+  15-25 dB abaixo do principal e gerada mais LONGA que o corte. Mudo só por decisão
+  explícita do usuário no brief.
 - **VO: a voz é escolhida POR VÍDEO** - gerar 2-3 candidatas edge-tts com o texto real,
   usuário escolhe ouvindo contra o corte. Nunca reaproveitar a escolha de outro vídeo.
 - Trilha: Stable Audio Open (GPU) ou lib CC0; **nunca MusicGen para uso comercial**.
@@ -206,7 +262,11 @@ Nenhum corte vai ao usuário sem este passe, todo medido (custo zero, ffmpeg + n
   timestamp quando a montagem muda)
 
 ### 9. Finalização
-Passe de cor unificado se preciso (colorbalance nas altas, nunca nos médios em pele),
+**Ordem fixa do pós (v3): upscale → grade unificando pelo HERO clip → grão 24fps
+compartilhado por cima de tudo** (o grão único esconde variação de textura entre
+gerações). Speed-up sutil (~105-115%) como antídoto de movimento flutuante.
+Cláusula-guarda: pós conserta TEXTURA, nunca movimento/anatomia - shot deformado
+se regenera. Passe de cor (colorbalance nas altas, nunca nos médios em pele),
 upscale A/B (Video2X local × `upscale_video`) num shot antes de rodar tudo, export
 final para a plataforma. Padrões de master: 1080×1920 + grão fino unificador.
 **Cartela**: nunca fonte de sistema nem branco 255 - prova de fontes (OFL/fontsource),

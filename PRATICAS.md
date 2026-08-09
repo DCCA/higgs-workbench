@@ -26,6 +26,17 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 - **Prototipar os shots críticos fora de ordem.** Os dois shots mais arriscados do roteiro
   falharam no primeiro take. Descobrir isso cedo por ~35 cr comprou a informação antes de
   comprometer o resto; descobrir no fim teria custado o replanejamento do final inteiro.
+  Precisão da pesquisa 2026: o shot de risco é o risco DE MODELO (diálogo, reverse
+  angle, mãos), não o espetáculo.
+- **2-4 stills candidatos por shot, escolher 1 (v3).** A seleção acontece no still de
+  2 cr, nunca no take - keyframe-first mede ~1,25-2 gerações de vídeo por clipe
+  aprovado contra 20-27:1 do prompt-only (dados em `docs/pesquisa-2026-08/04`).
+- **Apara de cabeça/cauda é PLANEJADA (v3):** gerar 5-10s contando ~10s → ~6s úteis
+  (coerência degrada >15s); o preflight orça o descarte. *Pago por:* a cachoeira v1
+  da CORRENTEZA desinflava - o corte aparado era melhor que o take inteiro.
+- **Multiplicador de retake 1,3-1,5x em TODOS os shots no preflight (v3)** - não só
+  o 2x do wow. Batch por personagem/locação com as mesmas refs do LOCK, não por
+  ordem de história.
 
 ## Identidade e consistência
 
@@ -41,6 +52,28 @@ Genérico e reutilizável; o específico de cada filme (job IDs, decupagem) vive
 - **Derivar frames irmãos, nunca gerar solto.** End frame de um shot estático = regen do
   start com "EXACT same scene... The ONLY change: X". Gerar o end de forma independente
   muda mesa, parede, luz - e ambiente morfando em shot estático lê como erro.
+- **LOCK (workflow v3): congelamento é artefato, não intenção.** Antes de qualquer
+  take, `02_ancoras/LOCK/` recebe: character sheet (turnaround + cabeças + closes,
+  fundo branco) por personagem em 2+ shots; location master (set VAZIO; ângulos novos
+  por i2i "same room, new angle" com prompt só de câmera) por locação em 2+ shots;
+  prop sheet (fundo neutro, multi-ângulo) por objeto em 3+ shots; style key + bloco
+  de identidade congelado. Fontes: `docs/pesquisa-2026-08/`. *Pago por:* a pessoa B
+  da CORRENTEZA - beat 6 re-descrito de memória virou outra sala, outro monitor.
+- **Regra de derivação: entidade que existe no LOCK nunca nasce de t2i.** Toda
+  imagem nova dela deriva por i2i/`medias` de um artefato do LOCK; t2i só para
+  entidade/câmera inéditas, e o aprovado entra no LOCK na hora. É a generalização
+  do "derivar frames irmãos" para o filme inteiro.
+- **Anchor Frame Method: um still âncora VERSIONADO por personagem-por-locação;
+  todo take deriva dele, nunca do take anterior** (encadeamento clip→clip degrada).
+  Âncora nova por mudança de cena ou escala. Nome e receita da literatura 2026;
+  a CORRENTEZA fez por instinto na pessoa A e funcionou (6 âncoras, 4 takes).
+- **Soul ID para personagem recorrente entre filmes**: treino nativo Higgsfield
+  (~20 fotos variadas, 1 de corpo inteiro, 3-5 min) - identidade persiste em toda
+  geração futura sem re-upload. Nunca usado no workbench até ago/2026; testar no
+  próximo filme com personagem.
+- **Setups de câmera travados como live-action**: até 5-7 setups fixos por cena,
+  nomeados e escritos ANTES de gerar; todo shot referencia um setup. Enquadramento
+  fora do plano é drift, não achado feliz. Closes/wides mais estáveis que low/high.
 
 ## Movimento de câmera
 
@@ -193,6 +226,11 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
 
 ## Áudio e loudness (medido no entregue)
 
+- **Som não é opcional (v3): sound design é metade do realismo percebido.** Todo
+  filme leva no mínimo ambiência + foley NOMEADO (passos, tecido, água); ambiência
+  15-25 dB abaixo do principal e mais LONGA que o corte (loop curto tem emenda
+  audível). Mudo só por decisão explícita do usuário no brief.
+
 - **Loudness e true peak se medem no ARQUIVO ENTREGUE, nunca no PCM antes do encode.**
   O AAC estoura o true peak em ~1,5 dB sobre o que o `loudnorm` promete. Para fechar
   o alvo social (-14 LUFS, TP ≤ -1 dB), o TP-alvo do loudnorm precisa ser **-3,0**;
@@ -252,6 +290,15 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   de 2s (um piscar) geram em 4 e aparam na montagem, com fade se o estado final importa.
 - **Medir, não olhar, quando dá:** `signalstats YAVG` para confirmar preto de vídeo,
   `ffprobe` para durações.
+- **Scrub 0,25x em mãos, bordas e texto em tela (v3)** - estatisticamente onde os
+  erros de geração moram; frame a frame nos segundos de contato físico.
+- **Edição concorrente (v3): o corte começa no primeiro take aprovado** e cresce com
+  a produção - a timeline é o instrumento de continuidade e a espera de render vira
+  revisão (achado do *Catacombs*, 3.229 gerações).
+- **Ordem fixa do pós (v3): upscale → grade pelo HERO clip → grão 24fps
+  compartilhado** por cima de tudo (grão único esconde variação de textura entre
+  gerações); speed-up sutil ~105-115% contra movimento flutuante. Cláusula-guarda:
+  pós conserta TEXTURA, nunca movimento/anatomia - shot deformado se regenera.
 - **Review anti-slop obrigatório antes de entregar corte** (ALÉM): folhas de contato
   2fps do filme inteiro + zoom nas bordas. Objeto fantasma em âncora tem PARALLAX -
   cresce até ~35% da borda no take e fica irreparável por crop; rejeitar no still
@@ -308,9 +355,10 @@ de 52,5 cr (trajetória mal-entendida; fundo vazio sem graça → mundo povoado 
   de todo take (ffprobe) contra a janela do bloco; preferir UMA frase fluida com
   vírgulas; números por extenso; esperar 1-2 rodadas de re-voz; leve estouro é
   melhor que começo atrasado.
-- **Style key (recomendação):** além das refs de identidade/cena, anexar um still de
-  ESTILO consistente a toda geração do filme. Métrica de acompanhamento no QC: drift
-  de matiz/saturação médias entre takes (próximo filme ≤ baseline ALÉM).
+- **Style key é REGRA (promovida de recomendação no v3):** um still de estilo + bloco
+  de estilo verbatim (lente, grão, paleta, luz) anexados a TODA geração do filme.
+  Métrica no QC: drift de matiz/saturação médias entre takes. *Pago por:* CORRENTEZA
+  rodou inteira sem style key - a paleta do lado A segurou só pela cadeia i2i.
 - **Objeto recorrente = prop 1:1:** gerar o objeto isolado em fundo neutro (com o
   style key) e anexar como ref extra em toda cena ("the X from the reference image") -
   sistematiza a lição do design-por-referência do MÁSCARAS.
