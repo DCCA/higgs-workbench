@@ -43,13 +43,42 @@ quando o eixo da decisão é impacto; toda régua declara a própria cegueira. A
 `docs/DECISOES.md`. Gasto do filme segue **260,5 cr de teto 275** - todo o retrabalho desta
 sessão custou 0 crédito.
 
+- **Master 1080 APROVADO no gate** (`04_qc/veredito_master_v1.txt`, 0 BLOQUEIA). Equivalência
+  com o corte aprovado provada por PSNR (média 44,36; 34,12 com 1 frame de deslocamento, o que
+  prova alinhamento exato) e todas as garantias do gate de imagem sobrevivem. Ele falsificou uma
+  justificativa minha: os planos NÃO levam o mesmo fator de ampliação (1,500× / 1,831× / 1,651×
+  / 2,177×), então a cláusula do grão que eu já tinha mergeado estava com a premissa errada -
+  corrigida antes de virar regra. **Entrega vigente: `06_master/CORRENTEZA2_MASTER.mp4`** (com
+  faststart), espelhada em Downloads.
+- **Auditoria de docs (#39).** O `CLAUDE.md` omitia Manrope e DM Mono da lista de fontes (as
+  duas que as cartelas usam), listava 6 princípios onde a skill tem 8 e apontava o fluxograma
+  como v2; o `docs/ESTRUTURA.md` descrevia o workflow v2 inteiro e o kit motion com 6 cenas
+  quando tem 11; o `LICENSE` redistribuía 3 famílias OFL sem citá-las; o `SKILL.md` era a única
+  fonte dizendo 17-45 cr contra os 17-52 dos outros três. Consertado tudo, com os comandos
+  documentados rodados como prova. E o `lint_veredito.sh` ganhou guarda: com caminho errado ele
+  concluía "RE-RODAR o validador", ou seja um typo meu lia como veredito sobre o validador.
+
+**Scorecard v3 × baseline** (na bíblia, com leitura honesta): 11,5 cr/s contra 8,6 - **26% mais
+caro**, porque 154 dos 260,5 cr foram 5 iterações do wow-shot em movimento -, e **47% de gates
+aprovados de 1ª**. Em troca: 7 BLOQUEIA reais pegos antes do usuário, o defeito nº 1 da baseline
+(monitor/sala mudando entre beats 5 e 6) morto com régua falsificável, e **0 cr** em todo o
+retrabalho de montagem, som e master.
+
+**O escape que importa:** o RITMO. Cinco rodadas de validador aprovaram o corte_v2 e o usuário
+reprovou em uma frase, porque régua nenhuma perguntava se o filme tinha ritmo - o mesmo buraco
+do SINAL na sessão anterior, em outra roupa. O processo mede fato e forma; impacto só o usuário
+assistindo mede.
+
 **Pending / next:**
 - [ ] Faixa de áudio do usuário - pendência mais antiga do projeto, agora sem prazo (fase 8
-      cancelada). Se ela entrar, os achados de espectro e o loudness precisam ser re-medidos.
-- [ ] Gate do master 1080 com o usuário (validação rodando ao fim da sessão).
-- [ ] Fase 10: entrega final na pasta do usuário e limpeza dos intermediários.
-- [ ] Opcional, custa créditos e reabre a conta: A/B do `upscale_video` do Higgsfield contra
-      o lanczos local (Video2X não está instalado e instalar exigiria sudo).
+      cancelada por brief explícito). Se ela entrar: re-medir espectro, loudness e true peak, e
+      o master precisa ser refeito com áudio.
+- [ ] Opcional, custa créditos e reabre a conta: A/B do `upscale_video` contra o lanczos local
+      (ringing medido em 0,24% de overshoot - não justifica por si só). Video2X não está
+      instalado e instalar exigiria sudo.
+- [ ] Decisões da auditoria que ficaram com o usuário: PNGs de logo largados em `qc_out/`, os 4
+      `docs/PLANO-*.md` com checkboxes vazias apesar de implementados, nota de que o LOCK não
+      retroage a projetos antigos, e o segundo mundo do `tools/motion/src/gs/` sem surface brief.
 
 ## 2026-08-08 - Promo do AI Signal Desk: SINAL abortado no corte, CORRENTEZA de pé com corte v2
 
